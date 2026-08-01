@@ -25,19 +25,20 @@ function checkAdminAccess() {
   }
 }
 
-function initAdminDashboard() {
-  loadAdminGeneralInfo();
-  loadAdminBerita();
-  loadAdminLayanan();
-  loadAdminUMKM();
-  loadAdminStruktur();
+async function initAdminDashboard() {
+  const data = await getMallilingiDataAsync();
+  loadAdminGeneralInfo(data);
+  loadAdminBerita(data);
+  loadAdminLayanan(data);
+  loadAdminUMKM(data);
+  loadAdminStruktur(data);
 }
 
 // -------------------------------------------------------------
 // 1. INFORMASI GENERAL KELURAHAN
 // -------------------------------------------------------------
-function loadAdminGeneralInfo() {
-  const data = getMallilingiData();
+function loadAdminGeneralInfo(dataParam) {
+  const data = dataParam || getMallilingiData();
   const info = data.info;
 
   setValue("editNamaLurah", info.namaLurah);
@@ -55,9 +56,9 @@ function loadAdminGeneralInfo() {
   setValue("editLuasWilayah", info.luasWilayah);
 }
 
-function saveGeneralInfoForm(e) {
+async function saveGeneralInfoForm(e) {
   e.preventDefault();
-  const data = getMallilingiData();
+  const data = await getMallilingiDataAsync();
 
   data.info.namaLurah = getValue("editNamaLurah");
   data.info.nipLurah = getValue("editNipLurah");
@@ -73,7 +74,7 @@ function saveGeneralInfoForm(e) {
   data.info.jumlahKK = getValue("editJumlahKK");
   data.info.luasWilayah = getValue("editLuasWilayah");
 
-  saveMallilingiData(data);
+  await saveMallilingiDataAsync(data);
   showToast("✅ Informasi Umum Kelurahan berhasil diperbarui!");
 }
 

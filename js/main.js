@@ -3,8 +3,8 @@
  * Disusun untuk Proker Individu KKN
  */
 
-document.addEventListener("DOMContentLoaded", () => {
-  const data = getMallilingiData();
+document.addEventListener("DOMContentLoaded", async () => {
+  const data = await getMallilingiDataAsync();
   
   // 1. Mobile Menu Toggle
   const mobileToggle = document.getElementById("mobileToggle");
@@ -132,6 +132,8 @@ function initTopBarTicker() {
 
 // Render Hero & Info
 function renderHeroInfo(info) {
+  if (!info) return;
+
   const elSambutan = document.getElementById("sambutanText");
   const elLurahNama = document.getElementById("lurahNama");
   const elLurahNip = document.getElementById("lurahNip");
@@ -139,12 +141,12 @@ function renderHeroInfo(info) {
   const elVisi = document.getElementById("visiText");
   const elMisi = document.getElementById("misiList");
   
-  if (elSambutan) elSambutan.textContent = `"${info.sambutanLurah}"`;
-  if (elLurahNama) elLurahNama.textContent = info.namaLurah;
-  if (elLurahNip) elLurahNip.textContent = info.nipLurah;
+  if (elSambutan) elSambutan.textContent = `"${info.sambutanLurah || DEFAULT_MALLILINGI_DATA.info.sambutanLurah}"`;
+  if (elLurahNama) elLurahNama.textContent = info.namaLurah || DEFAULT_MALLILINGI_DATA.info.namaLurah;
+  if (elLurahNip) elLurahNip.textContent = info.nipLurah || DEFAULT_MALLILINGI_DATA.info.nipLurah;
   if (elFotoLurah && info.fotoLurah) elFotoLurah.src = info.fotoLurah;
   
-  if (elVisi) elVisi.textContent = info.visi;
+  if (elVisi) elVisi.textContent = info.visi || DEFAULT_MALLILINGI_DATA.info.visi;
   if (elMisi && Array.isArray(info.misi)) {
     elMisi.innerHTML = info.misi.map(m => `<li>${m}</li>`).join("");
   }
@@ -155,10 +157,10 @@ function renderHeroInfo(info) {
   const statLuas = document.getElementById("statLuas");
   const statRT = document.getElementById("statRT");
 
-  if (statPenduduk) statPenduduk.textContent = info.jumlahPenduduk;
-  if (statKK) statKK.textContent = info.jumlahKK;
-  if (statLuas) statLuas.textContent = info.luasWilayah;
-  if (statRT) statRT.textContent = `${info.jumlahRW} / ${info.jumlahRT}`;
+  if (statPenduduk) statPenduduk.textContent = info.jumlahPenduduk || "3.420 Jiwa";
+  if (statKK) statKK.textContent = info.jumlahKK || "890 KK";
+  if (statLuas) statLuas.textContent = info.luasWilayah || "0.84 km²";
+  if (statRT) statRT.textContent = (info.jumlahRW && info.jumlahRT) ? `${info.jumlahRW} / ${info.jumlahRT}` : "4 RW / 12 RT";
 }
 
 // Render Layanan Cards
@@ -208,8 +210,8 @@ function setupLayananSearch(allLayanan) {
 }
 
 // Modal Layanan Detail
-function openLayananDetail(id) {
-  const data = getMallilingiData();
+async function openLayananDetail(id) {
+  const data = await getMallilingiDataAsync();
   const item = data.layanan.find(l => l.id === id);
   if (!item) return;
 
@@ -297,8 +299,8 @@ function renderBeritaGrid(beritaList) {
   `).join("");
 }
 
-function openBeritaDetail(id) {
-  const data = getMallilingiData();
+async function openBeritaDetail(id) {
+  const data = await getMallilingiDataAsync();
   const item = data.berita.find(b => b.id === id);
   if (!item) return;
 
@@ -311,11 +313,11 @@ function openBeritaDetail(id) {
   modalTitle.textContent = item.judul;
   modalBody.innerHTML = `
     <div style="font-size:0.85rem; color:#059669; font-weight:600; margin-bottom:1rem;">
-      📅 ${item.tanggal} | Ditulis oleh: ${item.penulis || 'Pemerintah Kelurahan'}
+      📅 ${item.tanggal || 'Terbaru'} | Kategori: ${item.kategori || 'Pengumuman'}
     </div>
     <img src="${item.gambar || 'assets/images/kantor_kelurahan.jpg'}" style="width:100%; border-radius:10px; max-height:260px; object-fit:cover; margin-bottom:1rem;" />
-    <p style="font-size:1rem; line-height:1.7; color:#1e293b;">
-      ${item.konten || item.ringkasan}
+    <p style="font-size:1rem; line-height:1.7; color:#1e293b; white-space: pre-line;">
+      ${item.isi || item.konten || item.ringkasan}
     </p>
   `;
 

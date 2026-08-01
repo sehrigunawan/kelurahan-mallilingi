@@ -224,9 +224,9 @@ function resetMallilingiData() {
    ========================================================================== */
 const SUPABASE_CONFIG = {
   // Masukkan URL dan Anon Key Supabase Anda dari dashboard https://supabase.com
-  url: "https://your-project-id.supabase.co",
-  anonKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.your-anon-key-here",
-  enabled: false // Ubah ke true jika sudah memasukkan API Key resmi Supabase
+  url: "https://zpjlttzifpnavbwjsjxq.supabase.co",
+  anonKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpwamx0dHppZnBuYXZid2pzanhxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODU1NzE4NzksImV4cCI6MjEwMTE0Nzg3OX0.C9vAJhrlXsbHxL9Xibu4vkLe_J8Mt6ya5lKY2X5YJf8",
+  enabled: true // Ubah ke true jika sudah memasukkan API Key resmi Supabase
 };
 
 // Inisialisasi Supabase JS Client jika SDK dimuat & enabled = true
@@ -241,9 +241,28 @@ if (window.supabase && SUPABASE_CONFIG.enabled && !SUPABASE_CONFIG.url.includes(
 }
 
 /**
- * Dual-Mode Data Fetcher:
- * 1. Jika Supabase terhubung -> Ambil data langsung dari Supabase Cloud DB.
- * 2. Jika offline / belum set API key -> Ambil data dari LocalStorage / DEFAULT_MALLILINGI_DATA.
+ * Auto-Seed Initial Data to Supabase Cloud Database if tables are empty
+ */
+async function seedInitialDataToSupabase() {
+  if (!supabaseClient) return;
+  try {
+    const defaultData = DEFAULT_MALLILINGI_DATA;
+    await Promise.all([
+      supabaseClient.from('info').upsert({ id: 1, ...defaultData.info }),
+      supabaseClient.from('berita').upsert(defaultData.berita),
+      supabaseClient.from('umkm').upsert(defaultData.umkm),
+      supabaseClient.from('layanan').upsert(defaultData.layanan)
+    ]);
+    console.log("🌱 Seed Data Awal Berhasil Diunggah ke Supabase Cloud!");
+  } catch (err) {
+    console.error("❌ Gagal mengunggah Seed Data Awal ke Supabase:", err);
+  }
+}
+
+/**
+ * Pure 100% Cloud Database Data Fetcher:
+ * 1. Jika Supabase terhubung & enabled -> Ambil 100% MURNI dari Supabase Cloud DB.
+ * 2. Jika Supabase tidak aktif / offline -> Ambil dari LocalStorage / Default.
  */
 async function getMallilingiDataAsync() {
   if (supabaseClient) {
@@ -255,17 +274,36 @@ async function getMallilingiDataAsync() {
         supabaseClient.from('layanan').select('*')
       ]);
 
-      if (!infoRes.error && !beritaRes.error && !umkmRes.error && !layananRes.error) {
+      if (infoRes.data) {
+        let infoObj = infoRes.data;
+        if (typeof infoObj.misi === "string") {
+          try { infoObj.misi = JSON.parse(infoObj.misi); } catch (e) { infoObj.misi = []; }
+        }
+        if (typeof infoObj.batasWilayah === "string") {
+          try { infoObj.batasWilayah = JSON.parse(infoObj.batasWilayah); } catch (e) { infoObj.batasWilayah = {}; }
+        }
+
+        let layananList = (layananRes.data || []).map(item => {
+          let persy = item.persyaratan;
+          if (typeof persy === "string") {
+            try { persy = JSON.parse(persy); } catch (e) { persy = []; }
+          }
+          return {
+            ...item,
+            persyaratan: Array.isArray(persy) ? persy : []
+          };
+        });
+
         return {
-          info: infoRes.data || DEFAULT_MALLILINGI_DATA.info,
-          berita: beritaRes.data || DEFAULT_MALLILINGI_DATA.berita,
-          umkm: umkmRes.data || DEFAULT_MALLILINGI_DATA.umkm,
-          layanan: layananRes.data || DEFAULT_MALLILINGI_DATA.layanan,
+          info: infoObj,
+          berita: beritaRes.data || [],
+          umkm: umkmRes.data || [],
+          layanan: layananList,
           struktur: DEFAULT_MALLILINGI_DATA.struktur
         };
       }
     } catch (err) {
-      console.warn("⚠️ Gagal mengambil dari Supabase Cloud DB, fallback ke LocalStorage:", err);
+      console.warn("⚠️ Gagal mengambil data dari Supabase Cloud DB:", err);
     }
   }
   return getMallilingiData();
