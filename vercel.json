@@ -1,8 +1,6 @@
 {
   "version": 2,
-  "name": "kelurahan-mallilingi",
-  "cleanUrls": true,
-  "routes": [
-    { "src": "/(.*)", "dest": "/$1" }
-  ]
+  "buildCommand": "npx turbo run build",
+  "outputDirectory": "apps/web/.next",
+  "framework": "nextjs"
 }
