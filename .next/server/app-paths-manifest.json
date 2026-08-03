@@ -1,0 +1,13 @@
+{
+  "/_not-found/page": "app/_not-found/page.js",
+  "/kontak/page": "app/kontak/page.js",
+  "/admin/page": "app/admin/page.js",
+  "/berita/[id]/page": "app/berita/[id]/page.js",
+  "/layanan/page": "app/layanan/page.js",
+  "/berita/page": "app/berita/page.js",
+  "/struktur/page": "app/struktur/page.js",
+  "/umkm/[id]/page": "app/umkm/[id]/page.js",
+  "/umkm/page": "app/umkm/page.js",
+  "/page": "app/page.js",
+  "/profil/page": "app/profil/page.js"
+}
