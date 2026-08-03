@@ -14,14 +14,7 @@
       "static/chunks/main-app-ca238e554bda718c.js",
       "static/css/7d34d5926c299e23.css",
       "static/chunks/972-c297c90601cf06f0.js",
-      "static/chunks/app/layout-66ccf80b7ae1630d.js"
-    ],
-    "/kontak/page": [
-      "static/chunks/webpack-1a9f5f0b6ec9894f.js",
-      "static/chunks/fd9d1056-9f91b5e418130764.js",
-      "static/chunks/117-9bcfe95f89d4b2e1.js",
-      "static/chunks/main-app-ca238e554bda718c.js",
-      "static/chunks/app/kontak/page-9c46de28936e78ba.js"
+      "static/chunks/app/layout-d6ccce20338c9287.js"
     ],
     "/admin/page": [
       "static/chunks/webpack-1a9f5f0b6ec9894f.js",
@@ -38,7 +31,7 @@
       "static/chunks/117-9bcfe95f89d4b2e1.js",
       "static/chunks/main-app-ca238e554bda718c.js",
       "static/chunks/972-c297c90601cf06f0.js",
-      "static/chunks/app/berita/[id]/page-230d7b0c60695506.js"
+      "static/chunks/app/berita/[id]/page-f173bc77f6ce4c92.js"
     ],
     "/layanan/page": [
       "static/chunks/webpack-1a9f5f0b6ec9894f.js",
@@ -47,13 +40,35 @@
       "static/chunks/main-app-ca238e554bda718c.js",
       "static/chunks/app/layanan/page-00b93a1af21b0c8a.js"
     ],
+    "/page": [
+      "static/chunks/webpack-1a9f5f0b6ec9894f.js",
+      "static/chunks/fd9d1056-9f91b5e418130764.js",
+      "static/chunks/117-9bcfe95f89d4b2e1.js",
+      "static/chunks/main-app-ca238e554bda718c.js",
+      "static/chunks/972-c297c90601cf06f0.js",
+      "static/chunks/app/page-4120f214d006a5cb.js"
+    ],
     "/berita/page": [
       "static/chunks/webpack-1a9f5f0b6ec9894f.js",
       "static/chunks/fd9d1056-9f91b5e418130764.js",
       "static/chunks/117-9bcfe95f89d4b2e1.js",
       "static/chunks/main-app-ca238e554bda718c.js",
       "static/chunks/972-c297c90601cf06f0.js",
-      "static/chunks/app/berita/page-e3686559a8f87aa5.js"
+      "static/chunks/app/berita/page-b902c6bf43f73404.js"
+    ],
+    "/kontak/page": [
+      "static/chunks/webpack-1a9f5f0b6ec9894f.js",
+      "static/chunks/fd9d1056-9f91b5e418130764.js",
+      "static/chunks/117-9bcfe95f89d4b2e1.js",
+      "static/chunks/main-app-ca238e554bda718c.js",
+      "static/chunks/app/kontak/page-9c46de28936e78ba.js"
+    ],
+    "/profil/page": [
+      "static/chunks/webpack-1a9f5f0b6ec9894f.js",
+      "static/chunks/fd9d1056-9f91b5e418130764.js",
+      "static/chunks/117-9bcfe95f89d4b2e1.js",
+      "static/chunks/main-app-ca238e554bda718c.js",
+      "static/chunks/app/profil/page-c51acd344ee4ff68.js"
     ],
     "/struktur/page": [
       "static/chunks/webpack-1a9f5f0b6ec9894f.js",
@@ -68,7 +83,7 @@
       "static/chunks/117-9bcfe95f89d4b2e1.js",
       "static/chunks/main-app-ca238e554bda718c.js",
       "static/chunks/972-c297c90601cf06f0.js",
-      "static/chunks/app/umkm/[id]/page-3958513c0e04d7a4.js"
+      "static/chunks/app/umkm/[id]/page-e1e6ad8f620657bd.js"
     ],
     "/umkm/page": [
       "static/chunks/webpack-1a9f5f0b6ec9894f.js",
@@ -76,21 +91,6 @@
       "static/chunks/117-9bcfe95f89d4b2e1.js",
       "static/chunks/main-app-ca238e554bda718c.js",
       "static/chunks/app/umkm/page-e7ff51a8857a7c7e.js"
-    ],
-    "/page": [
-      "static/chunks/webpack-1a9f5f0b6ec9894f.js",
-      "static/chunks/fd9d1056-9f91b5e418130764.js",
-      "static/chunks/117-9bcfe95f89d4b2e1.js",
-      "static/chunks/main-app-ca238e554bda718c.js",
-      "static/chunks/972-c297c90601cf06f0.js",
-      "static/chunks/app/page-4120f214d006a5cb.js"
-    ],
-    "/profil/page": [
-      "static/chunks/webpack-1a9f5f0b6ec9894f.js",
-      "static/chunks/fd9d1056-9f91b5e418130764.js",
-      "static/chunks/117-9bcfe95f89d4b2e1.js",
-      "static/chunks/main-app-ca238e554bda718c.js",
-      "static/chunks/app/profil/page-c51acd344ee4ff68.js"
     ]
   }
 }

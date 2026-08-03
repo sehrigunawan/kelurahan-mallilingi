@@ -9,9 +9,6 @@ export default function Navbar() {
   const navItems = [
     { href: "/", label: "Beranda" },
     { href: "/profil", label: "Profil" },
-    { href: "/layanan", label: "Layanan" },
-    { href: "/berita", label: "Berita" },
-    { href: "/umkm", label: "UMKM" },
     { href: "/struktur", label: "Struktur" },
     { href: "/kontak", label: "Kontak" },
   ];
