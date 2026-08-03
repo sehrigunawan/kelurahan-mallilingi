@@ -9,8 +9,8 @@ export default function Navbar() {
   const navItems = [
     { href: "/", label: "Beranda" },
     { href: "/profil", label: "Profil" },
-    { href: "/struktur", label: "Struktur" },
-    { href: "/kontak", label: "Kontak" },
+    { href: "/struktur", label: "Struktur Organisasi" },
+    { href: "/pengaduan", label: "Layanan Pengaduan" },
   ];
 
   return (
