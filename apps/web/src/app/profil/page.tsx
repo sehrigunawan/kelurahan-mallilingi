@@ -6,10 +6,10 @@ export default async function ProfilPage() {
   const info = data.info;
 
   return (
-    <section class="section">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">PROFIL MALAILINGI</span>
+    <section className="section">
+      <div className="container">
+        <div className="section-header">
+          <span className="section-tag">PROFIL MALAILINGI</span>
           <h2>Profil Kelurahan, Visi Misi, & Wilayah</h2>
           <p>Informasi mendalam mengenai pimpinan kelurahan, arah kebijakan pembangunan, data kependudukan, serta gambaran geografis Kelurahan Mallilingi.</p>
         </div>

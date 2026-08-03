@@ -8,10 +8,10 @@ export default async function HomePage() {
   return (
     <>
       {/* Hero Section */}
-      <section class="hero">
-        <div class="container">
-          <div class="hero-content">
-            <div class="hero-badge">
+      <section className="hero">
+        <div className="container">
+          <div className="hero-content">
+            <div className="hero-badge">
               🏛️ Portal Informasi Resmi Kelurahan Mallilingi
             </div>
             <h1>Pelayanan Publik Cepat, Transparan, & Terintegrasi</h1>
@@ -19,11 +19,11 @@ export default async function HomePage() {
               Selamat datang di platform resmi Kelurahan Mallilingi, Kecamatan Bantaeng.
               Akses informasi layanan surat kependudukan, berita kegiatan desa, direktori UMKM warga, dan profil wilayah dalam satu platform terpadu.
             </p>
-            <div class="hero-buttons">
-              <Link href="/layanan" class="btn btn-primary">
+            <div className="hero-buttons">
+              <Link href="/layanan" className="btn btn-primary">
                 🔍 Syarat Layanan Surat
               </Link>
-              <Link href="/profil" class="btn btn-secondary">
+              <Link href="/profil" className="btn btn-secondary">
                 📖 Profil & Visi Misi Kelurahan
               </Link>
             </div>
@@ -32,10 +32,10 @@ export default async function HomePage() {
       </section>
 
       {/* 1. Profil Kelurahan Teaser Section */}
-      <section class="section" style={{ backgroundColor: "#ffffff" }}>
-        <div class="container">
-          <div class="section-header">
-            <span class="section-tag">TENTANG KELURAHAN</span>
+      <section className="section" style={{ backgroundColor: "#ffffff" }}>
+        <div className="container">
+          <div className="section-header">
+            <span className="section-tag">TENTANG KELURAHAN</span>
             <h2>Sekilas Profil Mallilingi</h2>
             <p>Gambaran singkat pimpinan, visi pembangunan, dan statistik wilayah Kelurahan Mallilingi.</p>
           </div>
@@ -49,9 +49,9 @@ export default async function HomePage() {
               <h3 style={{ fontSize: "1.2rem", marginBottom: "0.2rem" }}>{info.namaLurah}</h3>
               <div style={{ color: "#059669", fontWeight: 600, fontSize: "0.9rem", marginBottom: "0.5rem" }}>Lurah Mallilingi</div>
               <p style={{ fontSize: "0.9rem", color: "#475569", fontStyle: "italic", marginBottom: "1.5rem" }}>
-                "{info.sambutanLurah.slice(0, 140)}..."
+                &ldquo;{info.sambutanLurah.slice(0, 140)}...&rdquo;
               </p>
-              <Link href="/profil" class="btn btn-outline" style={{ fontSize: "0.85rem", width: "100%" }}>
+              <Link href="/profil" className="btn btn-outline" style={{ fontSize: "0.85rem", width: "100%" }}>
                 Baca Sambutan Lengkap & Visi Misi →
               </Link>
             </div>
@@ -81,7 +81,7 @@ export default async function HomePage() {
               </div>
 
               <div style={{ textAlign: "right" }}>
-                <Link href="/profil" class="btn btn-primary">
+                <Link href="/profil" className="btn btn-primary">
                   Buka Halaman Profil Selengkapnya →
                 </Link>
               </div>
@@ -91,17 +91,17 @@ export default async function HomePage() {
       </section>
 
       {/* 2. Layanan Surat Teaser Section */}
-      <section class="section">
-        <div class="container">
-          <div class="section-header">
-            <span class="section-tag">PANDUAN PUBLIK</span>
+      <section className="section">
+        <div className="container">
+          <div className="section-header">
+            <span className="section-tag">PANDUAN PUBLIK</span>
             <h2>Layanan Administrasi Kependudukan</h2>
             <p>Informasi persyaratan dokumen kependudukan yang transparan tanpa pungutan biaya (Rp 0).</p>
           </div>
 
-          <div class="layanan-grid">
+          <div className="layanan-grid">
             {data.layanan.slice(0, 3).map((item) => (
-              <div key={item.id} class="layanan-card" style={{ padding: "1.5rem" }}>
+              <div key={item.id} className="layanan-card" style={{ padding: "1.5rem" }}>
                 <div>
                   <span style={{ fontSize: "0.75rem", background: "#ecfdf5", color: "#059669", padding: "0.25rem 0.6rem", borderRadius: "9999px", fontWeight: 700 }}>
                     {item.kategori}
@@ -111,7 +111,7 @@ export default async function HomePage() {
                     ⏱️ Estimasi: {item.waktu} | 💰 {item.biaya}
                   </div>
                 </div>
-                <Link href="/layanan" class="btn btn-outline" style={{ fontSize: "0.825rem", marginTop: "auto" }}>
+                <Link href="/layanan" className="btn btn-outline" style={{ fontSize: "0.825rem", marginTop: "auto" }}>
                   Lihat Syarat & Alur →
                 </Link>
               </div>
@@ -119,7 +119,7 @@ export default async function HomePage() {
           </div>
 
           <div style={{ textAlign: "center", marginTop: "2.5rem" }}>
-            <Link href="/layanan" class="btn btn-primary">
+            <Link href="/layanan" className="btn btn-primary">
               Buka Halaman Katalog Layanan Surat ({data.layanan.length}) →
             </Link>
           </div>
@@ -127,25 +127,25 @@ export default async function HomePage() {
       </section>
 
       {/* 3. Kabar Terkini Teaser Section */}
-      <section class="section" style={{ backgroundColor: "#ffffff" }}>
-        <div class="container">
-          <div class="section-header">
-            <span class="section-tag">KABAR TERKINI</span>
+      <section className="section" style={{ backgroundColor: "#ffffff" }}>
+        <div className="container">
+          <div className="section-header">
+            <span className="section-tag">KABAR TERKINI</span>
             <h2>Berita & Pengumuman Terbaru</h2>
             <p>Publikasi resmi mengenai kegiatan pembangunan, sosial kemasyarakatan, dan program kelurahan.</p>
           </div>
 
-          <div class="berita-grid">
+          <div className="berita-grid">
             {data.berita.slice(0, 3).map((item) => (
-              <article key={item.id} class="berita-card">
-                <img src={item.gambar || "/assets/images/kantor_kelurahan.jpg"} alt={item.judul} class="berita-img" />
-                <div class="berita-body">
+              <article key={item.id} className="berita-card">
+                <img src={item.gambar || "/assets/images/kantor_kelurahan.jpg"} alt={item.judul} className="berita-img" />
+                <div className="berita-body">
                   <div>
-                    <div class="berita-date">📅 {item.tanggal} • {item.kategori || "Pengumuman"}</div>
+                    <div className="berita-date">📅 {item.tanggal} • {item.kategori || "Pengumuman"}</div>
                     <h3 style={{ fontSize: "1.05rem", marginBottom: "0.5rem" }}>{item.judul}</h3>
                     <p style={{ fontSize: "0.85rem", color: "#64748b", marginBottom: "1rem" }}>{item.ringkasan}</p>
                   </div>
-                  <Link href={`/berita/${item.id}`} class="btn btn-outline" style={{ fontSize: "0.825rem", marginTop: "auto" }}>
+                  <Link href={`/berita/${item.id}`} className="btn btn-outline" style={{ fontSize: "0.825rem", marginTop: "auto" }}>
                     Baca Selengkapnya →
                   </Link>
                 </div>
@@ -154,7 +154,7 @@ export default async function HomePage() {
           </div>
 
           <div style={{ textAlign: "center", marginTop: "2.5rem" }}>
-            <Link href="/berita" class="btn btn-primary">
+            <Link href="/berita" className="btn btn-primary">
               Buka Halaman Arsip Berita Kelurahan →
             </Link>
           </div>
@@ -162,19 +162,19 @@ export default async function HomePage() {
       </section>
 
       {/* 4. Katalog UMKM Teaser Section */}
-      <section class="section">
-        <div class="container">
-          <div class="section-header">
-            <span class="section-tag">EKONOMI LOKAL</span>
+      <section className="section">
+        <div className="container">
+          <div className="section-header">
+            <span className="section-tag">EKONOMI LOKAL</span>
             <h2>Katalog Produk UMKM Warga</h2>
             <p>Dukung perekonomian warga Kelurahan Mallilingi dengan membeli produk lokal berkualitas.</p>
           </div>
 
-          <div class="umkm-grid">
+          <div className="umkm-grid">
             {data.umkm.slice(0, 3).map((item) => (
-              <div key={item.id} class="umkm-card">
-                <img src={item.foto} alt={item.nama} class="umkm-img" />
-                <div class="umkm-body">
+              <div key={item.id} className="umkm-card">
+                <img src={item.foto} alt={item.nama} className="umkm-img" />
+                <div className="umkm-body">
                   <div>
                     <span style={{ fontSize: "0.75rem", background: "#f0fdf4", color: "#047857", padding: "0.25rem 0.6rem", borderRadius: "9999px", fontWeight: 700 }}>
                       {item.kategori}
@@ -186,7 +186,7 @@ export default async function HomePage() {
                     <p style={{ fontSize: "0.85rem", color: "#64748b", marginBottom: "1rem" }}>{item.deskripsi}</p>
                   </div>
 
-                  <Link href={`/umkm/${item.id}`} class="btn btn-outline" style={{ fontSize: "0.825rem", marginTop: "auto" }}>
+                  <Link href={`/umkm/${item.id}`} className="btn btn-outline" style={{ fontSize: "0.825rem", marginTop: "auto" }}>
                     Lihat Detail Produk UMKM →
                   </Link>
                 </div>
@@ -195,7 +195,7 @@ export default async function HomePage() {
           </div>
 
           <div style={{ textAlign: "center", marginTop: "2.5rem" }}>
-            <Link href="/umkm" class="btn btn-primary">
+            <Link href="/umkm" className="btn btn-primary">
               Buka Halaman Katalog UMKM Selengkapnya →
             </Link>
           </div>
