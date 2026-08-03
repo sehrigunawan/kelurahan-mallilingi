@@ -1,5 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
-import { MallilingiData, InfoKelurahan, LayananSurat, BeritaPengumuman, UMKM, Aparatur } from "../types";
+import { MallilingiData } from "../types";
 
 export const SUPABASE_CONFIG = {
   url: "https://zpjlttzifpnavbwjsjxq.supabase.co",
@@ -24,7 +24,7 @@ export const DEFAULT_MALLILINGI_DATA: MallilingiData = {
     jumlahKK: "890 KK",
     jumlahRT: "12 RT",
     jumlahRW: "4 RW",
-    sambutanLurah: "Selamat Datang di Portal Resmi Kelurahan Mallilingi. Kami berkomitmen memberikan pelayanan publik yang terbuka, cepat, dan transparan bagi seluruh warga Mallilingi serta masyarakat luas.",
+    sambutanLurah: "Selamat datang di portal resmi Kelurahan Mallilingi. Kami berkomitmen memberikan pelayanan publik yang ramah, transparan, cepat, dan mengayomi bagi seluruh masyarakat Kelurahan Mallilingi.",
     namaLurah: "H. Andi Syamsul, S.Sos., M.Si.",
     nipLurah: "19780512 200501 1 004",
     fotoLurah: "/assets/images/lurah.jpg",
@@ -32,7 +32,7 @@ export const DEFAULT_MALLILINGI_DATA: MallilingiData = {
     visi: "Mewujudkan Kelurahan Mallilingi yang Mandiri, Sejahtera, Berdaya Saing, dan Unggul dalam Pelayanan Publik Berbasis Teknologi dan Kearifan Lokal.",
     misi: [
       "Meningkatkan kualitas pelayanan administrasi kependudukan yang ramah, cepat, dan transparan.",
-      "Mengembangkan ekonomi kerakyatan melalui pemberdayaan UMKM dan potensi lokal masyarakat Mallilingi.",
+      "Mengembangkan potensi lokal dan kesejahteraan masyarakat Mallilingi.",
       "Meningkatkan kualitas sarana, kebersihan, dan ketertiban lingkungan kelurahan.",
       "Mendorong partisipasi aktif warga dalam pembangunan melalui lembaga kemasyarakatan."
     ],
@@ -51,6 +51,7 @@ export const DEFAULT_MALLILINGI_DATA: MallilingiData = {
       kategori: "Sosial & Kesejahteraan",
       waktu: "15 - 30 Menit",
       biaya: "Gratis (Rp 0)",
+      deskripsi: "Pengantar resmi bantuan sosial, beasiswa pendidikan, dan keringanan biaya pengobatan bagi keluarga prasejahtera.",
       persyaratan: [
         "Fotokopi KTP Pemohon (1 lembar)",
         "Fotokopi Kartu Keluarga / KK (1 lembar)",
@@ -61,43 +62,265 @@ export const DEFAULT_MALLILINGI_DATA: MallilingiData = {
     },
     {
       id: "layanan-2",
+      judul: "Surat Keterangan Pindah / Pergi",
+      kategori: "Kependudukan",
+      waktu: "15 - 30 Menit",
+      biaya: "Gratis (Rp 0)",
+      deskripsi: "Surat pengantar perpindahan domisili warga dari Kelurahan Mallilingi menuju daerah, kota, atau provinsi lain.",
+      persyaratan: [
+        "Kartu Keluarga (KK) Asli & Fotokopi",
+        "Fotokopi KTP Pemohon",
+        "Surat Pengantar Pindah dari RT/RW setempat",
+        "Alamat Lengkap Tujuan Pindah"
+      ],
+      alur: "1. Verifikasi berkas di meja pelayanan kelurahan.\n2. Penerbitan Surat Pengantar Pindah Kelurahan untuk diteruskan ke Disdukcapil Bantaeng."
+    },
+    {
+      id: "layanan-3",
+      judul: "Surat Keterangan Hilang",
+      kategori: "Administrasi Umum",
+      waktu: "10 - 20 Menit",
+      biaya: "Gratis (Rp 0)",
+      deskripsi: "Pengantar pengurusan dokumen atau barang berharga yang hilang untuk diteruskan ke Kepolisian setempat.",
+      persyaratan: [
+        "Fotokopi KTP / KK Pemohon",
+        "Surat Pengantar dari RT/RW setempat",
+        "Rincian dokumen/barang yang hilang beserta lokasi kejadian"
+      ],
+      alur: "1. Pelaporan barang/dokumen hilang di kelurahan.\n2. Verifikasi identitas pemohon.\n3. Penerbitan surat keterangan hilang kelurahan."
+    },
+    {
+      id: "layanan-4",
+      judul: "Surat Keterangan Menutup Jalan",
+      kategori: "Ketertiban & Fasilitas Publik",
+      waktu: "15 - 30 Menit",
+      biaya: "Gratis (Rp 0)",
+      deskripsi: "Izin sementara penggunaan sebagian badan jalan untuk hajatan warga, resepsi nikah, atau kegiatan kemasyarakatan.",
+      persyaratan: [
+        "Fotokopi KTP Penanggung Jawab Acara",
+        "Surat Pengantar & Persetujuan Warga/RT/RW setempat",
+        "Denah lokasi penutupan jalan dan rute pengalihan arus"
+      ],
+      alur: "1. Pemohon membawa berkas persetujuan warga setempat.\n2. Pemeriksaan kelayakan lokasi oleh Kasi Trantib.\n3. Penerbitan surat rekomendasi kelurahan."
+    },
+    {
+      id: "layanan-5",
+      judul: "Surat Rekomendasi Nikah",
+      kategori: "Administrasi Nikah",
+      waktu: "20 - 40 Menit",
+      biaya: "Gratis (Rp 0)",
+      deskripsi: "Rekomendasi resmi kelurahan bagi warga Mallilingi yang akan melangsungkan pernikahan di luar wilayah Bantaeng.",
+      persyaratan: [
+        "Fotokopi KTP & KK Calon Pengantin",
+        "Surat Pengantar RT/RW setempat",
+        "Fotokopi Akta Kelahiran & Ijazah Terakhir",
+        "Pasfoto 2x3 dan 3x4 Latar Biru (4 lembar)"
+      ],
+      alur: "1. Pemeriksaan berkas di kantor kelurahan.\n2. Penerbitan Surat Rekomendasi Nikah Kelurahan ke KUA asal/tujuan."
+    },
+    {
+      id: "layanan-6",
+      judul: "Surat Pengantar NA (Nikah / N1-N4)",
+      kategori: "Administrasi Nikah",
+      waktu: "20 - 40 Menit",
+      biaya: "Gratis (Rp 0)",
+      deskripsi: "Formulir kelengkapan administrasi calon pengantin (N1 - N4) untuk pendaftaran resmi di KUA Kecamatan Bantaeng.",
+      persyaratan: [
+        "Fotokopi KTP & KK Pasangan Calon Pengantin",
+        "Fotokopi Akta Kelahiran & Ijazah",
+        "Surat Pengantar RT/RW",
+        "Imunisasi TT bagi calon pengantin wanita"
+      ],
+      alur: "1. Penyerahan dokumen ke bagian pelayanan.\n2. Pengisian formulir N1, N2, N3, N4.\n3. Penandatanganan oleh Lurah Mallilingi."
+    },
+    {
+      id: "layanan-7",
+      judul: "Surat Keterangan Akta Kelahiran",
+      kategori: "Kependudukan",
+      waktu: "15 - 30 Menit",
+      biaya: "Gratis (Rp 0)",
+      deskripsi: "Pengantar pelaporan kelahiran anak baru lahir untuk penambahan di KK dan penerbitan Akta Kelahiran Disdukcapil.",
+      persyaratan: [
+        "Surat Keterangan Lahir dari Bidan / Rumah Sakit",
+        "Fotokopi KTP Ayah & Ibu",
+        "Fotokopi Buku Nikah Orang Tua",
+        "Fotokopi Kartu Keluarga (KK)"
+      ],
+      alur: "1. Pelaporan kelahiran oleh orang tua/keluarga.\n2. Verifikasi data bayi dan KK.\n3. Penerbitan Surat Keterangan Kelahiran."
+    },
+    {
+      id: "layanan-8",
+      judul: "Surat Keterangan Izin Keramaian",
+      kategori: "Ketertiban & Ketentraman",
+      waktu: "15 - 30 Menit",
+      biaya: "Gratis (Rp 0)",
+      deskripsi: "Pengantar pelaksanaan acara atau hajatan warga yang melibatkan kerumunan massa untuk diteruskan ke Kepolisian.",
+      persyaratan: [
+        "Fotokopi KTP Ketua Panitia / Penanggung Jawab",
+        "Surat Pengantar RT/RW setempat",
+        "Rincian susunan acara dan jumlah perkiraan undangan"
+      ],
+      alur: "1. Pemeriksaan permohonan izin keramaian.\n2. Rekomendasi dari Kasi Trantib Kelurahan.\n3. Penerbitan Surat Keterangan Izin Keramaian."
+    },
+    {
+      id: "layanan-9",
+      judul: "Surat Keterangan Domisili",
+      kategori: "Kependudukan",
+      waktu: "15 - 30 Menit",
+      biaya: "Gratis (Rp 0)",
+      deskripsi: "Konfirmasi resmi domisili tempat tinggal perorangan, kantor usaha, atau lembaga di Kelurahan Mallilingi.",
+      persyaratan: [
+        "Fotokopi KTP & KK Pemohon",
+        "Surat Pengantar RT/RW setempat",
+        "Bukti kepemilikan/sewa tempat domisili (bila ada)"
+      ],
+      alur: "1. Verifikasi berkas oleh petugas kelurahan.\n2. Pencatatan domisili dalam buku buku kelurahan.\n3. Penandatanganan oleh Lurah/Seklur."
+    },
+    {
+      id: "layanan-10",
+      judul: "Surat Pengantar Ahli Waris",
+      kategori: "Hukum & Pertanahan",
+      waktu: "30 - 60 Menit",
+      biaya: "Gratis (Rp 0)",
+      deskripsi: "Penerbitan surat keterangan silsilah dan kesepakatan seluruh ahli waris atas almarhum/almarhumah.",
+      persyaratan: [
+        "Fotokopi Surat Kematian Almarhum/Almarhumah",
+        "Fotokopi KTP & KK Seluruh Ahli Waris",
+        "Fotokopi Buku Nikah Almarhum/Almarhumah",
+        "Surat Pernyataan Ahli Waris diketahui RT/RW & Materai 10.000"
+      ],
+      alur: "1. Penyerahan draf pernyataan ahli waris lengkap.\n2. Verifikasi saksi-saksi dan keabsahan silsilah waris.\n3. Penandatanganan dan pengesahan Lurah Mallilingi."
+    },
+    {
+      id: "layanan-11",
       judul: "Surat Keterangan Usaha (SKU)",
       kategori: "Ekonomi & Perizinan",
       waktu: "15 - 30 Menit",
       biaya: "Gratis (Rp 0)",
+      deskripsi: "Pengesahan resmi legalitas dan keberadaan lokasi usaha warga untuk pengajuan KUR perbankan & izin usaha.",
       persyaratan: [
-        "Fotokopi KTP Pemilik Usaha (1 lembar)",
-        "Fotokopi Kartu Keluarga / KK (1 lembar)",
-        "Surat Pengantar RT/RW mengenai lokasi dan jenis usaha",
-        "Foto tempat usaha / lokasi kegiatan usaha"
+        "Fotokopi KTP Pemilik Usaha",
+        "Fotokopi Kartu Keluarga (KK)",
+        "Surat Pengantar RT/RW lokasi usaha",
+        "Foto tempat kegiatan usaha"
       ],
-      alur: "1. Pemohon menyerahkan berkas ke meja pelayanan kelurahan.\n2. Pemeriksaan kelengkapi dokumen dan keabsahan lokasi usaha.\n3. Penerbitan & penandatanganan SKU oleh Lurah.\n4. Pengambilan dokumen SKU."
+      alur: "1. Verifikasi dokumen dan jenis usaha.\n2. Pencatatan registrasi SKU kelurahan.\n3. Penandatanganan SKU oleh Lurah."
     },
     {
-      id: "layanan-3",
-      judul: "Surat Keterangan Domisili Usaha / Perorangan",
+      id: "layanan-12",
+      judul: "Surat Pengantar Kartu Keluarga (KK)",
+      kategori: "Kependudukan",
+      waktu: "10 - 20 Menit",
+      biaya: "Gratis (Rp 0)",
+      deskripsi: "Pengantar pengajuan KK baru, penambahan/pengurangan anggota keluarga, atau penggantian KK yang rusak/hilang.",
+      persyaratan: [
+        "Fotokopi KK Lama / Surat Kehilangan (jika hilang)",
+        "Surat Pengantar RT/RW setempat",
+        "Fotokopi KTP / Akta Kelahiran anggota baru"
+      ],
+      alur: "1. Pemeriksaan berkas dan data KK.\n2. Penerbitan Surat Pengantar Resmi ke Disdukcapil Bantaeng."
+    },
+    {
+      id: "layanan-13",
+      judul: "Surat Pengantar Penguburan",
+      kategori: "Sosial & Kependudukan",
+      waktu: "10 - 20 Menit",
+      biaya: "Gratis (Rp 0)",
+      deskripsi: "Surat izin penguburan dan penggunaan lahan TPU bagi warga almarhum/almarhumah yang meninggal dunia.",
+      persyaratan: [
+        "Surat Keterangan Meninggal dari RS / Dokter / RT/RW",
+        "Fotokopi KTP & KK Almarhum/Almarhumah",
+        "Fotokopi KTP Pelapor/Penanggung Jawab"
+      ],
+      alur: "1. Pelaporan peristiwa kematian oleh keluarga.\n2. Penerbitan Surat Pengantar Penguburan darurat/seketika."
+    },
+    {
+      id: "layanan-14",
+      judul: "Rekomendasi BBM (Bahan Bakar Minyak)",
+      kategori: "Ekonomi & Pertanian",
+      waktu: "15 - 30 Menit",
+      biaya: "Gratis (Rp 0)",
+      deskripsi: "Rekomendasi pengisian BBM bersubsidi (Solar/Pertalite) bagi pelaku usaha mikro, nelayan, dan mesin pertanian.",
+      persyaratan: [
+        "Fotokopi KTP Pemohon Usaha/Tani/Ternak",
+        "Surat Keterangan Usaha (SKU) aktif",
+        "Foto mesin/alat produksi pertanian/perikanan/mikro",
+        "Surat Pengantar RT/RW setempat"
+      ],
+      alur: "1. Verifikasi kepemilikan alat/mesin usaha.\n2. Penentuan alokasi kuota kebutuhan mingguan.\n3. Penerbitan Surat Rekomendasi Pembelian BBM Subsidi."
+    },
+    {
+      id: "layanan-15",
+      judul: "Surat Keterangan Pindah Datang",
       kategori: "Kependudukan",
       waktu: "15 - 30 Menit",
       biaya: "Gratis (Rp 0)",
+      deskripsi: "Penerimaan resmi pendaftaran domisili warga baru yang pindah masuk ke wilayah Kelurahan Mallilingi.",
       persyaratan: [
-        "Fotokopi KTP & KK Pemohon",
-        "Surat Pengantar dari Ketua RT & RW setempat",
-        "Bukti kepemilikan/sewa tempat domisili (bila ada)"
+        "Surat Keterangan Pindah (SKPWNI) dari daerah asal",
+        "Fotokopi KTP & KK Tujuan Pindah",
+        "Surat Pengantar Penerimaan dari RT/RW setempat"
       ],
-      alur: "1. Verifikasi berkas oleh petugas pelayanan kelurahan.\n2. Pencatatan domisili dalam buku registrasi kelurahan.\n3. Penandatanganan dokumen domisili oleh Lurah/Seklur."
+      alur: "1. Penyerahan berkas pindah masuk.\n2. Verifikasi alamat RT/RW tujuan.\n3. Penerbitan Surat Keterangan Pindah Datang Kelurahan."
     },
     {
-      id: "layanan-4",
-      judul: "Surat Pengantar Pengurusan KTP-el / KK",
-      kategori: "Administrasi Kependudukan",
+      id: "layanan-16",
+      judul: "Surat Keterangan Kematian",
+      kategori: "Kependudukan",
+      waktu: "15 - 30 Menit",
+      biaya: "Gratis (Rp 0)",
+      deskripsi: "Pelaporan resmi kematian warga untuk penyesuaian data KK, penetapan status waris, dan Akta Kematian.",
+      persyaratan: [
+        "Surat Keterangan Meninggal dari RS / Puskesmas / Bidan",
+        "Surat Pengantar RT/RW setempat",
+        "KTP & KK Asli Almarhum/Almarhumah",
+        "Fotokopi KTP Pelapor"
+      ],
+      alur: "1. Pemeriksaan dokumen pelaporan kematian.\n2. Pencatatan pada Buku Induk Kematian Kelurahan.\n3. Penerbitan Surat Keterangan Kematian."
+    },
+    {
+      id: "layanan-17",
+      judul: "Surat Pengantar SKCK",
+      kategori: "Administrasi Umum",
       waktu: "10 - 20 Menit",
       biaya: "Gratis (Rp 0)",
+      deskripsi: "Pengantar resmi pembuatan Surat Keterangan Catatan Kepolisian (SKCK) di Polsek / Polres Bantaeng.",
       persyaratan: [
-        "Fotokopi Kartu Keluarga (KK) lama",
-        "Surat Pengantar RT/RW",
-        "Surat Keterangan Kehilangan dari Kepolisian (jika KTP/KK hilang)"
+        "Fotokopi KTP Pemohon (1 lembar)",
+        "Fotokopi Kartu Keluarga (1 lembar)",
+        "Surat Pengantar Kelakuan Baik dari RT/RW",
+        "Pasfoto 4x6 Latar Merah (2 lembar)"
       ],
-      alur: "1. Pemeriksaan dokumen pengantar di kantor kelurahan.\n2. Penerbitan Surat Pengantar Resmi Kelurahan ke Kantor Disdukcapil Bantaeng."
+      alur: "1. Verifikasi catatan kependudukan pemohon.\n2. Penerbitan Surat Pengantar SKCK Kelurahan."
+    },
+    {
+      id: "layanan-18",
+      judul: "Surat Keterangan Belum Menikah",
+      kategori: "Kependudukan",
+      waktu: "15 - 30 Menit",
+      biaya: "Gratis (Rp 0)",
+      deskripsi: "Surat pernyataan resmi status lajang / belum pernah menikah untuk keperluan lamaran kerja, beasiswa, atau KPR.",
+      persyaratan: [
+        "Fotokopi KTP & KK Pemohon",
+        "Surat Pengantar RT/RW setempat",
+        "Surat Pernyataan Belum Menikah bermaterai 10.000"
+      ],
+      alur: "1. Pemeriksaan data status pernikahan di buku kelurahan.\n2. Penandatanganan Surat Keterangan Belum Menikah."
+    },
+    {
+      id: "layanan-19",
+      judul: "Pengantar Hewan",
+      kategori: "Peternakan & Perdagangan",
+      waktu: "15 - 30 Menit",
+      biaya: "Gratis (Rp 0)",
+      deskripsi: "Surat pengantar lalulintas / pengangkutan hewan ternak (sapi, kambing, ungsa, dll) keluar atau masuk wilayah.",
+      persyaratan: [
+        "Fotokopi KTP Pemilik / Pengangkut Hewan Ternak",
+        "Surat Keterangan Kesehatan Hewan dari Dinas Pertanian/Peternakan",
+        "Surat Pengantar RT/RW kepemilikan hewan ternak",
+        "Rincian jumlah & jenis hewan ternak"
+      ],
+      alur: "1. Pemeriksaan bukti kepemilikan hewan ternak.\n2. Verifikasi dokumen kesehatan hewan.\n3. Penerbitan Surat Pengantar Lalulintas Ternak Kelurahan."
     }
   ],
 
@@ -108,8 +331,8 @@ export const DEFAULT_MALLILINGI_DATA: MallilingiData = {
       tanggal: "1 Agustus 2026",
       kategori: "Pengumuman Resmi",
       gambar: "/assets/images/kantor_kelurahan.jpg",
-      ringkasan: "Pemerintah Kelurahan Mallilingi secara resmi meluncurkan portal informasi terpadu berbasis web untuk mempermudah warga dalam mengakses syarat pelayanan surat dan direktori UMKM.",
-      isi: "Pemerintah Kelurahan Mallilingi, Kecamatan Bantaeng secara resmi meluncurkan Portal Informasi Publik Terpadu. Platform ini dirancang untuk mewujudkan tata kelola kelurahan yang transparan, responsif, dan berbasis digital. Warga Mallilingi kini dapat melihat berbagai informasi pelayanan administrasi kependudukan, berita terkini kelurahan, serta katalog produk UMKM warga secara langsung dari smartphone."
+      ringkasan: "Pemerintah Kelurahan Mallilingi secara resmi meluncurkan portal informasi terpadu berbasis web untuk mempermudah warga dalam mengakses syarat pelayanan surat.",
+      isi: "Pemerintah Kelurahan Mallilingi, Kecamatan Bantaeng secara resmi meluncurkan Portal Informasi Publik Terpadu. Platform ini dirancang untuk mewujudkan tata kelola kelurahan yang transparan, responsif, dan berbasis digital. Warga Mallilingi kini dapat melihat berbagai informasi pelayanan administrasi kependudukan dan berita terkini kelurahan secara langsung dari smartphone."
     },
     {
       id: "berita-2",
@@ -122,45 +345,12 @@ export const DEFAULT_MALLILINGI_DATA: MallilingiData = {
     },
     {
       id: "berita-3",
-      judul: "Sosialisasi Pendataan & Pemberdayaan UMKM Lokal Kelurahan Mallilingi",
+      judul: "Sosialisasi Pendataan & Pelayanan Publik Digital Kelurahan Mallilingi",
       tanggal: "20 Juli 2026",
-      kategori: "Pemberdayaan Ekonomi",
+      kategori: "Pemberdayaan Masyarakat",
       gambar: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=600&q=80",
-      ringkasan: "Dalam rangka memajukan ekonomi warga, Kelurahan Mallilingi membuka pendataan katalog UMKM digital untuk mempromosikan produk lokal secara online.",
-      isi: "Pemerintah Kelurahan Mallilingi berkomitmen mendorong daya saing produk lokal melalui pendataan dan promosi UMKM berbasis digital. Melalui program ini, usaha mikro dan kecil milik warga akan ditampilkan dalam katalog digital resmi kelurahan lengkap dengan tombol pemesanan langsung via WhatsApp."
-    }
-  ],
-
-  umkm: [
-    {
-      id: "umkm-1",
-      nama: "Keripik Pisang Khas Mallilingi",
-      kategori: "Makanan & Minuman",
-      pemilik: "Ibu Rahmawati",
-      whatsapp: "6285255551234",
-      alamat: "Jl. Sungai Calendu No. 12, RW 02 / RT 04, Mallilingi",
-      deskripsi: "Keripik pisang olahan rumahan yang renyah dan gurih, dibuat dari pisang pilihan khas Bantaeng tanpa bahan pengawet.",
-      foto: "https://images.unsplash.com/photo-1621996346565-e3d5d6281359?auto=format&fit=crop&w=400&q=80"
-    },
-    {
-      id: "umkm-2",
-      nama: "Kain Tenun & Kerajinan Tangan Mallilingi",
-      kategori: "Kerajinan & Souvenir",
-      pemilik: "Pak Rustam",
-      whatsapp: "6285255551234",
-      alamat: "Jl. Kartini No. 45, RW 01 / RT 02, Mallilingi",
-      deskripsi: "Kerajinan tangan dan kain tenun tradisional berkualitas tinggi dengan motif khas yang anggun dan bernilai seni tinggi.",
-      foto: "https://images.unsplash.com/photo-1606744837616-56c9a5c6a6eb?auto=format&fit=crop&w=400&q=80"
-    },
-    {
-      id: "umkm-3",
-      nama: "Warung Kopi & Kuliner Tradisional Bantaeng",
-      kategori: "Kuliner & Resto",
-      pemilik: "Ibu Nurbaya",
-      whatsapp: "6285255551234",
-      alamat: "Jl. Merdeka No. 8, RW 03 / RT 01, Mallilingi",
-      deskripsi: "Menyajikan aneka racikan kopi khas daerah dan kue-kue tradisional Sulawesi Selatan yang lezat dengan harga terjangkau.",
-      foto: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=400&q=80"
+      ringkasan: "Dalam rangka meningkatkan mutu layanan warga, Kelurahan Mallilingi membuka sosialisasi tata cara pengajuan surat administrasi secara online.",
+      isi: "Pemerintah Kelurahan Mallilingi berkomitmen mendorong mutu pelayanan publik berbasis digital. Melalui program ini, syarat dan alur pengurusan 19 dokumen kependudukan dapat diakses warga dengan cepat, jelas, dan transparan."
     }
   ],
 
@@ -188,10 +378,9 @@ if (SUPABASE_CONFIG.enabled && !SUPABASE_CONFIG.url.includes("your-project")) {
 export async function getMallilingiDataAsync(): Promise<MallilingiData> {
   if (supabaseClient) {
     try {
-      const [infoRes, beritaRes, umkmRes, layananRes] = await Promise.all([
+      const [infoRes, beritaRes, layananRes] = await Promise.all([
         supabaseClient.from("info").select("*").single(),
         supabaseClient.from("berita").select("*").order("created_at", { ascending: false }),
-        supabaseClient.from("umkm").select("*"),
         supabaseClient.from("layanan").select("*")
       ]);
 
@@ -218,7 +407,6 @@ export async function getMallilingiDataAsync(): Promise<MallilingiData> {
         return {
           info: infoObj,
           berita: (beritaRes.data && beritaRes.data.length > 0) ? beritaRes.data : DEFAULT_MALLILINGI_DATA.berita,
-          umkm: (umkmRes.data && umkmRes.data.length > 0) ? umkmRes.data : DEFAULT_MALLILINGI_DATA.umkm,
           layanan: (layananList.length > 0) ? layananList : DEFAULT_MALLILINGI_DATA.layanan,
           struktur: DEFAULT_MALLILINGI_DATA.struktur
         };
@@ -236,7 +424,6 @@ export async function saveMallilingiDataAsync(data: MallilingiData): Promise<voi
       await Promise.all([
         supabaseClient.from("info").upsert({ id: 1, ...data.info }),
         supabaseClient.from("berita").upsert(data.berita),
-        supabaseClient.from("umkm").upsert(data.umkm),
         supabaseClient.from("layanan").upsert(data.layanan)
       ]);
     } catch (e) {

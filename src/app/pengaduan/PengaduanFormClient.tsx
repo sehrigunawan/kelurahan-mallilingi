@@ -48,7 +48,8 @@ export default function PengaduanFormClient({ whatsappNumber }: { whatsappNumber
       )}
 
       <form onSubmit={handleSubmitWhatsApp}>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem", marginBottom: "1rem" }}>
+        {/* Row 1: Nama & NIK (Stacked Vertically on Mobile) */}
+        <div className="form-row-grid">
           <div>
             <label style={{ display: "block", fontSize: "0.85rem", fontWeight: 700, marginBottom: "0.3rem", color: "#1e293b" }}>
               Nama Lengkap Pelapor *
@@ -77,7 +78,8 @@ export default function PengaduanFormClient({ whatsappNumber }: { whatsappNumber
           </div>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem", marginBottom: "1rem" }}>
+        {/* Row 2: Telepon & Kategori (Stacked Vertically on Mobile) */}
+        <div className="form-row-grid">
           <div>
             <label style={{ display: "block", fontSize: "0.85rem", fontWeight: 700, marginBottom: "0.3rem", color: "#1e293b" }}>
               No. HP / WhatsApp Pelapor

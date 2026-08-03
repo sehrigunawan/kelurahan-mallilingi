@@ -14,7 +14,7 @@ export default async function PengaduanPage() {
           <p>Sampaikan laporan, keluhan, saran, atau pertanyaan Anda secara langsung kepada Pemerintah Kelurahan Mallilingi.</p>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "1.3fr 1fr", gap: "2.5rem", alignItems: "start" }}>
+        <div className="pengaduan-grid">
           {/* Client Form Component */}
           <PengaduanFormClient whatsappNumber={info.whatsapp} />
 

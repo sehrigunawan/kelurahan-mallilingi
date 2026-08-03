@@ -2,61 +2,164 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
 
 export default function Navbar() {
   const pathname = usePathname();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isProfilOpen, setIsProfilOpen] = useState(false);
+  const [isLayananOpen, setIsLayananOpen] = useState(false);
 
-  const navItems = [
-    { href: "/", label: "Beranda" },
-    { href: "/profil", label: "Profil" },
-    { href: "/struktur", label: "Struktur Organisasi" },
-    { href: "/pengaduan", label: "Layanan Pengaduan" },
-  ];
+  const isProfilActive = pathname === "/profil" || pathname === "/struktur" || pathname === "/berita" || pathname.startsWith("/berita/");
+  const isLayananActive = pathname === "/pengaduan" || pathname === "/administrasi" || pathname === "/layanan";
 
   return (
-    <>
-      {/* Top Info Bar */}
-      <div className="top-bar">
-        <div className="container">
-          <div className="top-bar-info">
-            <div>📍 Jl. Sungai Calendu, Kel. Mallilingi, Kec. Bantaeng (92411)</div>
-            <div>📞 (0413) 21001</div>
+    <nav className="navbar">
+      <div className="container">
+        <Link href="/" className="brand-logo">
+          <div className="logo-icon">M</div>
+          <div>
+            <h1 className="brand-title">
+              Kelurahan Mallilingi
+              <span className="brand-sub"> • Kec. Bantaeng</span>
+            </h1>
           </div>
-          <div>🕒 Jam Pelayanan: Senin - Jumat (08.00 - 16.00 WITA)</div>
-        </div>
+        </Link>
+
+        {/* Mobile Hamburger Toggle Button */}
+        <button
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="mobile-menu-btn"
+          aria-label="Toggle Navigation Menu"
+        >
+          {isMobileMenuOpen ? "✕" : "☰"}
+        </button>
+
+        {/* Nav Links */}
+        <ul className={`nav-links ${isMobileMenuOpen ? "mobile-open" : ""}`}>
+          <li>
+            <Link
+              href="/"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className={`nav-link ${pathname === "/" ? "active" : ""}`}
+            >
+              Beranda
+            </Link>
+          </li>
+
+          {/* 1. Profil Dropdown Menu */}
+          <li
+            className="nav-dropdown-item"
+            style={{ position: "relative" }}
+            onMouseEnter={() => setIsProfilOpen(true)}
+            onMouseLeave={() => setIsProfilOpen(false)}
+          >
+            <button
+              onClick={() => setIsProfilOpen(!isProfilOpen)}
+              className={`nav-link ${isProfilActive ? "active" : ""}`}
+              style={{
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                gap: "0.3rem",
+                fontSize: "0.9rem",
+                fontFamily: "inherit",
+              }}
+            >
+              <span>Profil</span>
+              <span style={{ fontSize: "0.75rem", transition: "transform 0.2s ease", transform: isProfilOpen ? "rotate(180deg)" : "rotate(0deg)" }}>▾</span>
+            </button>
+
+            {isProfilOpen && (
+              <div className="dropdown-menu">
+                <Link
+                  href="/profil"
+                  onClick={() => { setIsProfilOpen(false); setIsMobileMenuOpen(false); }}
+                  className={`dropdown-link ${pathname === "/profil" ? "active" : ""}`}
+                >
+                  📖 Profil & Visi Misi
+                </Link>
+
+                <Link
+                  href="/struktur"
+                  onClick={() => { setIsProfilOpen(false); setIsMobileMenuOpen(false); }}
+                  className={`dropdown-link ${pathname === "/struktur" ? "active" : ""}`}
+                >
+                  🏛️ Struktur Organisasi
+                </Link>
+
+                <Link
+                  href="/berita"
+                  onClick={() => { setIsProfilOpen(false); setIsMobileMenuOpen(false); }}
+                  className={`dropdown-link ${pathname === "/berita" || pathname.startsWith("/berita/") ? "active" : ""}`}
+                >
+                  📰 Berita & Pengumuman
+                </Link>
+              </div>
+            )}
+          </li>
+
+          {/* 2. Layanan Dropdown Menu */}
+          <li
+            className="nav-dropdown-item"
+            style={{ position: "relative" }}
+            onMouseEnter={() => setIsLayananOpen(true)}
+            onMouseLeave={() => setIsLayananOpen(false)}
+          >
+            <button
+              onClick={() => setIsLayananOpen(!isLayananOpen)}
+              className={`nav-link ${isLayananActive ? "active" : ""}`}
+              style={{
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                gap: "0.3rem",
+                fontSize: "0.9rem",
+                fontFamily: "inherit",
+              }}
+            >
+              <span>Layanan</span>
+              <span style={{ fontSize: "0.75rem", transition: "transform 0.2s ease", transform: isLayananOpen ? "rotate(180deg)" : "rotate(0deg)" }}>▾</span>
+            </button>
+
+            {isLayananOpen && (
+              <div className="dropdown-menu">
+                <Link
+                  href="/pengaduan"
+                  onClick={() => { setIsLayananOpen(false); setIsMobileMenuOpen(false); }}
+                  className={`dropdown-link ${pathname === "/pengaduan" ? "active" : ""}`}
+                >
+                  📩 Pengaduan
+                </Link>
+
+                <Link
+                  href="/administrasi"
+                  onClick={() => { setIsLayananOpen(false); setIsMobileMenuOpen(false); }}
+                  className={`dropdown-link ${(pathname === "/administrasi" || pathname === "/layanan") ? "active" : ""}`}
+                >
+                  📋 Administrasi
+                </Link>
+              </div>
+            )}
+          </li>
+
+          <li>
+            <Link
+              href="/admin"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="nav-link admin-btn"
+            >
+              🔐 Admin
+            </Link>
+          </li>
+        </ul>
       </div>
-
-      {/* Navigation Bar */}
-      <nav className="navbar">
-        <div className="container">
-          <Link href="/" className="brand-logo">
-            <div className="logo-icon">M</div>
-            <div>
-              <h1 className="brand-title">
-                Kelurahan Mallilingi <span className="brand-sub">• Kec. Bantaeng, Kab. Bantaeng</span>
-              </h1>
-            </div>
-          </Link>
-
-          <ul className="nav-links">
-            {navItems.map((item) => {
-              const isActive = pathname === item.href;
-              return (
-                <li key={item.href}>
-                  <Link href={item.href} className={`nav-link ${isActive ? "active" : ""}`}>
-                    {item.label}
-                  </Link>
-                </li>
-              );
-            })}
-            <li>
-              <Link href="/admin" className="nav-link" style={{ color: "#059669", fontWeight: 700, background: "#ecfdf5", borderRadius: "6px" }}>
-                🔐 Admin
-              </Link>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    </>
+    </nav>
   );
 }

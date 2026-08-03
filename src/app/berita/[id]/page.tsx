@@ -2,6 +2,13 @@ import Link from "next/link";
 import { getMallilingiDataAsync } from "../../../lib/data";
 import { notFound } from "next/navigation";
 
+export async function generateStaticParams() {
+  const data = await getMallilingiDataAsync();
+  return data.berita.map((item) => ({
+    id: item.id,
+  }));
+}
+
 export default async function BeritaDetailPage({ params }: { params: { id: string } }) {
   const data = await getMallilingiDataAsync();
   const item = data.berita.find((b) => b.id === params.id);

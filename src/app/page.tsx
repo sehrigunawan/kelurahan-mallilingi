@@ -5,9 +5,13 @@ export default async function HomePage() {
   const data = await getMallilingiDataAsync();
   const info = data.info;
 
+  // Duplicate arrays for seamless unlimited horizontal marquee scrolling
+  const marqueeLayananList = [...data.layanan, ...data.layanan];
+  const marqueeBeritaList = [...data.berita, ...data.berita, ...data.berita];
+
   return (
     <>
-      {/* Hero Section */}
+      {/* 1. Hero Section with Parallax Background */}
       <section className="hero">
         <div className="container">
           <div className="hero-content">
@@ -17,132 +21,194 @@ export default async function HomePage() {
             <h1>Pelayanan Publik Cepat, Transparan, & Terintegrasi</h1>
             <p>
               Selamat datang di platform resmi Kelurahan Mallilingi, Kecamatan Bantaeng.
-              Akses informasi layanan surat kependudukan, berita kegiatan desa, direktori UMKM warga, dan profil wilayah dalam satu platform terpadu.
+              Akses informasi layanan surat kependudukan, berita kegiatan desa, dan profil wilayah dalam satu platform terpadu.
             </p>
             <div className="hero-buttons">
-              <Link href="/layanan" className="btn btn-primary">
+              <Link href="/administrasi" className="btn btn-primary">
                 🔍 Syarat Layanan Surat
               </Link>
               <Link href="/profil" className="btn btn-secondary">
-                📖 Profil & Visi Misi Kelurahan
+                📖 Profil Kelurahan & Visi Misi
               </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 1. Profil Kelurahan Teaser Section */}
+      {/* 2. Sekilas Profil Mallilingi Section */}
       <section className="section" style={{ backgroundColor: "#ffffff" }}>
         <div className="container">
-          <div className="section-header">
-            <span className="section-tag">TENTANG KELURAHAN</span>
-            <h2>Sekilas Profil Mallilingi</h2>
-            <p>Gambaran singkat pimpinan, visi pembangunan, dan statistik wilayah Kelurahan Mallilingi.</p>
-          </div>
+          
+          {/* === A. PALING ATAS: DESAIN SAMBUTAN LURAH (Inspirasi Gambar Referensi) === */}
+          <div className="sambutan-grid">
+            
+            {/* Left Column: Photo Frame + Floating Badge */}
+            <div style={{ position: "relative" }}>
+              {/* Outer Background Shadow Card */}
+              <div style={{ position: "absolute", top: "15px", left: "15px", width: "100%", height: "100%", background: "#fecdd3", borderRadius: "24px", zIndex: 1 }} />
+              
+              {/* Main Photo Card */}
+              <div style={{ position: "relative", zIndex: 2, background: "#f1f5f9", borderRadius: "24px", overflow: "hidden", border: "1px solid #e2e8f0", boxShadow: "0 10px 25px rgba(0,0,0,0.08)", height: "420px" }}>
+                <img
+                  src={info.fotoLurah || "/assets/images/lurah.jpg"}
+                  alt={info.namaLurah}
+                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                />
 
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2.5rem", alignItems: "center" }}>
-            {/* Lurah Preview Card */}
-            <div style={{ background: "#f8fafc", padding: "2rem", borderRadius: "16px", border: "1px solid #e2e8f0", textAlign: "center" }}>
-              <div style={{ width: "120px", height: "120px", margin: "0 auto 1rem auto", borderRadius: "9999px", overflow: "hidden", border: "4px solid #ecfdf5", boxShadow: "0 2px 8px rgba(0,0,0,0.08)" }}>
-                <img src={info.fotoLurah || "/assets/images/lurah.jpg"} alt={info.namaLurah} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                {/* Floating Bottom Left Badge (Matching Reference Image) */}
+                <div style={{ position: "absolute", bottom: "20px", left: "20px", background: "#ffffff", padding: "0.85rem 1.25rem", borderRadius: "12px", boxShadow: "0 6px 20px rgba(0,0,0,0.15)", borderLeft: "4px solid #e11d48", zIndex: 3, maxWidth: "240px" }}>
+                  <div style={{ fontSize: "0.95rem", fontWeight: 800, color: "#0f172a", marginBottom: "0.1rem" }}>{info.namaLurah}</div>
+                  <div style={{ fontSize: "0.8rem", color: "#e11d48", fontWeight: 700 }}>Lurah Mallilingi</div>
+                </div>
               </div>
-              <h3 style={{ fontSize: "1.2rem", marginBottom: "0.2rem" }}>{info.namaLurah}</h3>
-              <div style={{ color: "#059669", fontWeight: 600, fontSize: "0.9rem", marginBottom: "0.5rem" }}>Lurah Mallilingi</div>
-              <p style={{ fontSize: "0.9rem", color: "#475569", fontStyle: "italic", marginBottom: "1.5rem" }}>
-                &ldquo;{info.sambutanLurah.slice(0, 140)}...&rdquo;
-              </p>
-              <Link href="/profil" className="btn btn-outline" style={{ fontSize: "0.85rem", width: "100%" }}>
-                Baca Sambutan Lengkap & Visi Misi →
-              </Link>
             </div>
 
-            {/* Quick Stats & Geography */}
-            <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
-              <div style={{ background: "#f8fafc", padding: "1.5rem", borderRadius: "16px", border: "1px solid #e2e8f0" }}>
-                <h3 style={{ fontSize: "1.1rem", marginBottom: "1rem", color: "#0f172a" }}>📊 Ringkasan Statistik</h3>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
-                  <div>
-                    <span style={{ fontSize: "0.78rem", color: "#64748b" }}>Jumlah Penduduk</span>
-                    <h4 style={{ fontSize: "1.2rem", color: "#059669" }}>{info.jumlahPenduduk}</h4>
-                  </div>
-                  <div>
-                    <span style={{ fontSize: "0.78rem", color: "#64748b" }}>Kepala Keluarga</span>
-                    <h4 style={{ fontSize: "1.2rem", color: "#059669" }}>{info.jumlahKK}</h4>
-                  </div>
-                  <div>
-                    <span style={{ fontSize: "0.78rem", color: "#64748b" }}>Luas Wilayah</span>
-                    <h4 style={{ fontSize: "1.2rem", color: "#0f172a" }}>{info.luasWilayah}</h4>
-                  </div>
-                  <div>
-                    <span style={{ fontSize: "0.78rem", color: "#64748b" }}>Wilayah RT/RW</span>
-                    <h4 style={{ fontSize: "1.2rem", color: "#0f172a" }}>{info.jumlahRW} / {info.jumlahRT}</h4>
-                  </div>
+            {/* Right Column: Title & Paragraph Quotes (Matching Reference Image) */}
+            <div>
+              <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "0.75rem" }}>
+                <div style={{ width: "32px", height: "2px", background: "#e11d48" }} />
+                <span style={{ fontSize: "0.85rem", fontWeight: 800, color: "#e11d48", letterSpacing: "0.08em", textTransform: "uppercase" }}>
+                  SAMBUTAN LURAH
+                </span>
+              </div>
+
+              <h2 style={{ fontSize: "2.2rem", color: "#0f172a", fontWeight: 800, lineHeight: 1.2, marginBottom: "1.5rem" }}>
+                Mewujudkan Pelayanan Publik Cepat, Transparan, & Mengayomi Warga
+              </h2>
+
+              <div style={{ fontSize: "0.98rem", color: "#334155", lineHeight: 1.85 }}>
+                <p style={{ marginBottom: "1rem" }}>
+                  &ldquo;{info.sambutanLurah}&rdquo;
+                </p>
+
+                <p style={{ marginBottom: "1.25rem" }}>
+                  Dengan semangat gotong royong dan keterbukaan informasi, kami menyediakan pelayanan kependudukan yang ramah, transparan, dan terintegrasi demi kenyamanan dan kesejahteraan seluruh masyarakat Kelurahan Mallilingi.
+                </p>
+
+                <div style={{ fontWeight: 700, color: "#0f172a", fontSize: "1.05rem" }}>
+                  Mari bersinergi bersama membangun Kelurahan Mallilingi yang sejahtera dan berdaya saing.
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          {/* === B. DITENGAH: RINGKASAN STATISTIK & DEMOGRAFI === */}
+          <div style={{ marginBottom: "3.5rem" }}>
+            <div className="stats-grid">
+              <div style={{ background: "#f8fafc", padding: "1.25rem", borderRadius: "14px", border: "1px solid #e2e8f0", display: "flex", alignItems: "center", gap: "1rem" }}>
+                <div style={{ width: "45px", height: "45px", background: "#ecfdf5", color: "#059669", borderRadius: "10px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.3rem" }}>👥</div>
+                <div>
+                  <span style={{ fontSize: "0.78rem", color: "#64748b", display: "block" }}>Jumlah Penduduk</span>
+                  <h4 style={{ fontSize: "1.25rem", color: "#0f172a", fontWeight: 800, margin: 0 }}>{info.jumlahPenduduk}</h4>
                 </div>
               </div>
 
-              <div style={{ textAlign: "right" }}>
-                <Link href="/profil" className="btn btn-primary">
-                  Buka Halaman Profil Selengkapnya →
-                </Link>
+              <div style={{ background: "#f8fafc", padding: "1.25rem", borderRadius: "14px", border: "1px solid #e2e8f0", display: "flex", alignItems: "center", gap: "1rem" }}>
+                <div style={{ width: "45px", height: "45px", background: "#ecfdf5", color: "#059669", borderRadius: "10px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.3rem" }}>🏠</div>
+                <div>
+                  <span style={{ fontSize: "0.78rem", color: "#64748b", display: "block" }}>Kepala Keluarga (KK)</span>
+                  <h4 style={{ fontSize: "1.25rem", color: "#0f172a", fontWeight: 800, margin: 0 }}>{info.jumlahKK}</h4>
+                </div>
+              </div>
+
+              <div style={{ background: "#f8fafc", padding: "1.25rem", borderRadius: "12px", border: "1px solid #e2e8f0", display: "flex", alignItems: "center", gap: "1rem" }}>
+                <div style={{ width: "45px", height: "45px", background: "#ecfdf5", color: "#059669", borderRadius: "10px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.3rem" }}>🗺️</div>
+                <div>
+                  <span style={{ fontSize: "0.78rem", color: "#64748b", display: "block" }}>Luas Wilayah</span>
+                  <h4 style={{ fontSize: "1.25rem", color: "#0f172a", fontWeight: 800, margin: 0 }}>{info.luasWilayah}</h4>
+                </div>
+              </div>
+
+              <div style={{ background: "#f8fafc", padding: "1.25rem", borderRadius: "14px", border: "1px solid #e2e8f0", display: "flex", alignItems: "center", gap: "1rem" }}>
+                <div style={{ width: "45px", height: "45px", background: "#ecfdf5", color: "#059669", borderRadius: "10px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.3rem" }}>🏢</div>
+                <div>
+                  <span style={{ fontSize: "0.78rem", color: "#64748b", display: "block" }}>Wilayah RW / RT</span>
+                  <h4 style={{ fontSize: "1.25rem", color: "#0f172a", fontWeight: 800, margin: 0 }}>{info.jumlahRW} / {info.jumlahRT}</h4>
+                </div>
               </div>
             </div>
           </div>
+
+          {/* === C. PALING BAWAH: GAMBAR PETA KELURAHAN (Format Gambar PNG/JPG Lokal) === */}
+          <div>
+            <div style={{ borderRadius: "16px", overflow: "hidden", border: "1px solid #e2e8f0", boxShadow: "0 4px 14px rgba(0,0,0,0.06)", background: "#f8fafc" }}>
+              <img
+                src="/assets/images/peta_kelurahan.jpg"
+                alt="Peta Geografis Kelurahan Mallilingi"
+                style={{ width: "100%", maxHeight: "450px", objectFit: "cover", display: "block" }}
+              />
+            </div>
+          </div>
+
         </div>
       </section>
 
-      {/* 2. Layanan Surat Teaser Section */}
-      <section className="section">
+      {/* 3. Layanan Publik Section (Unlimited Horizontal Marquee Scroll) */}
+      <section className="section" style={{ overflow: "hidden", background: "#f8fafc" }}>
         <div className="container">
-          <div className="section-header">
+          <div className="section-header" style={{ marginBottom: "2rem" }}>
             <span className="section-tag">PANDUAN PUBLIK</span>
-            <h2>Layanan Administrasi Kependudukan</h2>
-            <p>Informasi persyaratan dokumen kependudukan yang transparan tanpa pungutan biaya (Rp 0).</p>
+            <h2>Pelayanan Administrasi Kependudukan</h2>
+            <p>Informasi persyaratan dan alur dokumen kependudukan yang transparan tanpa pungutan biaya (Rp 0).</p>
           </div>
+        </div>
 
-          <div className="layanan-grid">
-            {data.layanan.slice(0, 3).map((item) => (
-              <div key={item.id} className="layanan-card" style={{ padding: "1.5rem" }}>
+        {/* Unlimited Horizontal Scroll Marquee for Layanan */}
+        <div className="marquee-container">
+          <div className="marquee-track">
+            {marqueeLayananList.map((item, idx) => (
+              <div key={`${item.id}-${idx}`} className="marquee-card">
                 <div>
-                  <span style={{ fontSize: "0.75rem", background: "#ecfdf5", color: "#059669", padding: "0.25rem 0.6rem", borderRadius: "9999px", fontWeight: 700 }}>
+                  <span style={{ fontSize: "0.725rem", background: "#ecfdf5", color: "#059669", padding: "0.2rem 0.55rem", borderRadius: "9999px", fontWeight: 700, display: "inline-block", marginBottom: "0.5rem" }}>
                     {item.kategori}
                   </span>
-                  <h3 style={{ fontSize: "1.1rem", margin: "0.75rem 0 0.5rem 0" }}>{item.judul}</h3>
-                  <div style={{ fontSize: "0.85rem", color: "#64748b", marginBottom: "1rem" }}>
-                    ⏱️ Estimasi: {item.waktu} | 💰 {item.biaya}
-                  </div>
+
+                  <h3 style={{ fontSize: "1.05rem", color: "#0f172a", marginBottom: "0.4rem", fontWeight: 700, lineHeight: 1.3 }}>
+                    {item.judul}
+                  </h3>
+
+                  <p style={{ fontSize: "0.85rem", color: "#64748b", lineHeight: 1.6, marginBottom: "1rem" }}>
+                    {item.deskripsi}
+                  </p>
                 </div>
-                <Link href="/layanan" className="btn btn-outline" style={{ fontSize: "0.825rem", marginTop: "auto" }}>
-                  Lihat Syarat & Alur →
-                </Link>
+
+                <div>
+                  <div style={{ fontSize: "0.8rem", color: "#059669", fontWeight: 600, marginBottom: "0.75rem", display: "flex", gap: "0.75rem" }}>
+                    <span>⏱️ {item.waktu}</span>
+                    <span>💰 {item.biaya}</span>
+                  </div>
+
+                  <Link href="/administrasi" className="btn btn-outline" style={{ fontSize: "0.8rem", width: "100%", padding: "0.45rem" }}>
+                    Lihat Syarat & Alur →
+                  </Link>
+                </div>
               </div>
             ))}
           </div>
-
-          <div style={{ textAlign: "center", marginTop: "2.5rem" }}>
-            <Link href="/layanan" className="btn btn-primary">
-              Buka Halaman Katalog Layanan Surat ({data.layanan.length}) →
-            </Link>
-          </div>
         </div>
       </section>
 
-      {/* 3. Kabar Terkini Teaser Section */}
-      <section className="section" style={{ backgroundColor: "#ffffff" }}>
+      {/* 4. Kabar Terkini Section (Unlimited Horizontal Marquee Scroll for Berita) */}
+      <section className="section" style={{ overflow: "hidden", backgroundColor: "#ffffff" }}>
         <div className="container">
-          <div className="section-header">
+          <div className="section-header" style={{ marginBottom: "2rem" }}>
             <span className="section-tag">KABAR TERKINI</span>
             <h2>Berita & Pengumuman Terbaru</h2>
             <p>Publikasi resmi mengenai kegiatan pembangunan, sosial kemasyarakatan, dan program kelurahan.</p>
           </div>
+        </div>
 
-          <div className="berita-grid">
-            {data.berita.slice(0, 3).map((item) => (
-              <article key={item.id} className="berita-card">
+        {/* Unlimited Horizontal Scroll Marquee for Berita */}
+        <div className="marquee-container">
+          <div className="marquee-track" style={{ animationDuration: "40s" }}>
+            {marqueeBeritaList.map((item, idx) => (
+              <article key={`${item.id}-${idx}`} className="berita-marquee-card">
                 <img src={item.gambar || "/assets/images/kantor_kelurahan.jpg"} alt={item.judul} className="berita-img" />
                 <div className="berita-body">
                   <div>
                     <div className="berita-date">📅 {item.tanggal} • {item.kategori || "Pengumuman"}</div>
-                    <h3 style={{ fontSize: "1.05rem", marginBottom: "0.5rem" }}>{item.judul}</h3>
+                    <h3 style={{ fontSize: "1.05rem", marginBottom: "0.5rem", color: "#0f172a" }}>{item.judul}</h3>
                     <p style={{ fontSize: "0.85rem", color: "#64748b", marginBottom: "1rem" }}>{item.ringkasan}</p>
                   </div>
                   <Link href={`/berita/${item.id}`} className="btn btn-outline" style={{ fontSize: "0.825rem", marginTop: "auto" }}>
@@ -151,53 +217,6 @@ export default async function HomePage() {
                 </div>
               </article>
             ))}
-          </div>
-
-          <div style={{ textAlign: "center", marginTop: "2.5rem" }}>
-            <Link href="/berita" className="btn btn-primary">
-              Buka Halaman Arsip Berita Kelurahan →
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* 4. Katalog UMKM Teaser Section */}
-      <section className="section">
-        <div className="container">
-          <div className="section-header">
-            <span className="section-tag">EKONOMI LOKAL</span>
-            <h2>Katalog Produk UMKM Warga</h2>
-            <p>Dukung perekonomian warga Kelurahan Mallilingi dengan membeli produk lokal berkualitas.</p>
-          </div>
-
-          <div className="umkm-grid">
-            {data.umkm.slice(0, 3).map((item) => (
-              <div key={item.id} className="umkm-card">
-                <img src={item.foto} alt={item.nama} className="umkm-img" />
-                <div className="umkm-body">
-                  <div>
-                    <span style={{ fontSize: "0.75rem", background: "#f0fdf4", color: "#047857", padding: "0.25rem 0.6rem", borderRadius: "9999px", fontWeight: 700 }}>
-                      {item.kategori}
-                    </span>
-                    <h3 style={{ fontSize: "1.1rem", margin: "0.5rem 0 0.25rem 0" }}>{item.nama}</h3>
-                    <div style={{ fontSize: "0.825rem", color: "#059669", fontWeight: 600, marginBottom: "0.5rem" }}>
-                      👤 Pemilik: {item.pemilik}
-                    </div>
-                    <p style={{ fontSize: "0.85rem", color: "#64748b", marginBottom: "1rem" }}>{item.deskripsi}</p>
-                  </div>
-
-                  <Link href={`/umkm/${item.id}`} className="btn btn-outline" style={{ fontSize: "0.825rem", marginTop: "auto" }}>
-                    Lihat Detail Produk UMKM →
-                  </Link>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div style={{ textAlign: "center", marginTop: "2.5rem" }}>
-            <Link href="/umkm" className="btn btn-primary">
-              Buka Halaman Katalog UMKM Selengkapnya →
-            </Link>
           </div>
         </div>
       </section>

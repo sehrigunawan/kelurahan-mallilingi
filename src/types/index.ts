@@ -35,6 +35,7 @@ export interface LayananSurat {
   kategori: string;
   waktu: string;
   biaya: string;
+  deskripsi: string;
   persyaratan: string[];
   alur: string;
 }
@@ -50,17 +51,6 @@ export interface BeritaPengumuman {
   penulis?: string;
 }
 
-export interface UMKM {
-  id: string;
-  nama: string;
-  kategori: string;
-  pemilik: string;
-  whatsapp: string;
-  alamat: string;
-  deskripsi: string;
-  foto: string;
-}
-
 export interface Aparatur {
   nama: string;
   jabatan: string;
@@ -72,6 +62,5 @@ export interface MallilingiData {
   info: InfoKelurahan;
   layanan: LayananSurat[];
   berita: BeritaPengumuman[];
-  umkm: UMKM[];
   struktur: Aparatur[];
 }
