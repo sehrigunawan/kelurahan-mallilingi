@@ -22,7 +22,7 @@ export default function Footer() {
                 <strong style={{ color: "white", display: "block", marginBottom: "0.2rem" }}>
                   Email Resmi:
                 </strong>
-                kelurahan.mallilingi@bantaengkab.go.id
+                kelurahanmallilingi@gmail.com
               </li>
             </ul>
           </div>

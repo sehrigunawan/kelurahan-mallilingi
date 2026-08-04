@@ -18,7 +18,7 @@ export default function LayananListClient({ initialLayanan, whatsappNumber }: { 
       <div style={{ maxWidth: "540px", margin: "0 auto 2.5rem auto" }}>
         <input
           type="text"
-          placeholder="🔍 Cari jenis surat atau persyaratan (contoh: SKTM, SKU, KTP)..."
+          placeholder="Cari jenis surat atau persyaratan (contoh: SKTM, SKU, KTP)..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           style={{ width: "100%", padding: "0.85rem 1.25rem", borderRadius: "9999px", border: "1px solid #cbd5e1", fontSize: "0.95rem", boxShadow: "0 1px 3px rgba(0,0,0,0.05)", outline: "none" }}
@@ -35,8 +35,8 @@ export default function LayananListClient({ initialLayanan, whatsappNumber }: { 
               </span>
               <h3 style={{ fontSize: "1.1rem", margin: "0.75rem 0 0.5rem 0" }}>{item.judul}</h3>
               <div style={{ display: "flex", gap: "1rem", fontSize: "0.85rem", color: "#64748b", marginBottom: "1rem" }}>
-                <span>⏱️ {item.waktu}</span>
-                <span>💰 {item.biaya}</span>
+                <span> {item.waktu}</span>
+                <span> {item.biaya}</span>
               </div>
             </div>
             <button onClick={() => setActiveModal(item)} className="btn btn-outline" style={{ fontSize: "0.825rem", marginTop: "auto" }}>
@@ -83,7 +83,7 @@ export default function LayananListClient({ initialLayanan, whatsappNumber }: { 
 
             <div style={{ textAlign: "right" }}>
               <a href={`https://wa.me/${whatsappNumber}?text=Halo%20Kelurahan%20Mallilingi,%20saya%20ingin%20bertanya%20mengenai%20${encodeURIComponent(activeModal.judul)}`} target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ fontSize: "0.85rem" }}>
-                💬 Tanya Petugas via WhatsApp
+                Tanya Petugas via WhatsApp
               </a>
             </div>
           </div>

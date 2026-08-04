@@ -17,7 +17,7 @@ export const DEFAULT_MALLILINGI_DATA: MallilingiData = {
     alamat: "Jl. Sungai Calendu, Kel. Mallilingi, Kec. Bantaeng, Kab. Bantaeng, Sulawesi Selatan 92411",
     telepon: "(0413) 21001",
     whatsapp: "6285255551234",
-    email: "kelurahan.mallilingi@bantaengkab.go.id",
+    email: "kelurahanmallilingi@gmail.com",
     jamKerja: "Senin - Jumat: 08.00 - 16.00 WITA",
     luasWilayah: "0.84 km²",
     jumlahPenduduk: "3.420 Jiwa",
@@ -29,12 +29,13 @@ export const DEFAULT_MALLILINGI_DATA: MallilingiData = {
     nipLurah: "Kepala Kelurahan Mallilingi",
     fotoLurah: "/assets/images/lurah.jpg",
     fotoKantor: "/assets/images/kantor_kelurahan.jpg",
-    visi: "Mewujudkan Kelurahan Mallilingi yang Mandiri, Sejahtera, Berdaya Saing, dan Unggul dalam Pelayanan Publik Berbasis Teknologi dan Kearifan Lokal.",
+    visi: "Mengutamakan pelayanan kemandirian dan keamanan untuk kemajuan atas iman dan taqwa.",
     misi: [
-      "Meningkatkan kualitas pelayanan administrasi kependudukan yang ramah, cepat, dan transparan.",
-      "Mengembangkan potensi lokal dan kesejahteraan masyarakat Mallilingi.",
-      "Meningkatkan kualitas sarana, kebersihan, dan ketertiban lingkungan kelurahan.",
-      "Mendorong partisipasi aktif warga dalam pembangunan melalui lembaga kemasyarakatan."
+      "Meningkatkan mutu pelayanan serta kualitas hidup masyarakat.",
+      "Memperkuat lembaga-lembaga kemasyarakatan sebagai wadah untuk memotivasi masyarakat dalam meningkatkan partisipasinya.",
+      "Mengendalikan sistem keamanan lingkungan ketertiban masyarakat.",
+      "Menggalang potensi pemuda yang berhubungan dengan kemandirian dan kreatifitas, dalam rangka membangun ketegaran pemuda memasuki era globalisasi.",
+      "Melibatkan sektor swasta dalam meningkatkan kemitraan."
     ],
     batasWilayah: {
       utara: "Desa Ulugalung",
@@ -355,15 +356,75 @@ export const DEFAULT_MALLILINGI_DATA: MallilingiData = {
   ],
 
   struktur: [
-    { nama: "ILHAM", jabatan: "Kepala Kelurahan Mallilingi", nip: "Pimpinan Kelurahan", foto: "/assets/images/lurah.jpg" },
-    { nama: "Rahmatia, S.AP.", jabatan: "Sekretaris Kelurahan", nip: "Sekretariat Kelurahan", foto: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80" },
-    { nama: "Bachtiar, S.E.", jabatan: "Kasi Ketentraman & Ketertiban", nip: "Seksi Operasional", foto: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=300&q=80" },
-    { nama: "Hj. Mariani, S.P.", jabatan: "Kasi Perekonomian & PMK", nip: "Seksi Operasional", foto: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=300&q=80" },
-    { nama: "Nurhalimah, S.Pd.", jabatan: "Kasi Kesejahteraan Rakyat", nip: "Seksi Operasional", foto: "https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?auto=format&fit=crop&w=300&q=80" },
+    // Pimpinan & Sekretariat
+    { nama: "ILHAM", jabatan: "Kepala Kelurahan Mallilingi", nip: "-", foto: "/assets/images/lurah.jpg" },
+    { nama: "YUDHIE YUDHA DHARMA, A.Md", jabatan: "Sekretaris Kelurahan", nip: "NIP. 19750315 200904 1 003", foto: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80" },
+    { nama: "NURAENI", jabatan: "Staf Sekretariat", nip: "-", foto: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80" },
+    { nama: "AGUS SALIM, SM", jabatan: "Staf Sekretariat", nip: "-", foto: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80" },
+
+    // Seksi Pemerintahan
+    { nama: "FITRIAH, S.E", jabatan: "Kasi Pemerintahan", nip: "NIP. 19780830 201212 2 001", foto: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=300&q=80" },
+    { nama: "SYAHRIR", jabatan: "Staf Seksi Pemerintahan (PNS)", nip: "NIP. 19670815 200604 1 011", foto: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=300&q=80" },
+    { nama: "ANANG ADENANGST DJALIL", jabatan: "Staf Seksi Pemerintahan (PNS)", nip: "NIP. 19800526 200502 1 001", foto: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=300&q=80" },
+    { nama: "FATIMAH", jabatan: "Staf Seksi Pemerintahan", nip: "-", foto: "https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?auto=format&fit=crop&w=300&q=80" },
+    { nama: "M. RUSDY", jabatan: "Staf Seksi Pemerintahan", nip: "-", foto: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=300&q=80" },
+    { nama: "AKHMAD HARIS", jabatan: "Staf Seksi Pemerintahan", nip: "-", foto: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80" },
+
+    // Seksi Pelayanan Umum
+    { nama: "FITRIANI, SE", jabatan: "Kasi Pelayanan Umum", nip: "NIP. 19850723 200903 2 011", foto: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80" },
+    { nama: "NURAENI", jabatan: "Staf Pelayanan Umum (PNS)", nip: "NIP. 19810531 201212 2 002", foto: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=300&q=80" },
+    { nama: "HUDAEDAH S", jabatan: "Staf Pelayanan Umum", nip: "-", foto: "https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?auto=format&fit=crop&w=300&q=80" },
+    { nama: "HALIMAH", jabatan: "Staf Pelayanan Umum", nip: "-", foto: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=300&q=80" },
+    { nama: "ROSMITA", jabatan: "Staf Pelayanan Umum", nip: "-", foto: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80" },
+    { nama: "A. NURSYANTI", jabatan: "Staf Pelayanan Umum", nip: "-", foto: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=300&q=80" },
+
+    // Seksi Pembangunan & Pemberdayaan Masyarakat
+    { nama: "A. ERNAWATI", jabatan: "Staf Seksi Pembangunan & PM", nip: "-", foto: "https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?auto=format&fit=crop&w=300&q=80" },
+    { nama: "SYAMSURYANTI", jabatan: "Staf Seksi Pembangunan & PM", nip: "-", foto: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=300&q=80" },
+    { nama: "NASTRI", jabatan: "Staf Seksi Pembangunan & PM", nip: "-", foto: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80" },
+    { nama: "IRAWATI", jabatan: "Staf Seksi Pembangunan & PM", nip: "-", foto: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=300&q=80" },
+
+    // Unsur Keamanan & LPM
     { nama: "Sertu Akhmad Panisi", jabatan: "Babinsa Mallilingi", nip: "TNI AD / Babinsa", foto: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=300&q=80" },
     { nama: "Arwan Hamid", jabatan: "Binmas / Bhabinkamtibmas", nip: "Polri / Binmas", foto: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80" },
     { nama: "A. Rahman AB, S.Ilkom", jabatan: "Ketua LPM Mallilingi", nip: "LPM Mallilingi", foto: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=300&q=80" },
     { nama: "Muh. Alwih", jabatan: "Anggota LPM Mallilingi", nip: "LPM Mallilingi", foto: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80" }
+  ],
+
+  pengaduan: [
+    {
+      id: "aduan-1",
+      tanggal: "03 Agustus 2026",
+      nama: "Ahmad Hidayat",
+      nik: "7303011504880001",
+      telepon: "6281234567890",
+      kategori: "Infrastruktur & Jalan",
+      judul: "Saluran Air Tersumbat di Jalan Calendu RW 002",
+      isi: "Mohon bantuan petugas kelurahan untuk membersihkan drainase/saluran air di dekat perempatan RT 002 RW 002 yang tersumbat agar tidak menyebabkan genangan air.",
+      status: "Baru"
+    },
+    {
+      id: "aduan-2",
+      tanggal: "01 Agustus 2026",
+      nama: "Nurhalimah",
+      nik: "7303015809920003",
+      telepon: "6285299887766",
+      kategori: "Pelayanan Kependudukan",
+      judul: "Konsultasi Persyaratan Pengurusan SKTM",
+      isi: "Apakah pengurusan SKTM untuk keringanan biaya rumah sakit dapat diwakilkan oleh anggota keluarga yang terdaftar dalam 1 KK?",
+      status: "Proses"
+    },
+    {
+      id: "aduan-3",
+      tanggal: "28 Juli 2026",
+      nama: "Baharuddin",
+      nik: "7303011210750002",
+      telepon: "6282111223344",
+      kategori: "Kebersihan & Saluran Air",
+      judul: "Pengangkutan Sampah di Wilayah RW 005",
+      isi: "Terima kasih atas tindak lanjut armada kebersihan yang telah mengangkut tumpukan sampah di tempat penampungan sementara RW 005.",
+      status: "Selesai"
+    }
   ]
 };
 
@@ -455,10 +516,13 @@ if (SUPABASE_CONFIG.enabled && !SUPABASE_CONFIG.url.includes("your-project")) {
 export async function getMallilingiDataAsync(): Promise<MallilingiData> {
   if (supabaseClient) {
     try {
-      const [infoRes, beritaRes, layananRes] = await Promise.all([
+      const [infoRes, beritaRes, layananRes, strukturRes, pengaduanRes, rwRtRes] = await Promise.all([
         supabaseClient.from("info").select("*").single(),
         supabaseClient.from("berita").select("*").order("created_at", { ascending: false }),
-        supabaseClient.from("layanan").select("*")
+        supabaseClient.from("layanan").select("*"),
+        supabaseClient.from("struktur").select("*"),
+        supabaseClient.from("pengaduan").select("*").order("created_at", { ascending: false }),
+        supabaseClient.from("rw_rt_list").select("*")
       ]);
 
       if (infoRes.data) {
@@ -485,14 +549,19 @@ export async function getMallilingiDataAsync(): Promise<MallilingiData> {
           info: infoObj,
           berita: (beritaRes.data && beritaRes.data.length > 0) ? beritaRes.data : DEFAULT_MALLILINGI_DATA.berita,
           layanan: (layananList.length > 0) ? layananList : DEFAULT_MALLILINGI_DATA.layanan,
-          struktur: DEFAULT_MALLILINGI_DATA.struktur
+          struktur: (strukturRes.data && strukturRes.data.length > 0) ? strukturRes.data : DEFAULT_MALLILINGI_DATA.struktur,
+          pengaduan: (pengaduanRes.data && pengaduanRes.data.length > 0) ? pengaduanRes.data : DEFAULT_MALLILINGI_DATA.pengaduan,
+          rwRtList: (rwRtRes.data && rwRtRes.data.length > 0) ? rwRtRes.data : DEFAULT_RW_RT_LIST
         };
       }
     } catch (err) {
-      console.warn("Supabase async error, fallback to default:", err);
+      console.warn("Supabase async error, fallback to default seed dataset:", err);
     }
   }
-  return DEFAULT_MALLILINGI_DATA;
+  return {
+    ...DEFAULT_MALLILINGI_DATA,
+    rwRtList: DEFAULT_RW_RT_LIST
+  };
 }
 
 export async function saveMallilingiDataAsync(data: MallilingiData): Promise<void> {
@@ -501,7 +570,9 @@ export async function saveMallilingiDataAsync(data: MallilingiData): Promise<voi
       await Promise.all([
         supabaseClient.from("info").upsert({ id: 1, ...data.info }),
         supabaseClient.from("berita").upsert(data.berita),
-        supabaseClient.from("layanan").upsert(data.layanan)
+        supabaseClient.from("layanan").upsert(data.layanan),
+        supabaseClient.from("struktur").upsert(data.struktur),
+        supabaseClient.from("pengaduan").upsert(data.pengaduan)
       ]);
     } catch (e) {
       console.error("Supabase async save error:", e);

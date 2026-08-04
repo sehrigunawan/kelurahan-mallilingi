@@ -33,7 +33,7 @@ export default async function ProfilPage() {
                 {info.namaLurah}
               </h3>
               <div style={{ fontSize: "0.85rem", color: "#059669", fontWeight: 600, marginBottom: "0.4rem" }}>
-                Lurah Mallilingi
+                Kepala Kelurahan Mallilingi
               </div>
               <span style={{ fontSize: "0.75rem", background: "#f1f5f9", color: "#475569", padding: "0.2rem 0.65rem", borderRadius: "9999px", fontWeight: 500 }}>
                 Kecamatan Bantaeng
@@ -61,13 +61,43 @@ export default async function ProfilPage() {
           </div>
         </div>
 
-        {/* 2. SEPARATE CARD 2: Visi & Misi Pembangunan Kelurahan */}
+        {/* 2. CARD 2: Tugas Pokok dan Uraian Tugas Lurah */}
+        <div className="profile-card">
+          <h3 style={{ fontSize: "1.2rem", color: "#0f172a", fontWeight: 700, marginBottom: "1.25rem" }}>
+            Tugas Pokok & Uraian Tugas Lurah
+          </h3>
+
+          <div style={{ background: "#f8fafc", padding: "1.25rem", borderRadius: "10px", border: "1px solid #e2e8f0", marginBottom: "1.25rem" }}>
+            <span style={{ fontSize: "0.78rem", color: "#059669", fontWeight: 700, textTransform: "uppercase", display: "block", marginBottom: "0.3rem" }}>
+              TUGAS POKOK
+            </span>
+            <p style={{ fontSize: "0.95rem", color: "#1e293b", lineHeight: 1.7, margin: 0, fontWeight: 500 }}>
+              Memimpin, melaksanakan sebagai kewenangan pemerintahan yang dilimpahkan oleh camat kepada kelurahan dan tugas lain yang diberikan oleh atasan.
+            </p>
+          </div>
+
+          <div>
+            <span style={{ fontSize: "0.78rem", color: "#059669", fontWeight: 700, textTransform: "uppercase", display: "block", marginBottom: "0.5rem" }}>
+              URAIAN TUGAS
+            </span>
+            <ul style={{ paddingLeft: "1.25rem", fontSize: "0.925rem", color: "#334155", lineHeight: 1.75 }}>
+              <li style={{ marginBottom: "0.5rem" }}>
+                Menyelenggarakan pelayanan masyarakat dan memberikan pelayanan administrative lingkup kelurahan.
+              </li>
+              <li>
+                Menyusun, menetapkan pemberdayaan yang timbul atas inisiatif masyarakat.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* 3. CARD 3: Visi & Misi Pembangunan Kelurahan */}
         <div className="profile-card">
           <div style={{ marginBottom: "2rem" }}>
             <div style={{ marginBottom: "0.5rem" }}>
               <h3 style={{ fontSize: "1.2rem", color: "#0f172a", fontWeight: 700, margin: 0 }}>Visi Kelurahan Mallilingi</h3>
             </div>
-            <div style={{ background: "#ecfdf5", borderLeft: "4px solid #059669", padding: "1.15rem 1.35rem", borderRadius: "6px", fontSize: "1rem", color: "#065f46", fontWeight: 500, lineHeight: 1.7 }}>
+            <div style={{ background: "#ecfdf5", borderLeft: "4px solid #059669", padding: "1.15rem 1.35rem", borderRadius: "6px", fontSize: "1rem", color: "#065f46", fontWeight: 600, lineHeight: 1.7 }}>
               {info.visi}
             </div>
           </div>
@@ -88,19 +118,14 @@ export default async function ProfilPage() {
           </div>
         </div>
 
-        {/* 3. CARD 3: Data Statistik Kependudukan & Batas Geografis */}
+        {/* 4. CARD 4: Data Statistik Kependudukan, Batas Geografis & Peta Wilayah */}
         <div className="profile-card">
           <h3 style={{ fontSize: "1.2rem", color: "#0f172a", fontWeight: 700, marginBottom: "1.25rem" }}>Data Statistik & Demografi Wilayah</h3>
 
           <div className="stats-grid" style={{ marginBottom: "1.5rem" }}>
             <div style={{ background: "#f8fafc", padding: "1.15rem", borderRadius: "10px", border: "1px solid #e2e8f0" }}>
-              <span style={{ fontSize: "0.78rem", color: "#64748b", display: "block", marginBottom: "0.2rem" }}>Total Jumlah Penduduk</span>
+              <span style={{ fontSize: "0.78rem", color: "#64748b", display: "block", marginBottom: "0.2rem" }}>Total Jumlah Penduduk / Jiwa</span>
               <h4 style={{ fontSize: "1.2rem", color: "#0f172a", fontWeight: 700, margin: 0 }}>{info.jumlahPenduduk}</h4>
-            </div>
-
-            <div style={{ background: "#f8fafc", padding: "1.15rem", borderRadius: "10px", border: "1px solid #e2e8f0" }}>
-              <span style={{ fontSize: "0.78rem", color: "#64748b", display: "block", marginBottom: "0.2rem" }}>Jumlah Kepala Keluarga</span>
-              <h4 style={{ fontSize: "1.2rem", color: "#0f172a", fontWeight: 700, margin: 0 }}>{info.jumlahKK}</h4>
             </div>
 
             <div style={{ background: "#f8fafc", padding: "1.15rem", borderRadius: "10px", border: "1px solid #e2e8f0" }}>
@@ -114,7 +139,7 @@ export default async function ProfilPage() {
             </div>
           </div>
 
-          <div style={{ background: "#f0fdf4", border: "1px solid #bbf7d0", padding: "1rem 1.25rem", borderRadius: "10px" }}>
+          <div style={{ background: "#f0fdf4", border: "1px solid #bbf7d0", padding: "1rem 1.25rem", borderRadius: "10px", marginBottom: "1.5rem" }}>
             <div style={{ fontSize: "0.78rem", fontWeight: 700, color: "#047857", marginBottom: "0.35rem", textTransform: "uppercase" }}>Batas Geografis Wilayah Kelurahan</div>
             <div className="batas-grid">
               <div><strong>Sebelah Utara:</strong> {info.batasWilayah?.utara}</div>
@@ -123,9 +148,23 @@ export default async function ProfilPage() {
               <div><strong>Sebelah Barat:</strong> {info.batasWilayah?.barat}</div>
             </div>
           </div>
+
+          {/* Peta Wilayah Kelurahan Image Container */}
+          <div>
+            <span style={{ fontSize: "0.78rem", fontWeight: 700, color: "#475569", marginBottom: "0.5rem", display: "block", textTransform: "uppercase" }}>
+              Peta Administrasi & Geografis Kelurahan Mallilingi
+            </span>
+            <div style={{ borderRadius: "12px", overflow: "hidden", border: "1px solid #cbd5e1", boxShadow: "0 2px 10px rgba(0,0,0,0.04)" }}>
+              <img
+                src="/assets/images/peta_kelurahan.jpg"
+                alt="Peta Wilayah Kelurahan Mallilingi"
+                style={{ width: "100%", maxHeight: "450px", objectFit: "cover", display: "block" }}
+              />
+            </div>
+          </div>
         </div>
 
-        {/* 4. CARD 4: Gambaran Umum & Karakteristik Kelurahan Mallilingi */}
+        {/* 5. CARD 5: Gambaran Umum & Karakteristik Kelurahan Mallilingi */}
         <div className="profile-card">
           <h3 style={{ fontSize: "1.2rem", color: "#0f172a", fontWeight: 700, marginBottom: "1rem" }}>Gambaran Umum & Karakteristik Kelurahan Mallilingi</h3>
           

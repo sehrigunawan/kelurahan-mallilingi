@@ -69,10 +69,23 @@ export interface PengurusRW {
   rtList: PengurusRT[];
 }
 
+export interface PengaduanWarga {
+  id: string;
+  tanggal: string;
+  nama: string;
+  nik: string;
+  telepon: string;
+  kategori: string;
+  judul: string;
+  isi: string;
+  status: "Baru" | "Proses" | "Selesai";
+}
+
 export interface MallilingiData {
   info: InfoKelurahan;
   layanan: LayananSurat[];
   berita: BeritaPengumuman[];
   struktur: Aparatur[];
+  pengaduan: PengaduanWarga[];
   rwRtList?: PengurusRW[];
 }

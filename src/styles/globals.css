@@ -81,16 +81,11 @@ h1, h2, h3, h4, h5, h6 {
   gap: 0.75rem;
 }
 .logo-icon {
-  width: 40px;
-  height: 40px;
-  background: linear-gradient(135deg, var(--brand-emerald), var(--brand-teal));
-  color: white;
-  border-radius: var(--radius-md);
+  width: 44px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.2rem;
-  font-weight: 700;
   flex-shrink: 0;
 }
 .brand-title {
@@ -179,12 +174,23 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 6px !important;
 }
 
-/* Form Row Grid (Desktop 2-col, Mobile 1-col Vertical) */
-.form-row-grid {
+/* Form Row Grid & Admin Grids */
+.form-row-grid, .admin-form-grid-2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1rem;
+  gap: 1.25rem;
   margin-bottom: 1rem;
+}
+.admin-form-grid-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1.25rem;
+  margin-bottom: 1rem;
+}
+.admin-header-actions {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
 }
 
 /* SOTK Card Hover Effect */
@@ -207,14 +213,33 @@ h1, h2, h3, h4, h5, h6 {
   border-color: #059669;
 }
 
-/* Hero Section with Parallax Background */
+/* Hero Section with Animated Image Carousel Background */
+@keyframes heroBgFade {
+  0%, 45% {
+    background-image: linear-gradient(135deg, rgba(15, 23, 42, 0.88), rgba(5, 150, 105, 0.78)), url('/assets/images/kantor_kelurahan.jpg');
+  }
+  50%, 95% {
+    background-image: linear-gradient(135deg, rgba(15, 23, 42, 0.88), rgba(5, 150, 105, 0.78)), url('/assets/images/peta_kelurahan.jpg');
+  }
+  100% {
+    background-image: linear-gradient(135deg, rgba(15, 23, 42, 0.88), rgba(5, 150, 105, 0.78)), url('/assets/images/kantor_kelurahan.jpg');
+  }
+}
+
 .hero {
   position: relative;
-  background: linear-gradient(135deg, rgba(15, 23, 42, 0.88), rgba(5, 150, 105, 0.78)), url('/assets/images/kantor_kelurahan.jpg') center/cover fixed no-repeat;
+  min-height: 560px;
+  padding: 6.5rem 0 7.5rem 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  animation: heroBgFade 14s ease-in-out infinite;
   color: white;
-  padding: 4.5rem 0 5.5rem 0;
   overflow: hidden;
+  display: flex;
+  align-items: center;
 }
+
 .hero::after {
   content: '';
   position: absolute;
@@ -229,7 +254,7 @@ h1, h2, h3, h4, h5, h6 {
 .hero-content {
   position: relative;
   z-index: 3;
-  max-width: 780px;
+  max-width: 820px;
 }
 .hero-badge {
   display: inline-flex;
@@ -246,14 +271,14 @@ h1, h2, h3, h4, h5, h6 {
   color: #a7f3d0;
 }
 .hero h1 {
-  font-size: 2.5rem;
+  font-size: 2.75rem;
   color: white;
   margin-bottom: 1.25rem;
   line-height: 1.2;
   font-weight: 700;
 }
 .hero p {
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   color: #e2e8f0;
   margin-bottom: 2rem;
   line-height: 1.7;
@@ -435,13 +460,21 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 0.4rem;
 }
 
-/* Unlimited Horizontal Scroll Marquee */
+/* Marquee Container with Automatic & Manual Scroll Support */
 .marquee-container {
   width: 100%;
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
   position: relative;
   padding: 1rem 0 2rem 0;
 }
+.marquee-container::-webkit-scrollbar {
+  display: none;
+}
+
 .marquee-container::before,
 .marquee-container::after {
   content: '';
@@ -465,7 +498,7 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   gap: 1.25rem;
   width: max-content;
-  animation: marqueeScroll 35s linear infinite;
+  animation: marqueeScroll 48s linear infinite;
 }
 .marquee-track:hover {
   animation-play-state: paused;
@@ -542,6 +575,11 @@ h1, h2, h3, h4, h5, h6 {
 /* ================= COMPREHENSIVE MOBILE RESPONSIVE MEDIA QUERIES ================= */
 
 @media (max-width: 900px) {
+  /* Admin Layout Sidebar Stacking */
+  .admin-layout-grid {
+    grid-template-columns: 1fr !important;
+  }
+
   /* Navbar Mobile Hamburger */
   .mobile-menu-btn {
     display: flex;
@@ -598,9 +636,17 @@ h1, h2, h3, h4, h5, h6 {
     gap: 1.5rem !important;
   }
 
-  .form-row-grid {
+  .form-row-grid, .admin-form-grid-2, .admin-form-grid-3 {
     grid-template-columns: 1fr !important;
     gap: 1rem !important;
+  }
+
+  .admin-header-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  .admin-header-actions .btn {
+    width: 100%;
   }
 
   .misi-grid {
@@ -634,16 +680,17 @@ h1, h2, h3, h4, h5, h6 {
     gap: 0.75rem !important;
   }
 
-  .form-row-grid {
+  .form-row-grid, .admin-form-grid-2, .admin-form-grid-3 {
     grid-template-columns: 1fr !important;
   }
 
   /* Hero Section Mobile */
   .hero {
-    padding: 3.5rem 0 4.5rem 0;
+    min-height: 480px;
+    padding: 4.5rem 0 5.5rem 0;
   }
   .hero h1 {
-    font-size: 1.85rem;
+    font-size: 1.95rem;
     line-height: 1.25;
   }
   .hero p {
@@ -684,7 +731,7 @@ h1, h2, h3, h4, h5, h6 {
     display: none;
   }
   .hero h1 {
-    font-size: 1.55rem;
+    font-size: 1.6rem;
   }
   .batas-grid {
     grid-template-columns: 1fr !important;
@@ -692,7 +739,7 @@ h1, h2, h3, h4, h5, h6 {
   .stats-grid {
     grid-template-columns: 1fr !important;
   }
-  .form-row-grid {
+  .form-row-grid, .admin-form-grid-2, .admin-form-grid-3 {
     grid-template-columns: 1fr !important;
   }
 }

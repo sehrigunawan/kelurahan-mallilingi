@@ -25,7 +25,7 @@ export default async function PengaduanPage() {
               
               <ul style={{ paddingLeft: "1.25rem", fontSize: "0.875rem", color: "#334155", lineHeight: 1.7 }}>
                 <li style={{ marginBottom: "0.6rem" }}>
-                  <strong>Identitas Valid:</strong> Sertakan Nama Lengkap dan NIK sesuai KTP untuk penanganan laporan yang akurat.
+                  <strong>Identitas Pelapor:</strong> Sertakan Nama Lengkap dan Nomor WhatsApp yang aktif untuk komunikasi lebih lanjut.
                 </li>
                 <li style={{ marginBottom: "0.6rem" }}>
                   <strong>Uraian Jelas:</strong> Jelaskan kronologi kejadian, lokasi spesifik, atau kendala yang dihadapi secara rinci.

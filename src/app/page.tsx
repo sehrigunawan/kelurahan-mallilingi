@@ -94,13 +94,8 @@ export default async function HomePage() {
           <div style={{ marginBottom: "3.5rem" }}>
             <div className="stats-grid">
               <div style={{ background: "#f8fafc", padding: "1.25rem", borderRadius: "12px", border: "1px solid #e2e8f0" }}>
-                <span style={{ fontSize: "0.78rem", color: "#64748b", display: "block", marginBottom: "0.2rem" }}>Jumlah Penduduk</span>
+                <span style={{ fontSize: "0.78rem", color: "#64748b", display: "block", marginBottom: "0.2rem" }}>Jumlah Penduduk / Jiwa</span>
                 <h4 style={{ fontSize: "1.2rem", color: "#0f172a", fontWeight: 700, margin: 0 }}>{info.jumlahPenduduk}</h4>
-              </div>
-
-              <div style={{ background: "#f8fafc", padding: "1.25rem", borderRadius: "12px", border: "1px solid #e2e8f0" }}>
-                <span style={{ fontSize: "0.78rem", color: "#64748b", display: "block", marginBottom: "0.2rem" }}>Kepala Keluarga (KK)</span>
-                <h4 style={{ fontSize: "1.2rem", color: "#0f172a", fontWeight: 700, margin: 0 }}>{info.jumlahKK}</h4>
               </div>
 
               <div style={{ background: "#f8fafc", padding: "1.25rem", borderRadius: "12px", border: "1px solid #e2e8f0" }}>

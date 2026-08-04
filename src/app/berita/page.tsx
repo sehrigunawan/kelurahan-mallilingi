@@ -19,9 +19,9 @@ export default async function BeritaPage() {
               <img src={item.gambar || "/assets/images/kantor_kelurahan.jpg"} alt={item.judul} className="berita-img" />
               <div className="berita-body">
                 <div>
-                  <div className="berita-date">📅 {item.tanggal} • {item.kategori || "Pengumuman"}</div>
-                  <h3 style={{ fontSize: "1.05rem", marginBottom: "0.5rem" }}>{item.judul}</h3>
-                  <p style={{ fontSize: "0.85rem", color: "#64748b", marginBottom: "1rem" }}>{item.ringkasan}</p>
+                  <div className="berita-date">{item.tanggal} • {item.kategori || "Pengumuman"}</div>
+                  <h3 style={{ fontSize: "1.05rem", marginBottom: "0.5rem", fontWeight: 600 }}>{item.judul}</h3>
+                  <p style={{ fontSize: "0.85rem", color: "#64748b", marginBottom: "1rem", lineHeight: 1.55 }}>{item.ringkasan}</p>
                 </div>
                 <Link href={`/berita/${item.id}`} className="btn btn-outline" style={{ fontSize: "0.825rem", marginTop: "auto" }}>
                   Baca Selengkapnya →

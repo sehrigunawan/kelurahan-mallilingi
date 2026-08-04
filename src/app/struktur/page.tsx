@@ -2,118 +2,93 @@ import { getMallilingiDataAsync, DEFAULT_RW_RT_LIST } from "../../lib/data";
 
 export default async function StrukturPage() {
   const data = await getMallilingiDataAsync();
-  const lurah = data.struktur[0];
-  const seklur = data.struktur[1];
-  const kasiList = data.struktur.slice(2, 5);
-  const mitraLembagaList = data.struktur.slice(5);
+  const aparaturList = data.struktur;
 
-  const getCategoryBadge = (index: number) => {
-    if (index === 0) return { label: "Pimpinan Tinggi", bg: "#059669" };
-    if (index === 1) return { label: "Sekretariat", bg: "#0d9488" };
-    if (index >= 2 && index <= 4) return { label: "Kepala Seksi", bg: "#2563eb" };
-    return { label: "Mitra & Keamanan", bg: "#475569" };
-  };
+  // Filter into categories
+  const pimpinanSekretariat = aparaturList.filter((p) =>
+    p.jabatan.includes("Kepala Kelurahan") || p.jabatan.includes("Sekretaris") || p.jabatan.includes("Staf Sekretariat")
+  );
+
+  const seksiPemerintahan = aparaturList.filter((p) => p.jabatan.includes("Pemerintahan"));
+  const seksiPelayanan = aparaturList.filter((p) => p.jabatan.includes("Pelayanan"));
+  const seksiPembangunan = aparaturList.filter((p) => p.jabatan.includes("Pembangunan"));
+
+  const mitraKeamananLpm = aparaturList.filter((p) =>
+    p.jabatan.includes("Babinsa") || p.jabatan.includes("Binmas") || p.jabatan.includes("LPM")
+  );
+
+  const renderCardGrid = (list: typeof aparaturList, accentColor: string) => (
+    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "1.25rem" }}>
+      {list.map((person, idx) => (
+        <div key={idx} className="sotk-hover-card" style={{ padding: "1.5rem 1.25rem" }}>
+          <div style={{ position: "relative", marginBottom: "0.85rem" }}>
+            <div style={{ width: "80px", height: "80px", borderRadius: "9999px", overflow: "hidden", border: `3px solid ${accentColor}`, boxShadow: "0 2px 8px rgba(0,0,0,0.06)" }}>
+              <img src={person.foto} alt={person.nama} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+            </div>
+          </div>
+
+          <h4 style={{ fontSize: "1rem", color: "#0f172a", fontWeight: 700, marginBottom: "0.2rem" }}>{person.nama}</h4>
+          <div style={{ color: accentColor, fontWeight: 600, fontSize: "0.85rem", marginBottom: "0.35rem" }}>{person.jabatan}</div>
+          
+          {/* NIP display instead of generic category label */}
+          <div style={{ fontSize: "0.78rem", color: "#64748b", background: "#f1f5f9", padding: "0.2rem 0.65rem", borderRadius: "6px", display: "inline-block" }}>
+            {person.nip && person.nip !== "-" ? person.nip : "Staff / Non-PNS"}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
 
   return (
     <section className="section">
       <div className="container">
         <div className="section-header">
           <span className="section-tag">APARAT & KEMITRAAN KELURAHAN</span>
-          <h2>Struktur Organisasi & Pengurus Wilayah</h2>
-          <p>Daftar resmi aparatur kelurahan, lembaga kemasyarakatan, serta ketua RW & RT se-Kelurahan Mallilingi.</p>
+          <h2>Struktur Organisasi & Aparatur Kelurahan</h2>
+          <p>Daftar resmi jajaran aparatur PNS, staf kelurahan, mitra keamanan, serta pengurus RW & RT Kelurahan Mallilingi.</p>
         </div>
 
-        {/* 1. SEKSI PIMPINAN & SEKRETARIAT */}
+        {/* 1. PIMPINAN & SEKRETARIAT */}
         <div style={{ marginBottom: "3rem" }}>
           <div style={{ marginBottom: "1.25rem" }}>
-            <h3 style={{ fontSize: "1.2rem", color: "#0f172a", fontWeight: 700, margin: 0 }}>Pimpinan & Sekretariat</h3>
+            <h3 style={{ fontSize: "1.2rem", color: "#0f172a", fontWeight: 700, margin: 0 }}>Pimpinan & Sekretariat Kelurahan</h3>
           </div>
-
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1.5rem" }}>
-            {[lurah, seklur].map((person, idx) => {
-              const badge = getCategoryBadge(idx);
-              return (
-                <div key={idx} className="sotk-hover-card">
-                  <div style={{ position: "relative", marginBottom: "1rem" }}>
-                    <div style={{ width: "90px", height: "90px", borderRadius: "9999px", overflow: "hidden", border: `3px solid ${badge.bg}`, boxShadow: "0 2px 8px rgba(0,0,0,0.08)" }}>
-                      <img src={person.foto} alt={person.nama} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                    </div>
-                  </div>
-
-                  <span style={{ fontSize: "0.725rem", background: badge.bg, color: "#ffffff", padding: "0.2rem 0.75rem", borderRadius: "9999px", fontWeight: 600, textTransform: "uppercase", marginBottom: "0.6rem" }}>
-                    {badge.label}
-                  </span>
-
-                  <h4 style={{ fontSize: "1.05rem", color: "#0f172a", fontWeight: 700, marginBottom: "0.2rem" }}>{person.nama}</h4>
-                  <div style={{ color: badge.bg, fontWeight: 600, fontSize: "0.9rem", marginBottom: "0.25rem" }}>{person.jabatan}</div>
-                  <div style={{ fontSize: "0.78rem", color: "#64748b" }}>{person.nip}</div>
-                </div>
-              );
-            })}
-          </div>
+          {renderCardGrid(pimpinanSekretariat, "#059669")}
         </div>
 
-        {/* 2. SEKSI KASI OPERASIONAL */}
+        {/* 2. SEKSI PEMERINTAHAN */}
         <div style={{ marginBottom: "3rem" }}>
           <div style={{ marginBottom: "1.25rem" }}>
-            <h3 style={{ fontSize: "1.2rem", color: "#0f172a", fontWeight: 700, margin: 0 }}>Seksi Operasional Kelurahan</h3>
+            <h3 style={{ fontSize: "1.2rem", color: "#0f172a", fontWeight: 700, margin: 0 }}>Seksi Pemerintahan</h3>
           </div>
-
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "1.5rem" }}>
-            {kasiList.map((kasi, idx) => {
-              const badge = getCategoryBadge(idx + 2);
-              return (
-                <div key={idx} className="sotk-hover-card">
-                  <div style={{ position: "relative", marginBottom: "1rem" }}>
-                    <div style={{ width: "84px", height: "84px", borderRadius: "9999px", overflow: "hidden", border: `3px solid ${badge.bg}`, boxShadow: "0 2px 8px rgba(0,0,0,0.06)" }}>
-                      <img src={kasi.foto} alt={kasi.nama} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                    </div>
-                  </div>
-
-                  <span style={{ fontSize: "0.7rem", background: badge.bg, color: "#ffffff", padding: "0.18rem 0.65rem", borderRadius: "9999px", fontWeight: 600, textTransform: "uppercase", marginBottom: "0.5rem" }}>
-                    {badge.label}
-                  </span>
-
-                  <h4 style={{ fontSize: "1rem", color: "#0f172a", fontWeight: 700, marginBottom: "0.2rem" }}>{kasi.nama}</h4>
-                  <div style={{ color: badge.bg, fontWeight: 600, fontSize: "0.85rem", marginBottom: "0.25rem" }}>{kasi.jabatan}</div>
-                  <div style={{ fontSize: "0.75rem", color: "#64748b" }}>{kasi.nip}</div>
-                </div>
-              );
-            })}
-          </div>
+          {renderCardGrid(seksiPemerintahan, "#2563eb")}
         </div>
 
-        {/* 3. UNSUR KEAMANAN & MITRA LPM */}
+        {/* 3. SEKSI PELAYANAN UMUM */}
+        <div style={{ marginBottom: "3rem" }}>
+          <div style={{ marginBottom: "1.25rem" }}>
+            <h3 style={{ fontSize: "1.2rem", color: "#0f172a", fontWeight: 700, margin: 0 }}>Seksi Pelayanan Umum</h3>
+          </div>
+          {renderCardGrid(seksiPelayanan, "#0d9488")}
+        </div>
+
+        {/* 4. SEKSI PEMBANGUNAN & PM */}
+        <div style={{ marginBottom: "3rem" }}>
+          <div style={{ marginBottom: "1.25rem" }}>
+            <h3 style={{ fontSize: "1.2rem", color: "#0f172a", fontWeight: 700, margin: 0 }}>Seksi Pembangunan & Pemberdayaan Masyarakat</h3>
+          </div>
+          {renderCardGrid(seksiPembangunan, "#d97706")}
+        </div>
+
+        {/* 5. UNSUR KEAMANAN & LPM */}
         <div style={{ marginBottom: "3.5rem" }}>
           <div style={{ marginBottom: "1.25rem" }}>
             <h3 style={{ fontSize: "1.2rem", color: "#0f172a", fontWeight: 700, margin: 0 }}>Unsur Keamanan (Babinsa/Binmas) & LPM</h3>
           </div>
-
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "1.25rem" }}>
-            {mitraLembagaList.map((lem, idx) => {
-              const badge = getCategoryBadge(idx + 5);
-              return (
-                <div key={idx} className="sotk-hover-card">
-                  <div style={{ position: "relative", marginBottom: "1rem" }}>
-                    <div style={{ width: "80px", height: "80px", borderRadius: "9999px", overflow: "hidden", border: `3px solid ${badge.bg}`, boxShadow: "0 2px 8px rgba(0,0,0,0.06)" }}>
-                      <img src={lem.foto} alt={lem.nama} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                    </div>
-                  </div>
-
-                  <span style={{ fontSize: "0.7rem", background: badge.bg, color: "#ffffff", padding: "0.18rem 0.65rem", borderRadius: "9999px", fontWeight: 600, textTransform: "uppercase", marginBottom: "0.5rem" }}>
-                    {badge.label}
-                  </span>
-
-                  <h4 style={{ fontSize: "0.975rem", color: "#0f172a", fontWeight: 700, marginBottom: "0.2rem" }}>{lem.nama}</h4>
-                  <div style={{ color: badge.bg, fontWeight: 600, fontSize: "0.85rem", marginBottom: "0.25rem" }}>{lem.jabatan}</div>
-                  <div style={{ fontSize: "0.75rem", color: "#64748b" }}>{lem.nip}</div>
-                </div>
-              );
-            })}
-          </div>
+          {renderCardGrid(mitraKeamananLpm, "#475569")}
         </div>
 
-        {/* 4. DIREKTORI LENGKAP PENGURUS RW & RT SE-KELURAHAN MALLILINGI */}
+        {/* 6. DIREKTORI LENGKAP PENGURUS RW & RT SE-KELURAHAN MALLILINGI */}
         <div style={{ background: "#ffffff", padding: "2.25rem", borderRadius: "16px", border: "1px solid #e2e8f0", boxShadow: "0 4px 14px rgba(0,0,0,0.04)" }}>
           <div style={{ marginBottom: "1.75rem" }}>
             <span style={{ fontSize: "0.8rem", color: "#059669", fontWeight: 700, letterSpacing: "0.05em", textTransform: "uppercase", display: "block", marginBottom: "0.3rem" }}>

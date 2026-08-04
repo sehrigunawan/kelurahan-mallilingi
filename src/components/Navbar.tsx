@@ -10,18 +10,25 @@ export default function Navbar() {
   const [isProfilOpen, setIsProfilOpen] = useState(false);
   const [isLayananOpen, setIsLayananOpen] = useState(false);
 
-  const isProfilActive = pathname === "/profil" || pathname === "/struktur" || pathname === "/berita" || pathname.startsWith("/berita/");
+  const isProfilActive = pathname === "/profil" || pathname === "/struktur";
+  const isBeritaActive = pathname === "/berita" || pathname.startsWith("/berita/");
   const isLayananActive = pathname === "/pengaduan" || pathname === "/administrasi" || pathname === "/layanan";
 
   return (
     <nav className="navbar">
       <div className="container">
         <Link href="/" className="brand-logo">
-          <div className="logo-icon">M</div>
+          <div className="logo-icon" style={{ background: "none" }}>
+            <img
+              src="/assets/images/logo_bantaeng.png"
+              alt="Logo Kabupaten Bantaeng - Kelurahan Mallilingi"
+              style={{ width: "100%", height: "100%", objectFit: "contain" }}
+            />
+          </div>
           <div>
             <h1 className="brand-title">
               Kelurahan Mallilingi
-              <span className="brand-sub"> • Kec. Bantaeng</span>
+              <span className="brand-sub">  • Kec. Bantaeng</span>
             </h1>
           </div>
         </Link>
@@ -47,7 +54,7 @@ export default function Navbar() {
             </Link>
           </li>
 
-          {/* 1. Profil Dropdown Menu */}
+          {/* 1. Profil Dropdown Menu (Profil & Struktur) */}
           <li
             className="nav-dropdown-item"
             style={{ position: "relative" }}
@@ -89,21 +96,24 @@ export default function Navbar() {
                   onClick={() => { setIsProfilOpen(false); setIsMobileMenuOpen(false); }}
                   className={`dropdown-link ${pathname === "/struktur" ? "active" : ""}`}
                 >
-                  Struktur Organisasi
-                </Link>
-
-                <Link
-                  href="/berita"
-                  onClick={() => { setIsProfilOpen(false); setIsMobileMenuOpen(false); }}
-                  className={`dropdown-link ${pathname === "/berita" || pathname.startsWith("/berita/") ? "active" : ""}`}
-                >
-                  Berita & Pengumuman
+                  Struktur Organisasi (SOTK)
                 </Link>
               </div>
             )}
           </li>
 
-          {/* 2. Layanan Dropdown Menu */}
+          {/* 2. Berita Direct Top-Level Nav Link */}
+          <li>
+            <Link
+              href="/berita"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className={`nav-link ${isBeritaActive ? "active" : ""}`}
+            >
+              Berita
+            </Link>
+          </li>
+
+          {/* 3. Layanan Dropdown Menu */}
           <li
             className="nav-dropdown-item"
             style={{ position: "relative" }}
@@ -149,16 +159,6 @@ export default function Navbar() {
                 </Link>
               </div>
             )}
-          </li>
-
-          <li>
-            <Link
-              href="/admin"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="nav-link admin-btn"
-            >
-              Admin Portal
-            </Link>
           </li>
         </ul>
       </div>
