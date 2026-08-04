@@ -100,7 +100,7 @@ export default async function StrukturPage() {
           </div>
 
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1.5rem" }}>
-            {DEFAULT_RW_RT_LIST.map((item, idx) => (
+            {(data.rwRtList || DEFAULT_RW_RT_LIST).map((item, idx) => (
               <div key={idx} style={{ background: "#f8fafc", borderRadius: "12px", border: "1px solid #cbd5e1", padding: "1.25rem" }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.75rem", borderBottom: "2px solid #059669", paddingBottom: "0.5rem" }}>
                   <span style={{ fontSize: "1.05rem", fontWeight: 700, color: "#0f172a" }}>{item.rw}</span>
