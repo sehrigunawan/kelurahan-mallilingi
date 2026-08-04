@@ -1,16 +1,27 @@
 -- ====================================================================
 -- SCRIPT FULL DATABASE SUPABASE - KELURAHAN MALLILINGI (KAB. BANTAENG)
 -- ====================================================================
+-- SCRIPT INI DILENGKAPI RESET CASCADE UNTUK MENGHINDARI BENTROK SKEMA LAMA.
+--
 -- Petunjuk Penggunaan:
 -- 1. Buka Supabase Dashboard Anda: https://supabase.com/dashboard/project/zpjlttzifpnavbwjsjxq/sql/new
 -- 2. Salin (Copy) seluruh kode SQL di bawah ini.
 -- 3. Tempel (Paste) ke SQL Editor Supabase, lalu klik tombol "Run".
--- 4. Seluruh tabel (info, berita, layanan, struktur, pengaduan, rw_rt_list) akan langsung terisi data resmi 100%.
+-- 4. Seluruh tabel (info, berita, layanan, struktur, pengaduan) akan langsung terbuat dan terisi data resmi 100%.
+
+-- --------------------------------------------------------------------
+-- 0. HAPUS TABEL LAMA (UNSOLVED CONFLICT RESET)
+-- --------------------------------------------------------------------
+DROP TABLE IF EXISTS public.info CASCADE;
+DROP TABLE IF EXISTS public.layanan CASCADE;
+DROP TABLE IF EXISTS public.berita CASCADE;
+DROP TABLE IF EXISTS public.struktur CASCADE;
+DROP TABLE IF EXISTS public.pengaduan CASCADE;
 
 -- --------------------------------------------------------------------
 -- 1. TABEL: info (Informasi Profil, Kontak, Visi Misi, & Batas Geografis)
 -- --------------------------------------------------------------------
-CREATE TABLE IF NOT EXISTS public.info (
+CREATE TABLE public.info (
   id INT PRIMARY KEY DEFAULT 1,
   nama TEXT DEFAULT 'Kelurahan Mallilingi',
   kecamatan TEXT DEFAULT 'Kecamatan Bantaeng',
@@ -38,7 +49,7 @@ CREATE TABLE IF NOT EXISTS public.info (
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
--- Seed / Insert Data info
+-- Seed Data info
 INSERT INTO public.info (id, nama, kecamatan, kabupaten, provinsi, kodePos, alamat, telepon, whatsapp, email, jamKerja, luasWilayah, jumlahPenduduk, jumlahKK, jumlahRT, jumlahRW, sambutanLurah, namaLurah, nipLurah, fotoLurah, fotoKantor, visi, misi, batasWilayah)
 VALUES (
   1,
@@ -65,18 +76,12 @@ VALUES (
   'Mengutamakan pelayanan kemandirian dan keamanan untuk kemajuan atas iman dan taqwa.',
   '["Meningkatkan mutu pelayanan serta kualitas hidup masyarakat.", "Memperkuat lembaga-lembaga kemasyarakatan sebagai wadah untuk memotivasi masyarakat dalam meningkatkan partisipasinya.", "Mengendalikan sistem keamanan lingkungan ketertiban masyarakat.", "Menggalang potensi pemuda yang berhubungan dengan kemandirian dan kreatifitas, dalam rangka membangun ketegaran pemuda memasuki era globalisasi.", "Melibatkan sektor swasta dalam meningkatkan kemitraan."]'::jsonb,
   '{"utara": "Desa Ulugalung", "timur": "Kelurahan Lembang", "selatan": "Kelurahan Letta", "barat": "Kelurahan Pallantikang"}'::jsonb
-)
-ON CONFLICT (id) DO UPDATE SET
-  nama = EXCLUDED.nama,
-  email = EXCLUDED.email,
-  visi = EXCLUDED.visi,
-  misi = EXCLUDED.misi,
-  batasWilayah = EXCLUDED.batasWilayah;
+);
 
 -- --------------------------------------------------------------------
 -- 2. TABEL: layanan (19 Dokumen Surat Administrasi Kependudukan)
 -- --------------------------------------------------------------------
-CREATE TABLE IF NOT EXISTS public.layanan (
+CREATE TABLE public.layanan (
   id TEXT PRIMARY KEY,
   judul TEXT NOT NULL,
   kategori TEXT NOT NULL,
@@ -103,23 +108,17 @@ INSERT INTO public.layanan (id, judul, kategori, waktu, biaya, deskripsi, persya
 ('layanan-11', 'Surat Pengantar Nikah (Formulir N1 - N4)', 'Pernikahan', '30 - 45 Menit', 'Gratis (Rp 0)', 'Dokumen rekomendasi dan pengantar nikah ke Kantor Urusan Agama (KUA) Kecamatan Bantaeng.', '["Fotokopi KTP & KK Calon Mempelai", "Fotokopi KTP Kedua Orang Tua", "Pasfoto 2x3 dan 3x4 (4 lembar)", "Surat Pengantar RT/RW & SK Belum Menikah"]'::jsonb, 'Pengajuan di Kantor Kelurahan Mallilingi'),
 ('layanan-12', 'Surat Keterangan Duda / Janda', 'Pernikahan', '20 - 30 Menit', 'Gratis (Rp 0)', 'Keterangan status hukum perdata setelah perceraian atau kematian pasangan hidup.', '["Fotokopi KTP & KK Pemohon", "Akta Cerai Asli / Surat Kematian Pasangan", "Surat Pengantar RT/RW"]'::jsonb, 'Pengajuan di Kantor Kelurahan Mallilingi'),
 ('layanan-13', 'Surat Keterangan Beda Nama / Data Identitas', 'Kependudukan', '20 - 30 Menit', 'Gratis (Rp 0)', 'Pernyataan resmi kelurahan atas perataan perbedaan penulisan nama di KTP, KK, Ijazah, atau Paspor.', '["Fotokopi KTP & KK Pemohon", "Fotokopi dokumen pendukung yang beda nama (Ijazah/Buku Nikah)", "Surat Pengantar RT/RW", "Surat Pernyataan Beda Nama bermaterai"]'::jsonb, 'Pengajuan di Kantor Kelurahan Mallilingi'),
-('layanan-14', 'Surat Keterangan Penguasaan Fisik Tanah (SPORADIK)', 'Pertanahan', '1 - 3 Hari Kerja', 'Gratis (Rp 0)', 'Pengantar pendaftaran sertifikat tanah pertama kali ke Badan Pertanahan Nasional (BPN) Bantaeng.', '["Fotokopi KTP & KK Pemohon", "Surat Pengantar RT/RW & Berita Acara Kesaksian Batas", "Bukti Pembayaran PBB Terbaru", "Peta Lokasi Sketsa Tanah"]'::jsonb, 'Pengajuan di Kantor Kelurahan MallILINGI'),
+('layanan-14', 'Surat Keterangan Penguasaan Fisik Tanah (SPORADIK)', 'Pertanahan', '1 - 3 Hari Kerja', 'Gratis (Rp 0)', 'Pengantar pendaftaran sertifikat tanah pertama kali ke Badan Pertanahan Nasional (BPN) Bantaeng.', '["Fotokopi KTP & KK Pemohon", "Surat Pengantar RT/RW & Berita Acara Kesaksian Batas", "Bukti Pembayaran PBB Terbaru", "Peta Lokasi Sketsa Tanah"]'::jsonb, 'Pengajuan di Kantor Kelurahan Mallilingi'),
 ('layanan-15', 'Surat Keterangan Waris / Ahli Waris', 'Pertanahan & Hukum', '1 - 2 Hari Kerja', 'Gratis (Rp 0)', 'Penetapan daftar ahli waris almarhum/almarhumah untuk pengurusan perbankan atau sertifikat tanah.', '["Surat Kematian Almarhum/ah", "Fotokopi KTP & KK Seluruh Ahli Waris", "Buku Nikah Almarhum/ah", "Surat Pernyataan Ahli Waris diketahui RT/RW & Lurah"]'::jsonb, 'Pengajuan di Kantor Kelurahan Mallilingi'),
 ('layanan-16', 'Surat Keterangan Penghasilan Orang Tua', 'Sosial & Edukasi', '15 - 20 Menit', 'Gratis (Rp 0)', 'Keterangan rata-rata pendapatan bulanan orang tua untuk pengajuan UKT perguruan tinggi atau beasiswa.', '["Fotokopi KTP Orang Tua & KK", "Surat Pengantar RT/RW", "Surat Pernyataan Rincian Penghasilan bermaterai"]'::jsonb, 'Pengajuan di Kantor Kelurahan Mallilingi'),
 ('layanan-17', 'Surat Pengantar SKCK (Catatan Kepolisian)', 'Umum', '15 - 20 Menit', 'Gratis (Rp 0)', 'Rekomendasi pengurusan SKCK di Polsek Bantaeng / Polres Bantaeng untuk lamaran pekerjaan.', '["Fotokopi KTP & KK Pemohon", "Fotokopi Akta Kelahiran", "Pasfoto 4x6 latar merah (2 lembar)", "Surat Pengantar RT/RW"]'::jsonb, 'Pengajuan di Kantor Kelurahan Mallilingi'),
 ('layanan-18', 'Surat Keterangan Izin Keramaian / Kegiatan Warga', 'Umum', '20 - 30 Menit', 'Gratis (Rp 0)', 'Pengantar rekomendasi acara pesta pernikahan, syukuran, atau hajatan warga ke Polsek Bantaeng.', '["Fotokopi KTP Penanggung Jawab Acara", "Surat Persetujuan Tetangga & RT/RW", "Rincian Waktu & Lokasi Acara"]'::jsonb, 'Pengajuan di Kantor Kelurahan Mallilingi'),
-('layanan-19', 'Surat Keterangan Beasiswa', 'Sosial & Edukasi', '15 - 20 Menit', 'Gratis (Rp 0)', 'Keterangan resmi kelurahan untuk pendampingan pendaftaran program beasiswa sekolah/kuliah.', '["Fotokopi KTP & KK Pemohon", "Kartu Pelajar / Kartu Tanda Mahasiswa (KTM)", "Surat Pengantar RT/RW"]'::jsonb, 'Pengajuan di Kantor Kelurahan Mallilingi')
-ON CONFLICT (id) DO UPDATE SET
-  judul = EXCLUDED.judul,
-  kategori = EXCLUDED.kategori,
-  waktu = EXCLUDED.waktu,
-  deskripsi = EXCLUDED.deskripsi,
-  persyaratan = EXCLUDED.persyaratan;
+('layanan-19', 'Surat Keterangan Beasiswa', 'Sosial & Edukasi', '15 - 20 Menit', 'Gratis (Rp 0)', 'Keterangan resmi kelurahan untuk pendampingan pendaftaran program beasiswa sekolah/kuliah.', '["Fotokopi KTP & KK Pemohon", "Kartu Pelajar / Kartu Tanda Mahasiswa (KTM)", "Surat Pengantar RT/RW"]'::jsonb, 'Pengajuan di Kantor Kelurahan Mallilingi');
 
 -- --------------------------------------------------------------------
 -- 3. TABEL: berita (Kabar Terkini & Pengumuman Kelurahan)
 -- --------------------------------------------------------------------
-CREATE TABLE IF NOT EXISTS public.berita (
+CREATE TABLE public.berita (
   id TEXT PRIMARY KEY,
   judul TEXT NOT NULL,
   tanggal TEXT NOT NULL,
@@ -135,17 +134,12 @@ CREATE TABLE IF NOT EXISTS public.berita (
 INSERT INTO public.berita (id, judul, tanggal, kategori, gambar, ringkasan, isi, penulis) VALUES
 ('berita-1', 'Penyaluran Bantuan Pangan Beras Serentak Bagi Warga Mallilingi', '02 Agustus 2026', 'Sosial & Masyarakat', '/assets/images/kantor_kelurahan.jpg', 'Pemerintah Kelurahan Mallilingi menyalurkan cadangan beras pemerintah (CBP) tahap ketiga untuk 240 KPM secara tertib.', 'Pemerintah Kelurahan Mallilingi bersama Tim Pendamping Sosial Kabupaten Bantaeng hari ini menyalurkan Cadangan Beras Pemerintah (CBP) bantuan pangan beras kepada 240 Keluarga Penerima Manfaat (KPM) yang bertempat di Aula Kantor Kelurahan Mallilingi.\n\nPenyerahan bantuan ini dipimpin langsung oleh Lurah Mallilingi, ILHAM, didampingi Sekretaris Lurah Yudhie Yudha Dharma, A.Md serta Kepala Seksi Pelayanan Umum. Proses penyaluran berjalan dengan tertib, lancar, dan mengedepankan keterbukaan data kependudukan.', 'Humas Kelurahan Mallilingi'),
 ('berita-2', 'Gotong Royong Kebersihan Lingkungan Sambut Hari Kemerdekaan RI', '28 Juli 2026', 'Kegiatan Lingkungan', '/assets/images/kantor_kelurahan.jpg', 'Warga bersama pengurus 8 RW dan 25 RT bahu membahu membersihkan drainase dan memasang umbul-umbul.', 'Menyambut Peringatan Hari Ulang Tahun Kemerdekaan Republik Indonesia yang ke-81, Pemerintah Kelurahan Mallilingi menggalakkan aksi gotong royong kebersihan lingkungan secara serentak di seluruh 8 RW dan 25 RT.\n\nKegiatan ini melibatkan seluruh warga masyarakat, unsur Babinsa Sertu Akhmad Panisi, Binmas Arwan Hamid, serta jajaran pengurus RT/RW. Fokus kebersihan diarahkan pada pembersihan saluran air drainase utama dan perapian taman swadaya warga.', 'Humas Kelurahan Mallilingi'),
-('berita-3', 'Sosialisasi Program Kerja KKN Mahasiswa di Kelurahan Mallilingi', '20 Juli 2026', 'Program KKN', '/assets/images/kantor_kelurahan.jpg', 'Mahasiswa KKN memaparkan 5 program kerja unggulan digitalisasi kelurahan dan pemberdayaan ekonomi.', 'Tim Mahasiswa KKN hari ini menggelar Seminar Sosialisasi Program Kerja KKN di Aula Kantor Kelurahan Mallilingi. Acara ini dihadiri oleh Lurah Mallilingi, Kepala Seksi Pemerintahan Fitriah, S.E, Ketua LPM A. Rahman AB, S.Ilkom, serta seluruh Ketua RW dan RT se-Kelurahan Mallilingi.\n\nProgram kerja unggulan yang dipaparkan meliputi pembuatan portal website resmi kelurahan, digitalisasi peta administrasi, pendataan UMKM warga, dan program kebersihan drainase.', 'Tim KKN Kelurahan Mallilingi')
-ON CONFLICT (id) DO UPDATE SET
-  judul = EXCLUDED.judul,
-  tanggal = EXCLUDED.tanggal,
-  ringkasan = EXCLUDED.ringkasan,
-  isi = EXCLUDED.isi;
+('berita-3', 'Sosialisasi Program Kerja KKN Mahasiswa di Kelurahan Mallilingi', '20 Juli 2026', 'Program KKN', '/assets/images/kantor_kelurahan.jpg', 'Mahasiswa KKN memaparkan 5 program kerja unggulan digitalisasi kelurahan dan pemberdayaan ekonomi.', 'Tim Mahasiswa KKN hari ini menggelar Seminar Sosialisasi Program Kerja KKN di Aula Kantor Kelurahan Mallilingi. Acara ini dihadiri oleh Lurah Mallilingi, Kepala Seksi Pemerintahan Fitriah, S.E, Ketua LPM A. Rahman AB, S.Ilkom, serta seluruh Ketua RW dan RT se-Kelurahan Mallilingi.\n\nProgram kerja unggulan yang dipaparkan meliputi pembuatan portal website resmi kelurahan, digitalisasi peta administrasi, pendataan UMKM warga, dan program kebersihan drainase.', 'Tim KKN Kelurahan Mallilingi');
 
 -- --------------------------------------------------------------------
 -- 4. TABEL: struktur (Aparatur SOTK PNS & Non-PNS Kelurahan Mallilingi)
 -- --------------------------------------------------------------------
-CREATE TABLE IF NOT EXISTS public.struktur (
+CREATE TABLE public.struktur (
   id SERIAL PRIMARY KEY,
   nama TEXT NOT NULL,
   jabatan TEXT NOT NULL,
@@ -184,7 +178,7 @@ INSERT INTO public.struktur (nama, jabatan, nip, foto) VALUES
 -- --------------------------------------------------------------------
 -- 5. TABEL: pengaduan (Laporan & Aspirasi Masuk Warga)
 -- --------------------------------------------------------------------
-CREATE TABLE IF NOT EXISTS public.pengaduan (
+CREATE TABLE public.pengaduan (
   id TEXT PRIMARY KEY,
   tanggal TEXT NOT NULL,
   nama TEXT NOT NULL,
@@ -201,7 +195,6 @@ CREATE TABLE IF NOT EXISTS public.pengaduan (
 INSERT INTO public.pengaduan (id, tanggal, nama, nik, telepon, kategori, judul, isi, status) VALUES
 ('aduan-1', '03 Agustus 2026', 'Ahmad Hidayat', '7303011504880001', '6281234567890', 'Infrastruktur & Jalan', 'Saluran Air Tersumbat di Jalan Calendu RW 002', 'Mohon bantuan petugas kelurahan untuk membersihkan drainase/saluran air di dekat perempatan RT 002 RW 002 yang tersumbat agar tidak menyebabkan genangan air.', 'Baru'),
 ('aduan-2', '01 Agustus 2026', 'Nurhalimah', '7303015809920003', '6285299887766', 'Pelayanan Kependudukan', 'Konsultasi Persyaratan Pengurusan SKTM', 'Apakah pengurusan SKTM untuk keringanan biaya rumah sakit dapat diwakilkan oleh anggota keluarga yang terdaftar dalam 1 KK?', 'Proses'),
-('aduan-3', '28 Juli 2026', 'Baharuddin', '7303011210750002', '6282111223344', 'Kebersihan & Saluran Air', 'Pengangkutan Sampah di Wilayah RW 005', 'Terima kasih atas tindak lanjut armada kebersihan yang telah mengangkut tumpukan sampah di tempat penampungan sementara RW 005.', 'Selesai')
-ON CONFLICT (id) DO NOTHING;
+('aduan-3', '28 Juli 2026', 'Baharuddin', '7303011210750002', '6282111223344', 'Kebersihan & Saluran Air', 'Pengangkutan Sampah di Wilayah RW 005', 'Terima kasih atas tindak lanjut armada kebersihan yang telah mengangkut tumpukan sampah di tempat penampungan sementara RW 005.', 'Selesai');
 
--- Selesai! Seluruh tabel dan data Supabase telah terisi penuh.
+-- Selesai! Seluruh tabel dan data Supabase telah terisi penuh tanpa konflik skema.
