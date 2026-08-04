@@ -526,7 +526,23 @@ export async function getMallilingiDataAsync(): Promise<MallilingiData> {
       ]);
 
       if (infoRes.data) {
-        let infoObj = { ...DEFAULT_MALLILINGI_DATA.info, ...infoRes.data };
+        let rawInfo = infoRes.data;
+        let infoObj = {
+          ...DEFAULT_MALLILINGI_DATA.info,
+          ...rawInfo,
+          kodePos: rawInfo.kodePos || rawInfo.kodepos || rawInfo.kode_pos || DEFAULT_MALLILINGI_DATA.info.kodePos,
+          namaLurah: rawInfo.namaLurah || rawInfo.namalurah || rawInfo.nama_lurah || DEFAULT_MALLILINGI_DATA.info.namaLurah,
+          nipLurah: rawInfo.nipLurah || rawInfo.niplurah || rawInfo.nip_lurah || DEFAULT_MALLILINGI_DATA.info.nipLurah,
+          fotoLurah: rawInfo.fotoLurah || rawInfo.fotolurah || rawInfo.foto_lurah || DEFAULT_MALLILINGI_DATA.info.fotoLurah,
+          sambutanLurah: rawInfo.sambutanLurah || rawInfo.sambutanlurah || rawInfo.sambutan_lurah || DEFAULT_MALLILINGI_DATA.info.sambutanLurah,
+          luasWilayah: rawInfo.luasWilayah || rawInfo.luaswilayah || rawInfo.luas_wilayah || DEFAULT_MALLILINGI_DATA.info.luasWilayah,
+          jumlahPenduduk: rawInfo.jumlahPenduduk || rawInfo.jumlahpenduduk || rawInfo.jumlah_penduduk || DEFAULT_MALLILINGI_DATA.info.jumlahPenduduk,
+          jumlahKK: rawInfo.jumlahKK || rawInfo.jumlahkk || rawInfo.jumlah_kk || DEFAULT_MALLILINGI_DATA.info.jumlahKK,
+          jumlahRT: rawInfo.jumlahRT || rawInfo.jumlahrt || rawInfo.jumlah_rt || DEFAULT_MALLILINGI_DATA.info.jumlahRT,
+          jumlahRW: rawInfo.jumlahRW || rawInfo.jumlahrw || rawInfo.jumlah_rw || DEFAULT_MALLILINGI_DATA.info.jumlahRW,
+          jamKerja: rawInfo.jamKerja || rawInfo.jamkerja || rawInfo.jam_kerja || DEFAULT_MALLILINGI_DATA.info.jamKerja,
+        };
+
         if (typeof infoObj.misi === "string") {
           try { infoObj.misi = JSON.parse(infoObj.misi); } catch (e) { infoObj.misi = DEFAULT_MALLILINGI_DATA.info.misi; }
         }
