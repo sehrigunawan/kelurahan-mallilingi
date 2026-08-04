@@ -13,11 +13,9 @@ async function hashPasswordSHA256(password: string): Promise<string> {
   return hashArray.map((b) => b.toString(16).padStart(2, "0")).join("");
 }
 
-// Pre-hashed passwords for maximum security:
-// "admin123" -> 240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9
-// "mallilingi123" -> 9c4b78912e96d997d4c2b95b8782a2082b26ecf17730e666a0ae8f93a127a659
+// Allowed Admin Passwords (SHA-256 Hashes)
 const VALID_PASSWORD_HASHES = [
-  "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9",
+  process.env.NEXT_PUBLIC_ADMIN_PASSWORD_HASH || "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9",
   "9c4b78912e96d997d4c2b95b8782a2082b26ecf17730e666a0ae8f93a127a659"
 ];
 
@@ -58,8 +56,9 @@ export default function AdminDashboardClient({ initialData }: { initialData: Mal
 
     const inputUser = usernameInput.trim().toLowerCase();
     const inputHash = await hashPasswordSHA256(passwordInput.trim());
+    const validUsername = (process.env.NEXT_PUBLIC_ADMIN_USERNAME || "admin").toLowerCase();
 
-    if ((inputUser === "admin" || inputUser === "mallilingi") && VALID_PASSWORD_HASHES.includes(inputHash)) {
+    if ((inputUser === validUsername || inputUser === "mallilingi") && VALID_PASSWORD_HASHES.includes(inputHash)) {
       sessionStorage.setItem("MALLILINGI_ADMIN_AUTH", "true");
       setIsAuthenticated(true);
     } else {
@@ -107,30 +106,32 @@ export default function AdminDashboardClient({ initialData }: { initialData: Mal
 
   if (!isAuthenticated) {
     return (
-      <div style={{ maxWidth: "440px", margin: "2rem auto", background: "#ffffff", padding: "2rem 1.75rem", borderRadius: "16px", border: "1px solid #e2e8f0", boxShadow: "0 10px 25px rgba(0,0,0,0.06)", textAlign: "left" }}>
-        <div style={{ width: "50px", height: "50px", background: "#ecfdf5", color: "#059669", borderRadius: "12px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.1rem", fontWeight: 700, margin: "0 auto 1.25rem auto" }}>
-          ADM
+      <div style={{ maxWidth: "440px", margin: "3rem auto", background: "#ffffff", borderRadius: "16px", padding: "2.5rem 2rem", border: "1px solid #cbd5e1", boxShadow: "0 10px 25px rgba(0,0,0,0.06)" }}>
+        <div style={{ textAlign: "center", marginBottom: "1.75rem" }}>
+          <div style={{ width: "56px", height: "56px", background: "#ecfdf5", color: "#059669", borderRadius: "9999px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.5rem", margin: "0 auto 1rem auto" }}>
+            🔒
+          </div>
+          <h3 style={{ fontSize: "1.3rem", color: "#0f172a", fontWeight: 700, margin: 0 }}>Portal Pengelola Kelurahan</h3>
+          <p style={{ fontSize: "0.85rem", color: "#64748b", marginTop: "0.35rem" }}>
+            Silakan login untuk mengelola berita, layanan, profil, & pengaduan warga.
+          </p>
         </div>
-        <h3 style={{ fontSize: "1.25rem", color: "#0f172a", marginBottom: "0.3rem", fontWeight: 700, textAlign: "center" }}>Masuk Dashboard Admin</h3>
-        <p style={{ fontSize: "0.85rem", color: "#64748b", marginBottom: "1.5rem", lineHeight: 1.6, textAlign: "center" }}>
-          Masukkan Username dan Password terenkripsi untuk mengelola seluruh portal kelurahan.
-        </p>
 
         {loginError && (
-          <div style={{ background: "#fff1f2", color: "#e11d48", border: "1px solid #fecdd3", padding: "0.65rem 0.85rem", borderRadius: "6px", marginBottom: "1rem", fontSize: "0.85rem", fontWeight: 500 }}>
+          <div style={{ background: "#fef2f2", color: "#991b1b", border: "1px solid #fecaca", padding: "0.75rem 1rem", borderRadius: "8px", fontSize: "0.85rem", marginBottom: "1.25rem", textAlign: "center" }}>
             {loginError}
           </div>
         )}
 
         <form onSubmit={handleLogin}>
-          <div style={{ marginBottom: "1rem" }}>
+          <div style={{ marginBottom: "1.25rem" }}>
             <label style={{ display: "block", fontSize: "0.85rem", fontWeight: 600, color: "#1e293b", marginBottom: "0.3rem" }}>
-              Username Admin
+              Username Pengelola
             </label>
             <input
               type="text"
               required
-              placeholder="Masukkan Username (Default: admin)"
+              placeholder="Masukkan Username Pengelola"
               value={usernameInput}
               onChange={(e) => setUsernameInput(e.target.value)}
               style={{ width: "100%", padding: "0.7rem 0.85rem", borderRadius: "8px", border: "1px solid #cbd5e1", fontSize: "0.9rem" }}
@@ -139,12 +140,12 @@ export default function AdminDashboardClient({ initialData }: { initialData: Mal
 
           <div style={{ marginBottom: "1.5rem" }}>
             <label style={{ display: "block", fontSize: "0.85rem", fontWeight: 600, color: "#1e293b", marginBottom: "0.3rem" }}>
-              Password Admin 
+              Password Admin
             </label>
             <input
               type="password"
               required
-              placeholder="Masukkan Password (Default: admin123)"
+              placeholder="Masukkan Password Admin"
               value={passwordInput}
               onChange={(e) => setPasswordInput(e.target.value)}
               style={{ width: "100%", padding: "0.7rem 0.85rem", borderRadius: "8px", border: "1px solid #cbd5e1", fontSize: "0.9rem" }}

@@ -1,5 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
-import { MallilingiData } from "../types";
+import { MallilingiData, PengaduanWarga } from "../types";
 
 export const SUPABASE_CONFIG = {
   url: "https://zpjlttzifpnavbwjsjxq.supabase.co",
@@ -594,4 +594,30 @@ export async function saveMallilingiDataAsync(data: MallilingiData): Promise<voi
       console.error("Supabase async save error:", e);
     }
   }
+}
+
+export async function sendPengaduanWargaAsync(aduan: { nama: string; telepon: string; kategori: string; judul: string; isi: string }): Promise<boolean> {
+  const newAduan: PengaduanWarga = {
+    id: `aduan-${Date.now()}`,
+    tanggal: new Date().toLocaleDateString("id-ID", { day: "2-digit", month: "long", year: "numeric" }),
+    nama: aduan.nama,
+    nik: "-",
+    telepon: aduan.telepon,
+    kategori: aduan.kategori,
+    judul: aduan.judul,
+    isi: aduan.isi,
+    status: "Baru"
+  };
+
+  if (supabaseClient) {
+    try {
+      const { error } = await supabaseClient.from("pengaduan").insert([newAduan]);
+      if (error) console.error("Error inserting pengaduan to Supabase:", error);
+    } catch (e) {
+      console.error("Supabase insert pengaduan error:", e);
+    }
+  }
+
+  DEFAULT_MALLILINGI_DATA.pengaduan = [newAduan, ...(DEFAULT_MALLILINGI_DATA.pengaduan || [])];
+  return true;
 }
