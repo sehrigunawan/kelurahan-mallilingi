@@ -7,10 +7,12 @@ export default async function ProfilPage() {
   return (
     <section className="section">
       <div className="container">
+        
+        {/* Section Header */}
         <div className="section-header">
-          <span className="section-tag">PROFIL MALLILINGI</span>
-          <h2>Profil Kelurahan, Visi Misi, & Wilayah</h2>
-          <p>Informasi mendalam mengenai pimpinan kelurahan, arah kebijakan pembangunan, data kependudukan, serta gambaran geografis Kelurahan Mallilingi.</p>
+          <span className="section-tag">PROFIL & KEMITRAAN</span>
+          <h2>Profil & Visi Misi Kelurahan Mallilingi</h2>
+          <p>Mengenal lebih dekat pimpinan, gambaran umum wilayah, dan arah pembangunan Kelurahan Mallilingi.</p>
         </div>
 
         {/* 1. SEPARATE CARD 1: Profil & Sambutan Kepala Kelurahan */}
@@ -19,24 +21,37 @@ export default async function ProfilPage() {
             
             {/* Lurah Photo Column */}
             <div style={{ textAlign: "center" }}>
-              <div style={{ width: "180px", height: "220px", margin: "0 auto 1rem auto", borderRadius: "16px", overflow: "hidden", border: "3px solid #ecfdf5", boxShadow: "0 4px 12px rgba(0,0,0,0.08)" }}>
-                <img src={info.fotoLurah || "/assets/images/lurah.jpg"} alt={info.namaLurah} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+              <div style={{ width: "160px", height: "160px", margin: "0 auto 1rem auto", borderRadius: "9999px", overflow: "hidden", border: "3px solid #059669", boxShadow: "0 4px 12px rgba(5,150,105,0.15)" }}>
+                <img
+                  src={info.fotoLurah || "/assets/images/lurah.jpg"}
+                  alt={info.namaLurah}
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                />
               </div>
-              <h3 style={{ fontSize: "1.15rem", color: "#0f172a", marginBottom: "0.2rem", fontWeight: 700 }}>{info.namaLurah}</h3>
-              <div style={{ color: "#059669", fontWeight: 700, fontSize: "0.9rem" }}>Lurah Mallilingi</div>
-              <div style={{ fontSize: "0.78rem", color: "#64748b", marginTop: "0.15rem" }}>NIP. {info.nipLurah}</div>
+
+              <h3 style={{ fontSize: "1.1rem", color: "#0f172a", fontWeight: 700, marginBottom: "0.15rem" }}>
+                {info.namaLurah}
+              </h3>
+              <div style={{ fontSize: "0.85rem", color: "#059669", fontWeight: 600, marginBottom: "0.4rem" }}>
+                Lurah Mallilingi
+              </div>
+              <span style={{ fontSize: "0.75rem", background: "#f1f5f9", color: "#475569", padding: "0.2rem 0.65rem", borderRadius: "9999px", fontWeight: 500 }}>
+                Kecamatan Bantaeng
+              </span>
             </div>
 
-            {/* Sambutan Text Column */}
+            {/* Lurah Sambutan Brief */}
             <div>
-              <span style={{ fontSize: "0.8rem", color: "#059669", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "0.4rem", display: "block" }}>
+              <span style={{ fontSize: "0.75rem", color: "#059669", fontWeight: 600, letterSpacing: "0.05em", textTransform: "uppercase", display: "block", marginBottom: "0.4rem" }}>
                 SAMBUTAN KEPALA KELURAHAN
               </span>
-              <h3 style={{ fontSize: "1.5rem", color: "#0f172a", fontWeight: 800, marginBottom: "1rem", lineHeight: 1.3 }}>
-                Komitmen Pelayanan Publik yang Transparan & Mengayomi
-              </h3>
-              <p style={{ fontSize: "1rem", color: "#334155", lineHeight: 1.85, fontStyle: "italic", marginBottom: "1rem" }}>
+              
+              <h3 style={{ fontSize: "1.4rem", color: "#0f172a", fontWeight: 700, lineHeight: 1.3, marginBottom: "1rem" }}>
                 &ldquo;{info.sambutanLurah}&rdquo;
+              </h3>
+
+              <p style={{ fontSize: "0.95rem", color: "#334155", lineHeight: 1.75, marginBottom: "0.85rem" }}>
+                Selamat datang di portal informasi resmi Kelurahan Mallilingi. Kami berkomitmen memberikan pelayanan publik yang ramah, transparan, cepat, dan mengayomi bagi seluruh masyarakat.
               </p>
               <p style={{ fontSize: "0.925rem", color: "#64748b", lineHeight: 1.7 }}>
                 Pemerintah Kelurahan Mallilingi senantiasa mengedepankan keterbukaan informasi, inovasi pelayanan publik digital, serta kemudahan administrasi bagi seluruh lapisan masyarakat di Kabupaten Bantaeng.
@@ -49,26 +64,24 @@ export default async function ProfilPage() {
         {/* 2. SEPARATE CARD 2: Visi & Misi Pembangunan Kelurahan */}
         <div className="profile-card">
           <div style={{ marginBottom: "2rem" }}>
-            <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.5rem" }}>
-              <span style={{ fontSize: "1.2rem" }}>🎯</span>
-              <h3 style={{ fontSize: "1.3rem", color: "#0f172a", fontWeight: 800, margin: 0 }}>Visi Kelurahan Mallilingi</h3>
+            <div style={{ marginBottom: "0.5rem" }}>
+              <h3 style={{ fontSize: "1.2rem", color: "#0f172a", fontWeight: 700, margin: 0 }}>Visi Kelurahan Mallilingi</h3>
             </div>
-            <div style={{ background: "#ecfdf5", borderLeft: "4px solid #059669", padding: "1.25rem 1.5rem", borderRadius: "8px", fontSize: "1.05rem", color: "#065f46", fontWeight: 600, lineHeight: 1.7 }}>
+            <div style={{ background: "#ecfdf5", borderLeft: "4px solid #059669", padding: "1.15rem 1.35rem", borderRadius: "6px", fontSize: "1rem", color: "#065f46", fontWeight: 500, lineHeight: 1.7 }}>
               {info.visi}
             </div>
           </div>
 
           <div>
-            <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "1rem" }}>
-              <span style={{ fontSize: "1.2rem" }}>🚀</span>
-              <h3 style={{ fontSize: "1.3rem", color: "#0f172a", fontWeight: 800, margin: 0 }}>Misi Pembangunan Kelurahan</h3>
+            <div style={{ marginBottom: "1rem" }}>
+              <h3 style={{ fontSize: "1.2rem", color: "#0f172a", fontWeight: 700, margin: 0 }}>Misi Pembangunan Kelurahan</h3>
             </div>
 
             <div className="misi-grid">
               {(info.misi || []).map((misiItem, idx) => (
-                <div key={idx} style={{ background: "#f8fafc", padding: "1.25rem", borderRadius: "12px", border: "1px solid #e2e8f0" }}>
-                  <div style={{ fontSize: "0.78rem", color: "#059669", fontWeight: 800, marginBottom: "0.3rem" }}>MISI POIN 0{idx + 1}</div>
-                  <div style={{ fontSize: "0.95rem", color: "#1e293b", lineHeight: 1.6 }}>{misiItem}</div>
+                <div key={idx} style={{ background: "#f8fafc", padding: "1.15rem", borderRadius: "10px", border: "1px solid #e2e8f0" }}>
+                  <div style={{ fontSize: "0.75rem", color: "#059669", fontWeight: 700, marginBottom: "0.3rem" }}>MISI POIN 0{idx + 1}</div>
+                  <div style={{ fontSize: "0.925rem", color: "#1e293b", lineHeight: 1.6 }}>{misiItem}</div>
                 </div>
               ))}
             </div>
@@ -77,44 +90,32 @@ export default async function ProfilPage() {
 
         {/* 3. CARD 3: Data Statistik Kependudukan & Batas Geografis */}
         <div className="profile-card">
-          <h3 style={{ fontSize: "1.3rem", color: "#0f172a", fontWeight: 800, marginBottom: "1.25rem" }}>📊 Data Statistik & Demografi Wilayah</h3>
+          <h3 style={{ fontSize: "1.2rem", color: "#0f172a", fontWeight: 700, marginBottom: "1.25rem" }}>Data Statistik & Demografi Wilayah</h3>
 
           <div className="stats-grid" style={{ marginBottom: "1.5rem" }}>
-            <div style={{ background: "#f8fafc", padding: "1.25rem", borderRadius: "12px", border: "1px solid #e2e8f0", display: "flex", alignItems: "center", gap: "1rem" }}>
-              <div style={{ width: "45px", height: "45px", background: "#ecfdf5", color: "#059669", borderRadius: "10px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.3rem" }}>👥</div>
-              <div>
-                <span style={{ fontSize: "0.78rem", color: "#64748b", display: "block" }}>Total Jumlah Penduduk</span>
-                <h4 style={{ fontSize: "1.25rem", color: "#0f172a", fontWeight: 800, margin: 0 }}>{info.jumlahPenduduk}</h4>
-              </div>
+            <div style={{ background: "#f8fafc", padding: "1.15rem", borderRadius: "10px", border: "1px solid #e2e8f0" }}>
+              <span style={{ fontSize: "0.78rem", color: "#64748b", display: "block", marginBottom: "0.2rem" }}>Total Jumlah Penduduk</span>
+              <h4 style={{ fontSize: "1.2rem", color: "#0f172a", fontWeight: 700, margin: 0 }}>{info.jumlahPenduduk}</h4>
             </div>
 
-            <div style={{ background: "#f8fafc", padding: "1.25rem", borderRadius: "12px", border: "1px solid #e2e8f0", display: "flex", alignItems: "center", gap: "1rem" }}>
-              <div style={{ width: "45px", height: "45px", background: "#ecfdf5", color: "#059669", borderRadius: "10px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.3rem" }}>🏠</div>
-              <div>
-                <span style={{ fontSize: "0.78rem", color: "#64748b", display: "block" }}>Jumlah Kepala Keluarga</span>
-                <h4 style={{ fontSize: "1.25rem", color: "#0f172a", fontWeight: 800, margin: 0 }}>{info.jumlahKK}</h4>
-              </div>
+            <div style={{ background: "#f8fafc", padding: "1.15rem", borderRadius: "10px", border: "1px solid #e2e8f0" }}>
+              <span style={{ fontSize: "0.78rem", color: "#64748b", display: "block", marginBottom: "0.2rem" }}>Jumlah Kepala Keluarga</span>
+              <h4 style={{ fontSize: "1.2rem", color: "#0f172a", fontWeight: 700, margin: 0 }}>{info.jumlahKK}</h4>
             </div>
 
-            <div style={{ background: "#f8fafc", padding: "1.25rem", borderRadius: "12px", border: "1px solid #e2e8f0", display: "flex", alignItems: "center", gap: "1rem" }}>
-              <div style={{ width: "45px", height: "45px", background: "#ecfdf5", color: "#059669", borderRadius: "10px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.3rem" }}>🗺️</div>
-              <div>
-                <span style={{ fontSize: "0.78rem", color: "#64748b", display: "block" }}>Luas Total Wilayah</span>
-                <h4 style={{ fontSize: "1.25rem", color: "#0f172a", fontWeight: 800, margin: 0 }}>{info.luasWilayah}</h4>
-              </div>
+            <div style={{ background: "#f8fafc", padding: "1.15rem", borderRadius: "10px", border: "1px solid #e2e8f0" }}>
+              <span style={{ fontSize: "0.78rem", color: "#64748b", display: "block", marginBottom: "0.2rem" }}>Luas Total Wilayah</span>
+              <h4 style={{ fontSize: "1.2rem", color: "#0f172a", fontWeight: 700, margin: 0 }}>{info.luasWilayah}</h4>
             </div>
 
-            <div style={{ background: "#f8fafc", padding: "1.25rem", borderRadius: "12px", border: "1px solid #e2e8f0", display: "flex", alignItems: "center", gap: "1rem" }}>
-              <div style={{ width: "45px", height: "45px", background: "#ecfdf5", color: "#059669", borderRadius: "10px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.3rem" }}>🏢</div>
-              <div>
-                <span style={{ fontSize: "0.78rem", color: "#64748b", display: "block" }}>Wilayah RW / RT</span>
-                <h4 style={{ fontSize: "1.25rem", color: "#0f172a", fontWeight: 800, margin: 0 }}>{info.jumlahRW} / {info.jumlahRT}</h4>
-              </div>
+            <div style={{ background: "#f8fafc", padding: "1.15rem", borderRadius: "10px", border: "1px solid #e2e8f0" }}>
+              <span style={{ fontSize: "0.78rem", color: "#64748b", display: "block", marginBottom: "0.2rem" }}>Wilayah RW / RT</span>
+              <h4 style={{ fontSize: "1.2rem", color: "#0f172a", fontWeight: 700, margin: 0 }}>{info.jumlahRW} / {info.jumlahRT}</h4>
             </div>
           </div>
 
-          <div style={{ background: "#f0fdf4", border: "1px solid #bbf7d0", padding: "1rem 1.25rem", borderRadius: "12px" }}>
-            <div style={{ fontSize: "0.8rem", fontWeight: 700, color: "#047857", marginBottom: "0.35rem", textTransform: "uppercase" }}>📍 Batas Geografis Wilayah Kelurahan</div>
+          <div style={{ background: "#f0fdf4", border: "1px solid #bbf7d0", padding: "1rem 1.25rem", borderRadius: "10px" }}>
+            <div style={{ fontSize: "0.78rem", fontWeight: 700, color: "#047857", marginBottom: "0.35rem", textTransform: "uppercase" }}>Batas Geografis Wilayah Kelurahan</div>
             <div className="batas-grid">
               <div><strong>Sebelah Utara:</strong> {info.batasWilayah?.utara}</div>
               <div><strong>Sebelah Selatan:</strong> {info.batasWilayah?.selatan}</div>
@@ -126,9 +127,9 @@ export default async function ProfilPage() {
 
         {/* 4. CARD 4: Gambaran Umum & Karakteristik Kelurahan Mallilingi */}
         <div className="profile-card">
-          <h3 style={{ fontSize: "1.3rem", color: "#0f172a", fontWeight: 800, marginBottom: "1rem" }}>🏛️ Gambaran Umum & Karakteristik Kelurahan Mallilingi</h3>
+          <h3 style={{ fontSize: "1.2rem", color: "#0f172a", fontWeight: 700, marginBottom: "1rem" }}>Gambaran Umum & Karakteristik Kelurahan Mallilingi</h3>
           
-          <div style={{ fontSize: "1rem", lineHeight: 1.85, color: "#334155" }}>
+          <div style={{ fontSize: "0.975rem", lineHeight: 1.8, color: "#334155" }}>
             <p style={{ marginBottom: "1.25rem" }}>
               Kelurahan Mallilingi merupakan salah satu wilayah kelurahan di Kecamatan Bantaeng, Kabupaten Bantaeng, Provinsi Sulawesi Selatan. 
               Sebagai kawasan kelurahan yang berkembang pesat di pusat aktivitas perkotaan Bantaeng, Mallilingi memiliki potensi ekonomi lokal yang kuat, 

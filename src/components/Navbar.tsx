@@ -67,10 +67,11 @@ export default function Navbar() {
                 gap: "0.3rem",
                 fontSize: "0.9rem",
                 fontFamily: "inherit",
+                fontWeight: 500,
               }}
             >
               <span>Profil</span>
-              <span style={{ fontSize: "0.75rem", transition: "transform 0.2s ease", transform: isProfilOpen ? "rotate(180deg)" : "rotate(0deg)" }}>▾</span>
+              <span style={{ fontSize: "0.7rem", transition: "transform 0.2s ease", transform: isProfilOpen ? "rotate(180deg)" : "rotate(0deg)" }}>▾</span>
             </button>
 
             {isProfilOpen && (
@@ -80,7 +81,7 @@ export default function Navbar() {
                   onClick={() => { setIsProfilOpen(false); setIsMobileMenuOpen(false); }}
                   className={`dropdown-link ${pathname === "/profil" ? "active" : ""}`}
                 >
-                  📖 Profil & Visi Misi
+                  Profil & Visi Misi
                 </Link>
 
                 <Link
@@ -88,7 +89,7 @@ export default function Navbar() {
                   onClick={() => { setIsProfilOpen(false); setIsMobileMenuOpen(false); }}
                   className={`dropdown-link ${pathname === "/struktur" ? "active" : ""}`}
                 >
-                  🏛️ Struktur Organisasi
+                  Struktur Organisasi
                 </Link>
 
                 <Link
@@ -96,7 +97,7 @@ export default function Navbar() {
                   onClick={() => { setIsProfilOpen(false); setIsMobileMenuOpen(false); }}
                   className={`dropdown-link ${pathname === "/berita" || pathname.startsWith("/berita/") ? "active" : ""}`}
                 >
-                  📰 Berita & Pengumuman
+                  Berita & Pengumuman
                 </Link>
               </div>
             )}
@@ -122,10 +123,11 @@ export default function Navbar() {
                 gap: "0.3rem",
                 fontSize: "0.9rem",
                 fontFamily: "inherit",
+                fontWeight: 500,
               }}
             >
               <span>Layanan</span>
-              <span style={{ fontSize: "0.75rem", transition: "transform 0.2s ease", transform: isLayananOpen ? "rotate(180deg)" : "rotate(0deg)" }}>▾</span>
+              <span style={{ fontSize: "0.7rem", transition: "transform 0.2s ease", transform: isLayananOpen ? "rotate(180deg)" : "rotate(0deg)" }}>▾</span>
             </button>
 
             {isLayananOpen && (
@@ -135,7 +137,7 @@ export default function Navbar() {
                   onClick={() => { setIsLayananOpen(false); setIsMobileMenuOpen(false); }}
                   className={`dropdown-link ${pathname === "/pengaduan" ? "active" : ""}`}
                 >
-                  📩 Pengaduan
+                  Pengaduan Warga
                 </Link>
 
                 <Link
@@ -143,7 +145,7 @@ export default function Navbar() {
                   onClick={() => { setIsLayananOpen(false); setIsMobileMenuOpen(false); }}
                   className={`dropdown-link ${(pathname === "/administrasi" || pathname === "/layanan") ? "active" : ""}`}
                 >
-                  📋 Administrasi
+                  Layanan Administrasi
                 </Link>
               </div>
             )}
@@ -155,7 +157,7 @@ export default function Navbar() {
               onClick={() => setIsMobileMenuOpen(false)}
               className="nav-link admin-btn"
             >
-              🔐 Admin
+              Admin Portal
             </Link>
           </li>
         </ul>
