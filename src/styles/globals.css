@@ -460,7 +460,40 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 0.4rem;
 }
 
-/* Marquee Container with Automatic & Manual Scroll Support */
+/* Marquee Wrapper & Container with Fixed Side Fade Overlays */
+.marquee-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.marquee-wrapper::before,
+.marquee-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 70px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.marquee-wrapper::before {
+  left: 0;
+  background: linear-gradient(to right, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
+}
+.marquee-wrapper::after {
+  right: 0;
+  background: linear-gradient(to left, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.marquee-wrapper-bg-slate::before {
+  background: linear-gradient(to right, #f8fafc 0%, rgba(248, 250, 252, 0) 100%);
+}
+.marquee-wrapper-bg-slate::after {
+  background: linear-gradient(to left, #f8fafc 0%, rgba(248, 250, 252, 0) 100%);
+}
+
 .marquee-container {
   width: 100%;
   overflow-x: auto;
@@ -473,25 +506,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 .marquee-container::-webkit-scrollbar {
   display: none;
-}
-
-.marquee-container::before,
-.marquee-container::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  width: 60px;
-  height: 100%;
-  z-index: 10;
-  pointer-events: none;
-}
-.marquee-container::before {
-  left: 0;
-  background: linear-gradient(to right, rgba(248, 250, 252, 1) 0%, rgba(248, 250, 252, 0) 100%);
-}
-.marquee-container::after {
-  right: 0;
-  background: linear-gradient(to left, rgba(248, 250, 252, 1) 0%, rgba(248, 250, 252, 0) 100%);
 }
 
 .marquee-track {

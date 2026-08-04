@@ -1,6 +1,9 @@
 import Link from "next/link";
 import { getMallilingiDataAsync } from "../lib/data";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export default async function HomePage() {
   const data = await getMallilingiDataAsync();
   const info = data.info;
@@ -28,64 +31,49 @@ export default async function HomePage() {
                 Syarat Layanan Surat
               </Link>
               <Link href="/profil" className="btn btn-secondary">
-                Profil Kelurahan & Visi Misi
+                Profil Kelurahan
               </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 2. Sekilas Profil Mallilingi Section */}
+      {/* 2. Ringkasan Wilayah & Sambutan Lurah */}
       <section className="section" style={{ backgroundColor: "#ffffff" }}>
         <div className="container">
           
-          {/* === A. PALING ATAS: DESAIN SAMBUTAN LURAH === */}
-          <div className="sambutan-grid">
-            
-            {/* Left Column: Photo Frame + Floating Badge */}
-            <div style={{ position: "relative" }}>
-              <div style={{ position: "absolute", top: "12px", left: "12px", width: "100%", height: "100%", background: "#fecdd3", borderRadius: "20px", zIndex: 1 }} />
+          {/* === A. PALING ATAS: SAMBUTAN KEPALA KELURAHAN === */}
+          <div style={{ background: "#f8fafc", padding: "2.25rem", borderRadius: "16px", border: "1px solid #cbd5e1", marginBottom: "3.5rem" }}>
+            <div style={{ display: "grid", gridTemplateColumns: "180px 1fr", gap: "2rem", alignItems: "center" }}>
               
-              <div style={{ position: "relative", zIndex: 2, background: "#f1f5f9", borderRadius: "20px", overflow: "hidden", border: "1px solid #e2e8f0", boxShadow: "0 4px 14px rgba(0,0,0,0.06)", height: "400px" }}>
-                <img
-                  src={info.fotoLurah || "/assets/images/lurah.jpg"}
-                  alt={info.namaLurah}
-                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-                />
-
-                <div style={{ position: "absolute", bottom: "16px", left: "16px", background: "#ffffff", padding: "0.75rem 1.15rem", borderRadius: "10px", boxShadow: "0 4px 14px rgba(0,0,0,0.1)", borderLeft: "4px solid #e11d48", zIndex: 3, maxWidth: "240px" }}>
-                  <div style={{ fontSize: "0.925rem", fontWeight: 700, color: "#0f172a", marginBottom: "0.1rem" }}>{info.namaLurah}</div>
-                  <div style={{ fontSize: "0.78rem", color: "#e11d48", fontWeight: 600 }}>Lurah Mallilingi</div>
+              <div style={{ textAlign: "center" }}>
+                <div style={{ width: "130px", height: "130px", margin: "0 auto 0.75rem auto", borderRadius: "9999px", overflow: "hidden", border: "3px solid #059669", boxShadow: "0 4px 12px rgba(5,150,105,0.15)" }}>
+                  <img
+                    src={info.fotoLurah || "/assets/images/default_profile.jpg"}
+                    alt={info.namaLurah}
+                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                  />
                 </div>
-              </div>
-            </div>
-
-            {/* Right Column: Title & Paragraph Quotes */}
-            <div>
-              <div style={{ display: "flex", alignItems: "center", gap: "0.65rem", marginBottom: "0.65rem" }}>
-                <div style={{ width: "28px", height: "2px", background: "#e11d48" }} />
-                <span style={{ fontSize: "0.825rem", fontWeight: 700, color: "#e11d48", letterSpacing: "0.06em", textTransform: "uppercase" }}>
-                  SAMBUTAN LURAH
+                <h3 style={{ fontSize: "1.05rem", color: "#0f172a", fontWeight: 700, margin: 0 }}>
+                  {info.namaLurah}
+                </h3>
+                <span style={{ fontSize: "0.8rem", color: "#059669", fontWeight: 600, display: "block" }}>
+                  Kepala Kelurahan Mallilingi
                 </span>
               </div>
 
-              <h2 style={{ fontSize: "2rem", color: "#0f172a", fontWeight: 700, lineHeight: 1.25, marginBottom: "1.25rem" }}>
-                Mewujudkan Pelayanan Publik Cepat, Transparan, & Mengayomi Warga
-              </h2>
-
-              <div style={{ fontSize: "0.975rem", color: "#334155", lineHeight: 1.8 }}>
-                <p style={{ marginBottom: "1rem" }}>
+              <div>
+                <span style={{ fontSize: "0.75rem", color: "#059669", fontWeight: 600, letterSpacing: "0.05em", textTransform: "uppercase", display: "block", marginBottom: "0.35rem" }}>
+                  SAMBUTAN KEPALA KELURAHAN
+                </span>
+                <h3 style={{ fontSize: "1.25rem", color: "#0f172a", fontWeight: 700, lineHeight: 1.35, marginBottom: "0.75rem" }}>
                   &ldquo;{info.sambutanLurah}&rdquo;
+                </h3>
+                <p style={{ fontSize: "0.925rem", color: "#475569", lineHeight: 1.7, margin: 0 }}>
+                  Pemerintah Kelurahan Mallilingi berkomitmen memberikan pelayanan publik terbaik berbasis digital, terbuka, dan cepat bagi seluruh warga masyarakat di Kabupaten Bantaeng.
                 </p>
-
-                <p style={{ marginBottom: "1.25rem" }}>
-                  Dengan semangat gotong royong dan keterbukaan informasi, kami menyediakan pelayanan kependudukan yang ramah, transparan, dan terintegrasi demi kenyamanan dan kesejahteraan seluruh masyarakat Kelurahan Mallilingi.
-                </p>
-
-                <div style={{ fontWeight: 600, color: "#0f172a", fontSize: "1rem" }}>
-                  Mari bersinergi bersama membangun Kelurahan Mallilingi yang sejahtera dan berdaya saing.
-                </div>
               </div>
+
             </div>
 
           </div>
@@ -134,37 +122,39 @@ export default async function HomePage() {
           </div>
         </div>
 
-        {/* Unlimited Horizontal Scroll Marquee for Layanan */}
-        <div className="marquee-container">
-          <div className="marquee-track">
-            {marqueeLayananList.map((item, idx) => (
-              <div key={`${item.id}-${idx}`} className="marquee-card">
-                <div>
-                  <span style={{ fontSize: "0.725rem", background: "#ecfdf5", color: "#059669", padding: "0.2rem 0.55rem", borderRadius: "9999px", fontWeight: 600, display: "inline-block", marginBottom: "0.5rem" }}>
-                    {item.kategori}
-                  </span>
+        {/* Unlimited Horizontal Scroll Marquee for Layanan with Fixed Overlay */}
+        <div className="marquee-wrapper marquee-wrapper-bg-slate">
+          <div className="marquee-container">
+            <div className="marquee-track">
+              {marqueeLayananList.map((item, idx) => (
+                <div key={`${item.id}-${idx}`} className="marquee-card">
+                  <div>
+                    <span style={{ fontSize: "0.725rem", background: "#ecfdf5", color: "#059669", padding: "0.2rem 0.55rem", borderRadius: "9999px", fontWeight: 600, display: "inline-block", marginBottom: "0.5rem" }}>
+                      {item.kategori}
+                    </span>
 
-                  <h3 style={{ fontSize: "1rem", color: "#0f172a", marginBottom: "0.4rem", fontWeight: 600, lineHeight: 1.35 }}>
-                    {item.judul}
-                  </h3>
+                    <h3 style={{ fontSize: "1rem", color: "#0f172a", marginBottom: "0.4rem", fontWeight: 600, lineHeight: 1.35 }}>
+                      {item.judul}
+                    </h3>
 
-                  <p style={{ fontSize: "0.85rem", color: "#64748b", lineHeight: 1.55, marginBottom: "1rem" }}>
-                    {item.deskripsi}
-                  </p>
-                </div>
-
-                <div>
-                  <div style={{ fontSize: "0.8rem", color: "#059669", fontWeight: 500, marginBottom: "0.75rem", display: "flex", gap: "0.75rem" }}>
-                    <span>Waktu: {item.waktu}</span>
-                    <span>• {item.biaya}</span>
+                    <p style={{ fontSize: "0.85rem", color: "#64748b", lineHeight: 1.55, marginBottom: "1rem" }}>
+                      {item.deskripsi}
+                    </p>
                   </div>
 
-                  <Link href="/administrasi" className="btn btn-outline" style={{ fontSize: "0.8rem", width: "100%", padding: "0.45rem" }}>
-                    Lihat Syarat & Alur →
-                  </Link>
+                  <div>
+                    <div style={{ fontSize: "0.8rem", color: "#059669", fontWeight: 500, marginBottom: "0.75rem", display: "flex", gap: "0.75rem" }}>
+                      <span>Waktu: {item.waktu}</span>
+                      <span>• {item.biaya}</span>
+                    </div>
+
+                    <Link href="/administrasi" className="btn btn-outline" style={{ fontSize: "0.8rem", width: "100%", padding: "0.45rem" }}>
+                      Lihat Syarat & Alur →
+                    </Link>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -179,24 +169,26 @@ export default async function HomePage() {
           </div>
         </div>
 
-        {/* Unlimited Horizontal Scroll Marquee for Berita */}
-        <div className="marquee-container">
-          <div className="marquee-track" style={{ animationDuration: "40s" }}>
-            {marqueeBeritaList.map((item, idx) => (
-              <article key={`${item.id}-${idx}`} className="berita-marquee-card">
-                <img src={item.gambar || "/assets/images/kantor_kelurahan.jpg"} alt={item.judul} className="berita-img" />
-                <div className="berita-body">
-                  <div>
-                    <div className="berita-date">{item.tanggal} • {item.kategori || "Pengumuman"}</div>
-                    <h3 style={{ fontSize: "1rem", marginBottom: "0.5rem", color: "#0f172a", fontWeight: 600 }}>{item.judul}</h3>
-                    <p style={{ fontSize: "0.85rem", color: "#64748b", marginBottom: "1rem", lineHeight: 1.55 }}>{item.ringkasan}</p>
+        {/* Unlimited Horizontal Scroll Marquee for Berita with Fixed Overlay */}
+        <div className="marquee-wrapper">
+          <div className="marquee-container">
+            <div className="marquee-track" style={{ animationDuration: "40s" }}>
+              {marqueeBeritaList.map((item, idx) => (
+                <article key={`${item.id}-${idx}`} className="berita-marquee-card">
+                  <img src={item.gambar || "/assets/images/kantor_kelurahan.jpg"} alt={item.judul} className="berita-img" />
+                  <div className="berita-body">
+                    <div>
+                      <div className="berita-date">{item.tanggal} • {item.kategori || "Pengumuman"}</div>
+                      <h3 style={{ fontSize: "1rem", marginBottom: "0.5rem", color: "#0f172a", fontWeight: 600 }}>{item.judul}</h3>
+                      <p style={{ fontSize: "0.85rem", color: "#64748b", marginBottom: "1rem", lineHeight: 1.55 }}>{item.ringkasan}</p>
+                    </div>
+                    <Link href={`/berita/${item.id}`} className="btn btn-outline" style={{ fontSize: "0.825rem", marginTop: "auto" }}>
+                      Baca Selengkapnya →
+                    </Link>
                   </div>
-                  <Link href={`/berita/${item.id}`} className="btn btn-outline" style={{ fontSize: "0.825rem", marginTop: "auto" }}>
-                    Baca Selengkapnya →
-                  </Link>
-                </div>
-              </article>
-            ))}
+                </article>
+              ))}
+            </div>
           </div>
         </div>
       </section>

@@ -1,5 +1,8 @@
 import { getMallilingiDataAsync } from "../../lib/data";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export default async function ProfilPage() {
   const data = await getMallilingiDataAsync();
   const info = data.info;

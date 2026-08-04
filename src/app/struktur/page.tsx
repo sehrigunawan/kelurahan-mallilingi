@@ -1,5 +1,8 @@
 import { getMallilingiDataAsync, DEFAULT_RW_RT_LIST } from "../../lib/data";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export default async function StrukturPage() {
   const data = await getMallilingiDataAsync();
   const aparaturList = data.struktur;

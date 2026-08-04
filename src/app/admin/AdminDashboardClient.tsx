@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { MallilingiData, LayananSurat, BeritaPengumuman, Aparatur, PengaduanWarga } from "../../types";
 import { saveMallilingiDataAsync } from "../../lib/data";
 
@@ -79,9 +80,12 @@ export default function AdminDashboardClient({ initialData }: { initialData: Mal
     }
   };
 
+  const router = useRouter();
+
   const handleSaveAllData = async (updatedData?: MallilingiData) => {
     const dataToSave = updatedData || data;
     await saveMallilingiDataAsync(dataToSave);
+    router.refresh();
     setStatusMsg("Seluruh perubahan website berhasil disimpan ke Database!");
     setTimeout(() => setStatusMsg(""), 3500);
   };

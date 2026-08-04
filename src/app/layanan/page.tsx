@@ -1,6 +1,9 @@
 import { getMallilingiDataAsync } from "../../lib/data";
 import LayananListClient from "./LayananListClient";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export default async function LayananPage() {
   const data = await getMallilingiDataAsync();
 

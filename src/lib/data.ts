@@ -357,38 +357,38 @@ export const DEFAULT_MALLILINGI_DATA: MallilingiData = {
 
   struktur: [
     // Pimpinan & Sekretariat
-    { nama: "ILHAM", jabatan: "Kepala Kelurahan Mallilingi", nip: "-", foto: "/assets/images/lurah.jpg" },
-    { nama: "YUDHIE YUDHA DHARMA, A.Md", jabatan: "Sekretaris Kelurahan", nip: "NIP. 19750315 200904 1 003", foto: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80" },
-    { nama: "NURAENI", jabatan: "Staf Sekretariat", nip: "-", foto: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80" },
-    { nama: "AGUS SALIM, SM", jabatan: "Staf Sekretariat", nip: "-", foto: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80" },
+    { nama: "ILHAM", jabatan: "Kepala Kelurahan Mallilingi", nip: "-", foto: "/assets/images/default_profile.jpg" },
+    { nama: "YUDHIE YUDHA DHARMA, A.Md", jabatan: "Sekretaris Kelurahan", nip: "NIP. 19750315 200904 1 003", foto: "/assets/images/default_profile.jpg" },
+    { nama: "NURAENI", jabatan: "Staf Sekretariat", nip: "-", foto: "/assets/images/default_profile.jpg" },
+    { nama: "AGUS SALIM, SM", jabatan: "Staf Sekretariat", nip: "-", foto: "/assets/images/default_profile.jpg" },
 
     // Seksi Pemerintahan
-    { nama: "FITRIAH, S.E", jabatan: "Kasi Pemerintahan", nip: "NIP. 19780830 201212 2 001", foto: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=300&q=80" },
-    { nama: "SYAHRIR", jabatan: "Staf Seksi Pemerintahan (PNS)", nip: "NIP. 19670815 200604 1 011", foto: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=300&q=80" },
-    { nama: "ANANG ADENANGST DJALIL", jabatan: "Staf Seksi Pemerintahan (PNS)", nip: "NIP. 19800526 200502 1 001", foto: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=300&q=80" },
-    { nama: "FATIMAH", jabatan: "Staf Seksi Pemerintahan", nip: "-", foto: "https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?auto=format&fit=crop&w=300&q=80" },
-    { nama: "M. RUSDY", jabatan: "Staf Seksi Pemerintahan", nip: "-", foto: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=300&q=80" },
-    { nama: "AKHMAD HARIS", jabatan: "Staf Seksi Pemerintahan", nip: "-", foto: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80" },
+    { nama: "FITRIAH, S.E", jabatan: "Kasi Pemerintahan", nip: "NIP. 19780830 201212 2 001", foto: "/assets/images/default_profile.jpg" },
+    { nama: "SYAHRIR", jabatan: "Staf Seksi Pemerintahan (PNS)", nip: "NIP. 19670815 200604 1 011", foto: "/assets/images/default_profile.jpg" },
+    { nama: "ANANG ADENANGST DJALIL", jabatan: "Staf Seksi Pemerintahan (PNS)", nip: "NIP. 19800526 200502 1 001", foto: "/assets/images/default_profile.jpg" },
+    { nama: "FATIMAH", jabatan: "Staf Seksi Pemerintahan", nip: "-", foto: "/assets/images/default_profile.jpg" },
+    { nama: "M. RUSDY", jabatan: "Staf Seksi Pemerintahan", nip: "-", foto: "/assets/images/default_profile.jpg" },
+    { nama: "AKHMAD HARIS", jabatan: "Staf Seksi Pemerintahan", nip: "-", foto: "/assets/images/default_profile.jpg" },
 
     // Seksi Pelayanan Umum
-    { nama: "FITRIANI, SE", jabatan: "Kasi Pelayanan Umum", nip: "NIP. 19850723 200903 2 011", foto: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80" },
-    { nama: "NURAENI", jabatan: "Staf Pelayanan Umum (PNS)", nip: "NIP. 19810531 201212 2 002", foto: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=300&q=80" },
-    { nama: "HUDAEDAH S", jabatan: "Staf Pelayanan Umum", nip: "-", foto: "https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?auto=format&fit=crop&w=300&q=80" },
-    { nama: "HALIMAH", jabatan: "Staf Pelayanan Umum", nip: "-", foto: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=300&q=80" },
-    { nama: "ROSMITA", jabatan: "Staf Pelayanan Umum", nip: "-", foto: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80" },
-    { nama: "A. NURSYANTI", jabatan: "Staf Pelayanan Umum", nip: "-", foto: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=300&q=80" },
+    { nama: "FITRIANI, SE", jabatan: "Kasi Pelayanan Umum", nip: "NIP. 19850723 200903 2 011", foto: "/assets/images/default_profile.jpg" },
+    { nama: "NURAENI", jabatan: "Staf Pelayanan Umum (PNS)", nip: "NIP. 19810531 201212 2 002", foto: "/assets/images/default_profile.jpg" },
+    { nama: "HUDAEDAH S", jabatan: "Staf Pelayanan Umum", nip: "-", foto: "/assets/images/default_profile.jpg" },
+    { nama: "HALIMAH", jabatan: "Staf Pelayanan Umum", nip: "-", foto: "/assets/images/default_profile.jpg" },
+    { nama: "ROSMITA", jabatan: "Staf Pelayanan Umum", nip: "-", foto: "/assets/images/default_profile.jpg" },
+    { nama: "A. NURSYANTI", jabatan: "Staf Pelayanan Umum", nip: "-", foto: "/assets/images/default_profile.jpg" },
 
     // Seksi Pembangunan & Pemberdayaan Masyarakat
-    { nama: "A. ERNAWATI", jabatan: "Staf Seksi Pembangunan & PM", nip: "-", foto: "https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?auto=format&fit=crop&w=300&q=80" },
-    { nama: "SYAMSURYANTI", jabatan: "Staf Seksi Pembangunan & PM", nip: "-", foto: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=300&q=80" },
-    { nama: "NASTRI", jabatan: "Staf Seksi Pembangunan & PM", nip: "-", foto: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80" },
-    { nama: "IRAWATI", jabatan: "Staf Seksi Pembangunan & PM", nip: "-", foto: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=300&q=80" },
+    { nama: "A. ERNAWATI", jabatan: "Staf Seksi Pembangunan & PM", nip: "-", foto: "/assets/images/default_profile.jpg" },
+    { nama: "SYAMSURYANTI", jabatan: "Staf Seksi Pembangunan & PM", nip: "-", foto: "/assets/images/default_profile.jpg" },
+    { nama: "NASTRI", jabatan: "Staf Seksi Pembangunan & PM", nip: "-", foto: "/assets/images/default_profile.jpg" },
+    { nama: "IRAWATI", jabatan: "Staf Seksi Pembangunan & PM", nip: "-", foto: "/assets/images/default_profile.jpg" },
 
     // Unsur Keamanan & LPM
-    { nama: "Sertu Akhmad Panisi", jabatan: "Babinsa Mallilingi", nip: "TNI AD / Babinsa", foto: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=300&q=80" },
-    { nama: "Arwan Hamid", jabatan: "Binmas / Bhabinkamtibmas", nip: "Polri / Binmas", foto: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80" },
-    { nama: "A. Rahman AB, S.Ilkom", jabatan: "Ketua LPM Mallilingi", nip: "LPM Mallilingi", foto: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=300&q=80" },
-    { nama: "Muh. Alwih", jabatan: "Anggota LPM Mallilingi", nip: "LPM Mallilingi", foto: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80" }
+    { nama: "Sertu Akhmad Panisi", jabatan: "Babinsa Mallilingi", nip: "TNI AD / Babinsa", foto: "/assets/images/default_profile.jpg" },
+    { nama: "Arwan Hamid", jabatan: "Binmas / Bhabinkamtibmas", nip: "Polri / Binmas", foto: "/assets/images/default_profile.jpg" },
+    { nama: "A. Rahman AB, S.Ilkom", jabatan: "Ketua LPM Mallilingi", nip: "LPM Mallilingi", foto: "/assets/images/default_profile.jpg" },
+    { nama: "Muh. Alwih", jabatan: "Anggota LPM Mallilingi", nip: "LPM Mallilingi", foto: "/assets/images/default_profile.jpg" }
   ],
 
   pengaduan: [
