@@ -103,7 +103,7 @@ export default async function StrukturPage() {
           </div>
 
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1.5rem" }}>
-            {(data.rwRtList || DEFAULT_RW_RT_LIST).map((item, idx) => (
+            {(data.rwRtList || []).map((item: any, idx: number) => (
               <div key={idx} style={{ background: "#f8fafc", borderRadius: "12px", border: "1px solid #cbd5e1", padding: "1.25rem" }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.75rem", borderBottom: "2px solid #059669", paddingBottom: "0.5rem" }}>
                   <span style={{ fontSize: "1.05rem", fontWeight: 700, color: "#0f172a" }}>{item.rw}</span>
@@ -121,7 +121,7 @@ export default async function StrukturPage() {
                 </div>
 
                 <div style={{ display: "flex", flexDirection: "column", gap: "0.35rem" }}>
-                  {item.rtList.map((rtItem, rtIdx) => (
+                  {(item.rtList || []).map((rtItem: any, rtIdx: number) => (
                     <div key={rtIdx} style={{ background: "#ffffff", padding: "0.45rem 0.75rem", borderRadius: "6px", border: "1px solid #e2e8f0", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                       <span style={{ fontWeight: 600, color: "#0f172a", fontSize: "0.825rem" }}>{rtItem.rt}</span>
                       <span style={{ color: "#334155", fontSize: "0.85rem" }}>{rtItem.nama}</span>
