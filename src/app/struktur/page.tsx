@@ -1,17 +1,17 @@
-import { getMallilingiDataAsync } from "../../lib/data";
+import { getMallilingiDataAsync, DEFAULT_RW_RT_LIST } from "../../lib/data";
 
 export default async function StrukturPage() {
   const data = await getMallilingiDataAsync();
   const lurah = data.struktur[0];
   const seklur = data.struktur[1];
   const kasiList = data.struktur.slice(2, 5);
-  const lembagaList = data.struktur.slice(5);
+  const mitraLembagaList = data.struktur.slice(5);
 
   const getCategoryBadge = (index: number) => {
     if (index === 0) return { label: "Pimpinan Tinggi", bg: "#059669" };
     if (index === 1) return { label: "Sekretariat", bg: "#0d9488" };
     if (index >= 2 && index <= 4) return { label: "Kepala Seksi", bg: "#2563eb" };
-    return { label: "Lembaga Kemasyarakatan", bg: "#475569" };
+    return { label: "Mitra & Keamanan", bg: "#475569" };
   };
 
   return (
@@ -19,8 +19,8 @@ export default async function StrukturPage() {
       <div className="container">
         <div className="section-header">
           <span className="section-tag">APARAT & KEMITRAAN KELURAHAN</span>
-          <h2>Struktur Organisasi & Tata Kerja</h2>
-          <p>Daftar jajaran aparatur kelurahan dan pengurus lembaga kemasyarakatan Kelurahan Mallilingi.</p>
+          <h2>Struktur Organisasi & Pengurus Wilayah</h2>
+          <p>Daftar resmi aparatur kelurahan, lembaga kemasyarakatan, serta ketua RW & RT se-Kelurahan Mallilingi.</p>
         </div>
 
         {/* 1. SEKSI PIMPINAN & SEKRETARIAT */}
@@ -83,14 +83,14 @@ export default async function StrukturPage() {
           </div>
         </div>
 
-        {/* 3. LEMBAGA KEMASYARAKATAN */}
-        <div>
+        {/* 3. UNSUR KEAMANAN & MITRA LPM */}
+        <div style={{ marginBottom: "3.5rem" }}>
           <div style={{ marginBottom: "1.25rem" }}>
-            <h3 style={{ fontSize: "1.2rem", color: "#0f172a", fontWeight: 700, margin: 0 }}>Mitra & Lembaga Kemasyarakatan</h3>
+            <h3 style={{ fontSize: "1.2rem", color: "#0f172a", fontWeight: 700, margin: 0 }}>Unsur Keamanan (Babinsa/Binmas) & LPM</h3>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "1.5rem" }}>
-            {lembagaList.map((lem, idx) => {
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "1.25rem" }}>
+            {mitraLembagaList.map((lem, idx) => {
               const badge = getCategoryBadge(idx + 5);
               return (
                 <div key={idx} className="sotk-hover-card">
@@ -110,6 +110,48 @@ export default async function StrukturPage() {
                 </div>
               );
             })}
+          </div>
+        </div>
+
+        {/* 4. DIREKTORI LENGKAP PENGURUS RW & RT SE-KELURAHAN MALLILINGI */}
+        <div style={{ background: "#ffffff", padding: "2.25rem", borderRadius: "16px", border: "1px solid #e2e8f0", boxShadow: "0 4px 14px rgba(0,0,0,0.04)" }}>
+          <div style={{ marginBottom: "1.75rem" }}>
+            <span style={{ fontSize: "0.8rem", color: "#059669", fontWeight: 700, letterSpacing: "0.05em", textTransform: "uppercase", display: "block", marginBottom: "0.3rem" }}>
+              DIREKTORI WILAYAH
+            </span>
+            <h3 style={{ fontSize: "1.4rem", color: "#0f172a", fontWeight: 700, margin: 0 }}>
+              Daftar Pengurus RW & RT Kelurahan Mallilingi (8 RW / 25 RT)
+            </h3>
+          </div>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1.5rem" }}>
+            {DEFAULT_RW_RT_LIST.map((item, idx) => (
+              <div key={idx} style={{ background: "#f8fafc", borderRadius: "12px", border: "1px solid #cbd5e1", padding: "1.25rem" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.75rem", borderBottom: "2px solid #059669", paddingBottom: "0.5rem" }}>
+                  <span style={{ fontSize: "1.05rem", fontWeight: 700, color: "#0f172a" }}>{item.rw}</span>
+                  <span style={{ fontSize: "0.75rem", background: "#ecfdf5", color: "#059669", fontWeight: 700, padding: "0.2rem 0.6rem", borderRadius: "9999px" }}>
+                    Ketua RW
+                  </span>
+                </div>
+
+                <div style={{ fontSize: "0.95rem", fontWeight: 700, color: "#047857", marginBottom: "1rem" }}>
+                  {item.ketua}
+                </div>
+
+                <div style={{ fontSize: "0.825rem", color: "#475569", fontWeight: 600, marginBottom: "0.4rem" }}>
+                  Pengurus RT Pendukung:
+                </div>
+
+                <div style={{ display: "flex", flexDirection: "column", gap: "0.35rem" }}>
+                  {item.rtList.map((rtItem, rtIdx) => (
+                    <div key={rtIdx} style={{ background: "#ffffff", padding: "0.45rem 0.75rem", borderRadius: "6px", border: "1px solid #e2e8f0", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                      <span style={{ fontWeight: 600, color: "#0f172a", fontSize: "0.825rem" }}>{rtItem.rt}</span>
+                      <span style={{ color: "#334155", fontSize: "0.85rem" }}>{rtItem.nama}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 

@@ -22,11 +22,11 @@ export const DEFAULT_MALLILINGI_DATA: MallilingiData = {
     luasWilayah: "0.84 km²",
     jumlahPenduduk: "3.420 Jiwa",
     jumlahKK: "890 KK",
-    jumlahRT: "12 RT",
-    jumlahRW: "4 RW",
+    jumlahRT: "25 RT",
+    jumlahRW: "8 RW",
     sambutanLurah: "Selamat datang di portal resmi Kelurahan Mallilingi. Kami berkomitmen memberikan pelayanan publik yang ramah, transparan, cepat, dan mengayomi bagi seluruh masyarakat Kelurahan Mallilingi.",
-    namaLurah: "H. Andi Syamsul, S.Sos., M.Si.",
-    nipLurah: "19780512 200501 1 004",
+    namaLurah: "ILHAM",
+    nipLurah: "Kepala Kelurahan Mallilingi",
     fotoLurah: "/assets/images/lurah.jpg",
     fotoKantor: "/assets/images/kantor_kelurahan.jpg",
     visi: "Mewujudkan Kelurahan Mallilingi yang Mandiri, Sejahtera, Berdaya Saing, dan Unggul dalam Pelayanan Publik Berbasis Teknologi dan Kearifan Lokal.",
@@ -355,16 +355,93 @@ export const DEFAULT_MALLILINGI_DATA: MallilingiData = {
   ],
 
   struktur: [
-    { nama: "H. Andi Syamsul, S.Sos., M.Si.", jabatan: "Lurah Mallilingi", nip: "NIP. 19780512 200501 1 004", foto: "/assets/images/lurah.jpg" },
-    { nama: "Rahmatia, S.AP.", jabatan: "Sekretaris Kelurahan", nip: "NIP. 19820315 200902 2 008", foto: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80" },
-    { nama: "Bachtiar, S.E.", jabatan: "Kasi Ketentraman & Ketertiban", nip: "NIP. 19850720 201101 1 012", foto: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=300&q=80" },
-    { nama: "Hj. Mariani, S.P.", jabatan: "Kasi Perekonomian & PMK", nip: "NIP. 19801104 200604 2 005", foto: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=300&q=80" },
-    { nama: "Nurhalimah, S.Pd.", jabatan: "Kasi Kesejahteraan Rakyat", nip: "NIP. 19880910 201403 2 002", foto: "https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?auto=format&fit=crop&w=300&q=80" },
-    { nama: "Drs. Muhammad Aris", jabatan: "Ketua LPM Mallilingi", nip: "Lembaga Masyarakat", foto: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=300&q=80" },
-    { nama: "Hj. Andi Tenri", jabatan: "Ketua TP PKK Mallilingi", nip: "Lembaga Masyarakat", foto: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=300&q=80" },
-    { nama: "Faisal Azis, S.T.", jabatan: "Ketua Karang Taruna", nip: "Lembaga Kepemudaan", foto: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=300&q=80" }
+    { nama: "ILHAM", jabatan: "Kepala Kelurahan Mallilingi", nip: "Pimpinan Kelurahan", foto: "/assets/images/lurah.jpg" },
+    { nama: "Rahmatia, S.AP.", jabatan: "Sekretaris Kelurahan", nip: "Sekretariat Kelurahan", foto: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80" },
+    { nama: "Bachtiar, S.E.", jabatan: "Kasi Ketentraman & Ketertiban", nip: "Seksi Operasional", foto: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=300&q=80" },
+    { nama: "Hj. Mariani, S.P.", jabatan: "Kasi Perekonomian & PMK", nip: "Seksi Operasional", foto: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=300&q=80" },
+    { nama: "Nurhalimah, S.Pd.", jabatan: "Kasi Kesejahteraan Rakyat", nip: "Seksi Operasional", foto: "https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?auto=format&fit=crop&w=300&q=80" },
+    { nama: "Sertu Akhmad Panisi", jabatan: "Babinsa Mallilingi", nip: "TNI AD / Babinsa", foto: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=300&q=80" },
+    { nama: "Arwan Hamid", jabatan: "Binmas / Bhabinkamtibmas", nip: "Polri / Binmas", foto: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80" },
+    { nama: "A. Rahman AB, S.Ilkom", jabatan: "Ketua LPM Mallilingi", nip: "LPM Mallilingi", foto: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=300&q=80" },
+    { nama: "Muh. Alwih", jabatan: "Anggota LPM Mallilingi", nip: "LPM Mallilingi", foto: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80" }
   ]
 };
+
+export const DEFAULT_RW_RT_LIST = [
+  {
+    rw: "RW 001",
+    ketua: "Haeruddin",
+    rtList: [
+      { rt: "RT 001", nama: "Samsir" },
+      { rt: "RT 002", nama: "Abd. Latif" },
+      { rt: "RT 003", nama: "Awaluddin H.A" }
+    ]
+  },
+  {
+    rw: "RW 002",
+    ketua: "A. Nur Alam Samad",
+    rtList: [
+      { rt: "RT 001", nama: "Parwan" },
+      { rt: "RT 002", nama: "M. Ali R" },
+      { rt: "RT 003", nama: "Andi Amir" }
+    ]
+  },
+  {
+    rw: "RW 003",
+    ketua: "M. Djafar",
+    rtList: [
+      { rt: "RT 001", nama: "Hasan Ranja" },
+      { rt: "RT 002", nama: "Ahmad Ikbal" },
+      { rt: "RT 003", nama: "Wawan Rahmat" }
+    ]
+  },
+  {
+    rw: "RW 004",
+    ketua: "Saharuddin Umar",
+    rtList: [
+      { rt: "RT 001", nama: "M. Arif" },
+      { rt: "RT 002", nama: "A. Noor Ilham Rahmat" },
+      { rt: "RT 003", nama: "Syamsir Umar" }
+    ]
+  },
+  {
+    rw: "RW 005",
+    ketua: "Ar Sakbir Jepsah",
+    rtList: [
+      { rt: "RT 001", nama: "Ar Rosmah Jepsah" },
+      { rt: "RT 002", nama: "Lahamuddin" },
+      { rt: "RT 003", nama: "Saparuddin" }
+    ]
+  },
+  {
+    rw: "RW 006",
+    ketua: "A. Amri Langgara (Kr. Bambi)",
+    rtList: [
+      { rt: "RT 001", nama: "Marniati" },
+      { rt: "RT 002", nama: "Nurjannah" },
+      { rt: "RT 003", nama: "Abd. Wahid Saad" }
+    ]
+  },
+  {
+    rw: "RW 007",
+    ketua: "Sukri Anwar",
+    rtList: [
+      { rt: "RT 001", nama: "Saharuddin" },
+      { rt: "RT 002", nama: "Ahmad Sewan" },
+      { rt: "RT 003", nama: "Muchtar" }
+    ]
+  },
+  {
+    rw: "RW 008",
+    ketua: "Haeruddin",
+    rtList: [
+      { rt: "RT 001", nama: "Muh Nasir" },
+      { rt: "RT 002", nama: "St Nurhikmah" },
+      { rt: "RT 003", nama: "Ancu" },
+      { rt: "RT 004", nama: "Mursalim" }
+    ]
+  }
+];
 
 let supabaseClient: any = null;
 if (SUPABASE_CONFIG.enabled && !SUPABASE_CONFIG.url.includes("your-project")) {

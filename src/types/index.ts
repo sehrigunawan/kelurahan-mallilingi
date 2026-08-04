@@ -58,9 +58,21 @@ export interface Aparatur {
   foto: string;
 }
 
+export interface PengurusRT {
+  rt: string;
+  nama: string;
+}
+
+export interface PengurusRW {
+  rw: string;
+  ketua: string;
+  rtList: PengurusRT[];
+}
+
 export interface MallilingiData {
   info: InfoKelurahan;
   layanan: LayananSurat[];
   berita: BeritaPengumuman[];
   struktur: Aparatur[];
+  rwRtList?: PengurusRW[];
 }
