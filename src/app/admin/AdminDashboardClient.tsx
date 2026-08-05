@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { MallilingiData, LayananSurat, BeritaPengumuman, Aparatur, PengaduanWarga } from "../../types";
-import { saveMallilingiDataAsync } from "../../lib/data";
+import { saveMallilingiDataAsync, updatePengaduanStatusAsync, deletePengaduanAsync, deleteLayananAsync, deleteBeritaAsync } from "../../lib/data";
 
 // Helper function to calculate SHA-256 hash using Web Crypto API
 async function hashPasswordSHA256(password: string): Promise<string> {
@@ -107,20 +107,22 @@ export default function AdminDashboardClient({ initialData }: { initialData: Mal
     setTimeout(() => setStatusMsg(""), 3500);
   };
 
-  const updatePengaduanStatus = (id: string, newStatus: "Baru" | "Proses" | "Selesai") => {
+  const updatePengaduanStatus = async (id: string, newStatus: "Baru" | "Proses" | "Selesai") => {
     const updatedList = (data.pengaduan || []).map((item) =>
       item.id === id ? { ...item, status: newStatus } : item
     );
     const updatedData = { ...data, pengaduan: updatedList };
     setData(updatedData);
+    await updatePengaduanStatusAsync(id, newStatus);
     handleSaveAllData(updatedData);
   };
 
-  const deletePengaduan = (id: string) => {
+  const deletePengaduan = async (id: string) => {
     if (confirm("Hapus catatan pengaduan warga ini?")) {
       const updatedList = (data.pengaduan || []).filter((item) => item.id !== id);
       const updatedData = { ...data, pengaduan: updatedList };
       setData(updatedData);
+      await deletePengaduanAsync(id);
       handleSaveAllData(updatedData);
     }
   };
@@ -624,11 +626,12 @@ export default function AdminDashboardClient({ initialData }: { initialData: Mal
                         Edit Layanan
                       </button>
                       <button
-                        onClick={() => {
+                        onClick={async () => {
                           if (confirm(`Hapus layanan "${item.judul}"?`)) {
                             const filtered = data.layanan.filter((l) => l.id !== item.id);
                             const updated = { ...data, layanan: filtered };
                             setData(updated);
+                            await deleteLayananAsync(item.id);
                             handleSaveAllData(updated);
                           }
                         }}
@@ -735,18 +738,17 @@ export default function AdminDashboardClient({ initialData }: { initialData: Mal
           {activeTab === "berita" && (
             <div>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.25rem", flexWrap: "wrap", gap: "0.75rem" }}>
-                <h4 style={{ fontSize: "1.1rem", color: "#0f172a", fontWeight: 700 }}>Daftar Berita & Pengumuman</h4>
+                <h4 style={{ fontSize: "1.1rem", color: "#0f172a", fontWeight: 700 }}>Daftar Publikasi Berita & Pengumuman</h4>
                 <button
                   onClick={() => {
                     const newBerita: BeritaPengumuman = {
                       id: `berita-${Date.now()}`,
                       judul: "Judul Berita Baru",
-                      tanggal: new Date().toLocaleDateString("id-ID", { day: "numeric", month: "long", year: "numeric" }),
-                      kategori: "Kegiatan Desa",
+                      tanggal: new Date().toLocaleDateString("id-ID", { day: "2-digit", month: "long", year: "numeric" }),
+                      kategori: "Pengumuman Resmi",
                       gambar: "/assets/images/kantor_kelurahan.jpg",
-                      ringkasan: "Ringkasan informasi singkat...",
-                      isi: "Uraian lengkap kegiatan...",
-                      penulis: "Humas Kelurahan Mallilingi"
+                      ringkasan: "Ringkasan berita singkat...",
+                      isi: "Rincian isi berita kelurahan..."
                     };
                     setEditingBerita(newBerita);
                   }}
@@ -772,11 +774,12 @@ export default function AdminDashboardClient({ initialData }: { initialData: Mal
                           Edit Berita
                         </button>
                         <button
-                          onClick={() => {
+                          onClick={async () => {
                             if (confirm(`Hapus berita "${item.judul}"?`)) {
                               const filtered = data.berita.filter((b) => b.id !== item.id);
                               const updated = { ...data, berita: filtered };
                               setData(updated);
+                              await deleteBeritaAsync(item.id);
                               handleSaveAllData(updated);
                             }
                           }}

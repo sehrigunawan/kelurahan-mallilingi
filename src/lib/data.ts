@@ -640,3 +640,85 @@ export async function sendPengaduanWargaAsync(aduan: { nama: string; telepon: st
 
   return true;
 }
+
+export async function deletePengaduanAsync(id: string): Promise<boolean> {
+  DYNAMIC_PENGADUAN_MEMORY = DYNAMIC_PENGADUAN_MEMORY.filter((item) => item.id !== id);
+  DEFAULT_MALLILINGI_DATA.pengaduan = (DEFAULT_MALLILINGI_DATA.pengaduan || []).filter((item) => item.id !== id);
+
+  if (typeof window !== "undefined") {
+    try {
+      const stored = localStorage.getItem("mallilingi_pengaduan_list");
+      if (stored) {
+        const list: PengaduanWarga[] = JSON.parse(stored);
+        const filtered = list.filter((item) => item.id !== id);
+        localStorage.setItem("mallilingi_pengaduan_list", JSON.stringify(filtered));
+      }
+    } catch (e) {
+      console.warn("localStorage delete error:", e);
+    }
+  }
+
+  if (supabaseClient) {
+    try {
+      const { error } = await supabaseClient.from("pengaduan").delete().eq("id", id);
+      if (error) console.error("Supabase delete pengaduan error:", error);
+    } catch (e) {
+      console.error("Supabase delete error:", e);
+    }
+  }
+  return true;
+}
+
+export async function updatePengaduanStatusAsync(id: string, newStatus: "Baru" | "Proses" | "Selesai"): Promise<boolean> {
+  DYNAMIC_PENGADUAN_MEMORY = DYNAMIC_PENGADUAN_MEMORY.map((item) => item.id === id ? { ...item, status: newStatus } : item);
+  DEFAULT_MALLILINGI_DATA.pengaduan = (DEFAULT_MALLILINGI_DATA.pengaduan || []).map((item) => item.id === id ? { ...item, status: newStatus } : item);
+
+  if (typeof window !== "undefined") {
+    try {
+      const stored = localStorage.getItem("mallilingi_pengaduan_list");
+      if (stored) {
+        const list: PengaduanWarga[] = JSON.parse(stored);
+        const updated = list.map((item) => item.id === id ? { ...item, status: newStatus } : item);
+        localStorage.setItem("mallilingi_pengaduan_list", JSON.stringify(updated));
+      }
+    } catch (e) {
+      console.warn("localStorage update status error:", e);
+    }
+  }
+
+  if (supabaseClient) {
+    try {
+      const { error } = await supabaseClient.from("pengaduan").update({ status: newStatus }).eq("id", id);
+      if (error) console.error("Supabase update status error:", error);
+    } catch (e) {
+      console.error("Supabase status update error:", e);
+    }
+  }
+  return true;
+}
+
+export async function deleteLayananAsync(id: string): Promise<boolean> {
+  DEFAULT_MALLILINGI_DATA.layanan = (DEFAULT_MALLILINGI_DATA.layanan || []).filter((item) => item.id !== id);
+  if (supabaseClient) {
+    try {
+      const { error } = await supabaseClient.from("layanan").delete().eq("id", id);
+      if (error) console.error("Supabase delete layanan error:", error);
+    } catch (e) {
+      console.error("Supabase delete layanan error:", e);
+    }
+  }
+  return true;
+}
+
+export async function deleteBeritaAsync(id: string): Promise<boolean> {
+  DEFAULT_MALLILINGI_DATA.berita = (DEFAULT_MALLILINGI_DATA.berita || []).filter((item) => item.id !== id);
+  if (supabaseClient) {
+    try {
+      const { error } = await supabaseClient.from("berita").delete().eq("id", id);
+      if (error) console.error("Supabase delete berita error:", error);
+    } catch (e) {
+      console.error("Supabase delete berita error:", e);
+    }
+  }
+  return true;
+}
