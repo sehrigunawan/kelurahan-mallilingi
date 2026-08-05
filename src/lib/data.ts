@@ -118,13 +118,24 @@ export async function getMallilingiDataAsync(): Promise<MallilingiData> {
       };
     });
 
+    let rwRtListProcessed = (rwRtRes.data || []).map((item: any) => {
+      let list = item.rtList || item.rtlist || [];
+      if (typeof list === "string") {
+        try { list = JSON.parse(list); } catch (e) { list = []; }
+      }
+      return {
+        ...item,
+        rtList: Array.isArray(list) ? list : []
+      };
+    });
+
     return {
       info: infoObj,
       berita: beritaRes.data || [],
       layanan: layananList || [],
       struktur: strukturRes.data || [],
       pengaduan: pengaduanRes.data || [],
-      rwRtList: rwRtRes.data || []
+      rwRtList: rwRtListProcessed || []
     };
   } catch (err) {
     console.error("[SUPABASE FATAL FETCH ERROR]:", err);

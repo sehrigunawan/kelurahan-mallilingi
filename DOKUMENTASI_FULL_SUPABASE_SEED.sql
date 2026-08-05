@@ -198,20 +198,44 @@ INSERT INTO public.pengaduan (id, tanggal, nama, nik, telepon, kategori, judul, 
 ('aduan-3', '28 Juli 2026', 'Baharuddin', '7303011210750002', '6282111223344', 'Kebersihan & Saluran Air', 'Pengangkutan Sampah di Wilayah RW 005', 'Terima kasih atas tindak lanjut armada kebersihan yang telah mengangkut tumpukan sampah di tempat penampungan sementara RW 005.', 'Selesai');
 
 -- --------------------------------------------------------------------
--- 6. HAK AKSES & ROW LEVEL SECURITY (RLS) FIX FOR PUBLIC SUBMISSION
+-- 6. TABEL: rw_rt_list (Pengurus 8 RW & 25 RT Kelurahan Mallilingi)
 -- --------------------------------------------------------------------
--- Nonaktifkan RLS agar publik (anon key / warga) dapat mengirim pengaduan
+CREATE TABLE IF NOT EXISTS public.rw_rt_list (
+  id TEXT PRIMARY KEY,
+  rw TEXT NOT NULL,
+  ketua TEXT NOT NULL,
+  rtList JSONB DEFAULT '[]'::jsonb,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Seed Data Pengurus 8 RW & 25 RT
+INSERT INTO public.rw_rt_list (id, rw, ketua, rtList) VALUES
+('rw-001', 'RW 001', 'Haeruddin', '[{"rt": "RT 001", "nama": "Samsir"}, {"rt": "RT 002", "nama": "Abd. Latif"}, {"rt": "RT 003", "nama": "Awaluddin H.A"}]'::jsonb),
+('rw-002', 'RW 002', 'A. Nur Alam Samad', '[{"rt": "RT 001", "nama": "Parwan"}, {"rt": "RT 002", "nama": "M. Ali R"}, {"rt": "RT 003", "nama": "Andi Amir"}]'::jsonb),
+('rw-003', 'RW 003', 'M. Djafar', '[{"rt": "RT 001", "nama": "Hasan Ranja"}, {"rt": "RT 002", "nama": "Ahmad Ikbal"}, {"rt": "RT 003", "nama": "Wawan Rahmat"}]'::jsonb),
+('rw-004', 'RW 004', 'Saharuddin Umar', '[{"rt": "RT 001", "nama": "M. Arif"}, {"rt": "RT 002", "nama": "A. Noor Ilham Rahmat"}, {"rt": "RT 003", "nama": "Syamsir Umar"}]'::jsonb),
+('rw-005', 'RW 005', 'Ar Sakbir Jepsah', '[{"rt": "RT 001", "nama": "Ar Rosmah Jepsah"}, {"rt": "RT 002", "nama": "Lahamuddin"}, {"rt": "RT 003", "nama": "Saparuddin"}]'::jsonb),
+('rw-006', 'RW 006', 'A. Amri Langgara (Kr. Bambi)', '[{"rt": "RT 001", "nama": "Marniati"}, {"rt": "RT 002", "nama": "Nurjannah"}, {"rt": "RT 003", "nama": "Abd. Wahid Saad"}]'::jsonb),
+('rw-007', 'RW 007', 'Sukri Anwar', '[{"rt": "RT 001", "nama": "Saharuddin"}, {"rt": "RT 002", "nama": "Ahmad Sewan"}, {"rt": "RT 003", "nama": "Muchtar"}]'::jsonb),
+('rw-008', 'RW 008', 'Haeruddin', '[{"rt": "RT 001", "nama": "Muh Nasir"}, {"rt": "RT 002", "nama": "St Nurhikmah"}, {"rt": "RT 003", "nama": "Ancu"}, {"rt": "RT 004", "nama": "Mursalim"}]'::jsonb)
+ON CONFLICT (id) DO UPDATE 
+SET rw = EXCLUDED.rw, ketua = EXCLUDED.ketua, rtList = EXCLUDED.rtList;
+
+-- --------------------------------------------------------------------
+-- 7. HAK AKSES & ROW LEVEL SECURITY (RLS) FIX
+-- --------------------------------------------------------------------
 ALTER TABLE public.info DISABLE ROW LEVEL SECURITY;
 ALTER TABLE public.layanan DISABLE ROW LEVEL SECURITY;
 ALTER TABLE public.berita DISABLE ROW LEVEL SECURITY;
 ALTER TABLE public.struktur DISABLE ROW LEVEL SECURITY;
 ALTER TABLE public.pengaduan DISABLE ROW LEVEL SECURITY;
+ALTER TABLE public.rw_rt_list DISABLE ROW LEVEL SECURITY;
 
--- Memberikan izin lengkap untuk peranan anon, authenticated, & service_role
 GRANT ALL ON TABLE public.info TO anon, authenticated, service_role;
 GRANT ALL ON TABLE public.layanan TO anon, authenticated, service_role;
 GRANT ALL ON TABLE public.berita TO anon, authenticated, service_role;
 GRANT ALL ON TABLE public.struktur TO anon, authenticated, service_role;
 GRANT ALL ON TABLE public.pengaduan TO anon, authenticated, service_role;
+GRANT ALL ON TABLE public.rw_rt_list TO anon, authenticated, service_role;
 
--- Selesai! Seluruh tabel dan data Supabase telah terisi penuh tanpa konflik skema & RLS error.
+-- Selesai! Seluruh 6 tabel dan data Supabase telah terisi penuh tanpa konflik skema & RLS error.
