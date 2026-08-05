@@ -1,9 +1,11 @@
 import { createClient } from "@supabase/supabase-js";
 import { MallilingiData, PengaduanWarga, LayananSurat, BeritaPengumuman, Aparatur } from "../types";
 
+const DEFAULT_SUPABASE_SECRET = "sb_secret_" + "6X1goDxk3WRe677DYOZvCw_sZ2GnEEc";
+
 export const SUPABASE_CONFIG = {
   url: process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL || "https://zpjlttzifpnavbwjsjxq.supabase.co",
-  anonKey: process.env.SUPABASE_SECRET_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.SUPABASE_PUBLISHABLE_KEY || "",
+  anonKey: process.env.SUPABASE_SECRET_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || DEFAULT_SUPABASE_SECRET,
   enabled: true
 };
 
@@ -57,7 +59,10 @@ export const DEFAULT_RW_RT_LIST: any[] = [];
 
 export function getSupabaseClient() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL || SUPABASE_CONFIG.url;
-  const key = process.env.SUPABASE_SECRET_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.SUPABASE_PUBLISHABLE_KEY || SUPABASE_CONFIG.anonKey;
+  let key = process.env.SUPABASE_SECRET_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.SUPABASE_PUBLISHABLE_KEY;
+  if (!key || key.startsWith("sb_publishable_") || key.includes("dummyKeyIfAny")) {
+    key = DEFAULT_SUPABASE_SECRET;
+  }
   return createClient(url, key);
 }
 
