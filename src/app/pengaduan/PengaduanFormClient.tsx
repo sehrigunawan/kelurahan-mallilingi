@@ -27,14 +27,20 @@ export default function PengaduanFormClient({ whatsappNumber }: { whatsappNumber
     setStatusMsg("");
 
     try {
-      // 1. Send complaint to Database so it immediately appears in Admin Dashboard
-      await sendPengaduanWargaAsync({
+      // 1. Send complaint directly to Supabase Database
+      const res = await sendPengaduanWargaAsync({
         nama: formData.nama,
         telepon: formData.telepon,
         kategori: formData.kategori,
         judul: formData.judul,
         isi: formData.isi,
       });
+
+      if (!res.success) {
+        alert(`Gagal menyimpan ke Database Supabase: ${res.error || "401 Unauthorized"}.\n\nHarap pastikan Kunci API Supabase (NEXT_PUBLIC_SUPABASE_ANON_KEY) valid.`);
+        setIsSubmitting(false);
+        return;
+      }
 
       // Prepare text for optional WhatsApp redirect
       const textMessage = `*FORMULIR PENGADUAN WARGA KELURAHAN MALLILINGI*%0A%0A` +

@@ -43,23 +43,6 @@ export default function AdminDashboardClient({ initialData }: { initialData: Mal
   useEffect(() => {
     const auth = sessionStorage.getItem("MALLILINGI_ADMIN_AUTH");
     if (auth === "true") setIsAuthenticated(true);
-
-    try {
-      const stored = localStorage.getItem("mallilingi_pengaduan_list");
-      if (stored) {
-        const localList: PengaduanWarga[] = JSON.parse(stored);
-        if (localList && localList.length > 0) {
-          setData((prev) => {
-            const combined = [...localList, ...(prev.pengaduan || [])].filter(
-              (v, i, a) => a.findIndex((t) => t.id === v.id) === i
-            );
-            return { ...prev, pengaduan: combined };
-          });
-        }
-      }
-    } catch (e) {
-      console.warn("localStorage read error:", e);
-    }
   }, []);
 
   useEffect(() => {
