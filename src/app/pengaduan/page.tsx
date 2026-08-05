@@ -1,6 +1,9 @@
 import { getMallilingiDataAsync } from "../../lib/data";
 import PengaduanFormClient from "./PengaduanFormClient";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export default async function PengaduanPage() {
   const data = await getMallilingiDataAsync();
   const info = data.info;

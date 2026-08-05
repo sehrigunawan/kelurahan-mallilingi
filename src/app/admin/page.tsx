@@ -1,6 +1,9 @@
 import { getMallilingiDataAsync } from "../../lib/data";
 import AdminDashboardClient from "./AdminDashboardClient";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export default async function AdminPage() {
   const initialData = await getMallilingiDataAsync();
 
