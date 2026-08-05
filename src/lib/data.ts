@@ -2,8 +2,8 @@ import { createClient } from "@supabase/supabase-js";
 import { MallilingiData, PengaduanWarga, LayananSurat, BeritaPengumuman, Aparatur } from "../types";
 
 export const SUPABASE_CONFIG = {
-  url: process.env.NEXT_PUBLIC_SUPABASE_URL || "https://zpjlttzifpnavbwjsjxq.supabase.co",
-  anonKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpwanR0emlmcG5hdmJ3anNqeHEiLCJyb2xlIjoiYW5vbiIsImlhdCI6MTc1NDA3ODA5MywiZXhwIjoyMDY5NjU0MDkzfQ.dummyKeyIfAny",
+  url: process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL || "https://zpjlttzifpnavbwjsjxq.supabase.co",
+  anonKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_PUBLISHABLE_KEY || "",
   enabled: true
 };
 
@@ -56,8 +56,8 @@ export const DEFAULT_MALLILINGI_DATA: MallilingiData = {
 export const DEFAULT_RW_RT_LIST: any[] = [];
 
 export function getSupabaseClient() {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL || SUPABASE_CONFIG.url;
-  const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || SUPABASE_CONFIG.anonKey;
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL || SUPABASE_CONFIG.url;
+  const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_PUBLISHABLE_KEY || SUPABASE_CONFIG.anonKey;
   return createClient(url, anonKey);
 }
 
