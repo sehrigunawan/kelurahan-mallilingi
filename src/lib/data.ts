@@ -3,7 +3,7 @@ import { MallilingiData, PengaduanWarga, LayananSurat, BeritaPengumuman, Aparatu
 
 export const SUPABASE_CONFIG = {
   url: process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL || "https://zpjlttzifpnavbwjsjxq.supabase.co",
-  anonKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_PUBLISHABLE_KEY || "",
+  anonKey: process.env.SUPABASE_SECRET_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.SUPABASE_PUBLISHABLE_KEY || "",
   enabled: true
 };
 
@@ -57,8 +57,8 @@ export const DEFAULT_RW_RT_LIST: any[] = [];
 
 export function getSupabaseClient() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL || SUPABASE_CONFIG.url;
-  const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_PUBLISHABLE_KEY || SUPABASE_CONFIG.anonKey;
-  return createClient(url, anonKey);
+  const key = process.env.SUPABASE_SECRET_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.SUPABASE_PUBLISHABLE_KEY || SUPABASE_CONFIG.anonKey;
+  return createClient(url, key);
 }
 
 // 1. PURE DATABASE FETCH - NO LOCAL FALLBACK ARRAYS
