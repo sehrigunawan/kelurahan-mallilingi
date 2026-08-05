@@ -138,23 +138,76 @@ export async function getMallilingiDataAsync(): Promise<MallilingiData> {
   }
 }
 
-// 2. PURE DATABASE SAVE - NO LOCAL STORAGE / NO IN-MEMORY DUMMY
+// 2. PURE DATABASE SAVE - ROBUST INDIVIDUAL TABLE UPSERTS
 export async function saveMallilingiDataAsync(data: MallilingiData): Promise<{ success: boolean; error?: string }> {
   const supabase = getSupabaseClient();
-  
-  try {
-    const results = await Promise.all([
-      supabase.from("info").upsert({ id: 1, ...data.info }),
-      supabase.from("berita").upsert(data.berita),
-      supabase.from("layanan").upsert(data.layanan),
-      supabase.from("struktur").upsert(data.struktur),
-      supabase.from("pengaduan").upsert(data.pengaduan)
-    ]);
+  const errors: string[] = [];
 
-    const errors = results.map((r) => r.error).filter(Boolean);
+  try {
+    // 1. Info Table
+    if (data.info) {
+      const infoPayload = {
+        id: 1,
+        ...data.info,
+        misi: Array.isArray(data.info.misi) ? JSON.stringify(data.info.misi) : data.info.misi,
+        batasWilayah: typeof data.info.batasWilayah === "object" ? JSON.stringify(data.info.batasWilayah) : data.info.batasWilayah
+      };
+      const { error } = await supabase.from("info").upsert(infoPayload);
+      if (error) {
+        console.error("[SUPABASE UPSERT INFO ERROR]:", error);
+        errors.push(`Info: ${error.message}`);
+      }
+    }
+
+    // 2. Berita Table
+    if (data.berita && data.berita.length > 0) {
+      const { error } = await supabase.from("berita").upsert(data.berita);
+      if (error) {
+        console.error("[SUPABASE UPSERT BERITA ERROR]:", error);
+        errors.push(`Berita: ${error.message}`);
+      }
+    }
+
+    // 3. Layanan Table
+    if (data.layanan && data.layanan.length > 0) {
+      const layananToSave = data.layanan.map((l) => ({
+        ...l,
+        persyaratan: Array.isArray(l.persyaratan) ? JSON.stringify(l.persyaratan) : l.persyaratan
+      }));
+      const { error } = await supabase.from("layanan").upsert(layananToSave);
+      if (error) {
+        console.error("[SUPABASE UPSERT LAYANAN ERROR]:", error);
+        errors.push(`Layanan: ${error.message}`);
+      }
+    }
+
+    // 4. Struktur Table (Filter out items without id or clean object)
+    if (data.struktur && data.struktur.length > 0) {
+      const strukturToSave = data.struktur.map((item: any, idx: number) => ({
+        id: item.id || idx + 1,
+        nama: item.nama,
+        jabatan: item.jabatan,
+        nip: item.nip,
+        foto: item.foto
+      }));
+      const { error } = await supabase.from("struktur").upsert(strukturToSave);
+      if (error) {
+        console.error("[SUPABASE UPSERT STRUKTUR ERROR]:", error);
+        errors.push(`Struktur: ${error.message}`);
+      }
+    }
+
+    // 5. Pengaduan Table
+    if (data.pengaduan && data.pengaduan.length > 0) {
+      const { error } = await supabase.from("pengaduan").upsert(data.pengaduan);
+      if (error) {
+        console.error("[SUPABASE UPSERT PENGADUAN ERROR]:", error);
+        errors.push(`Pengaduan: ${error.message}`);
+      }
+    }
+
     if (errors.length > 0) {
-      console.error("[SUPABASE UPSERT ERRORS]:", errors);
-      return { success: false, error: errors.map((e: any) => e.message).join(", ") };
+      return { success: false, error: errors.join(" | ") };
     }
 
     return { success: true };

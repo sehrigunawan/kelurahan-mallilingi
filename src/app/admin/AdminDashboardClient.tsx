@@ -84,7 +84,11 @@ export default function AdminDashboardClient({ initialData }: { initialData: Mal
 
   const handleSaveAllData = async (updatedData?: MallilingiData) => {
     const dataToSave = updatedData || data;
-    await saveMallilingiDataAsync(dataToSave);
+    const res = await saveMallilingiDataAsync(dataToSave);
+    if (!res.success) {
+      alert("Gagal menyimpan ke Database Supabase: " + (res.error || "Unknown error"));
+      return;
+    }
     router.refresh();
     setStatusMsg("Seluruh perubahan website berhasil disimpan ke Database!");
     setTimeout(() => setStatusMsg(""), 3500);
@@ -96,8 +100,14 @@ export default function AdminDashboardClient({ initialData }: { initialData: Mal
     );
     const updatedData = { ...data, pengaduan: updatedList };
     setData(updatedData);
-    await updatePengaduanStatusAsync(id, newStatus);
-    handleSaveAllData(updatedData);
+    const res = await updatePengaduanStatusAsync(id, newStatus);
+    if (!res.success) {
+      alert("Gagal memperbarui status pengaduan di Supabase: " + (res.error || "Unknown error"));
+    } else {
+      setStatusMsg(`Status pengaduan berhasil diperbarui ke '${newStatus}'!`);
+      setTimeout(() => setStatusMsg(""), 3500);
+      router.refresh();
+    }
   };
 
   const deletePengaduan = async (id: string) => {
@@ -105,8 +115,14 @@ export default function AdminDashboardClient({ initialData }: { initialData: Mal
       const updatedList = (data.pengaduan || []).filter((item) => item.id !== id);
       const updatedData = { ...data, pengaduan: updatedList };
       setData(updatedData);
-      await deletePengaduanAsync(id);
-      handleSaveAllData(updatedData);
+      const res = await deletePengaduanAsync(id);
+      if (!res.success) {
+        alert("Gagal menghapus pengaduan dari Supabase: " + (res.error || "Unknown error"));
+      } else {
+        setStatusMsg("Catatan pengaduan berhasil dihapus dari Database!");
+        setTimeout(() => setStatusMsg(""), 3500);
+        router.refresh();
+      }
     }
   };
 
