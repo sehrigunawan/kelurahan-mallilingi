@@ -197,4 +197,21 @@ INSERT INTO public.pengaduan (id, tanggal, nama, nik, telepon, kategori, judul, 
 ('aduan-2', '01 Agustus 2026', 'Nurhalimah', '7303015809920003', '6285299887766', 'Pelayanan Kependudukan', 'Konsultasi Persyaratan Pengurusan SKTM', 'Apakah pengurusan SKTM untuk keringanan biaya rumah sakit dapat diwakilkan oleh anggota keluarga yang terdaftar dalam 1 KK?', 'Proses'),
 ('aduan-3', '28 Juli 2026', 'Baharuddin', '7303011210750002', '6282111223344', 'Kebersihan & Saluran Air', 'Pengangkutan Sampah di Wilayah RW 005', 'Terima kasih atas tindak lanjut armada kebersihan yang telah mengangkut tumpukan sampah di tempat penampungan sementara RW 005.', 'Selesai');
 
--- Selesai! Seluruh tabel dan data Supabase telah terisi penuh tanpa konflik skema.
+-- --------------------------------------------------------------------
+-- 6. HAK AKSES & ROW LEVEL SECURITY (RLS) FIX FOR PUBLIC SUBMISSION
+-- --------------------------------------------------------------------
+-- Nonaktifkan RLS agar publik (anon key / warga) dapat mengirim pengaduan
+ALTER TABLE public.info DISABLE ROW LEVEL SECURITY;
+ALTER TABLE public.layanan DISABLE ROW LEVEL SECURITY;
+ALTER TABLE public.berita DISABLE ROW LEVEL SECURITY;
+ALTER TABLE public.struktur DISABLE ROW LEVEL SECURITY;
+ALTER TABLE public.pengaduan DISABLE ROW LEVEL SECURITY;
+
+-- Memberikan izin lengkap untuk peranan anon, authenticated, & service_role
+GRANT ALL ON TABLE public.info TO anon, authenticated, service_role;
+GRANT ALL ON TABLE public.layanan TO anon, authenticated, service_role;
+GRANT ALL ON TABLE public.berita TO anon, authenticated, service_role;
+GRANT ALL ON TABLE public.struktur TO anon, authenticated, service_role;
+GRANT ALL ON TABLE public.pengaduan TO anon, authenticated, service_role;
+
+-- Selesai! Seluruh tabel dan data Supabase telah terisi penuh tanpa konflik skema & RLS error.

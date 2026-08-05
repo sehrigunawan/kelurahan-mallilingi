@@ -10,39 +10,33 @@ export const SUPABASE_CONFIG = {
 };
 
 export const EMPTY_INFO = {
-  nama: "Kelurahan Mallilingi",
-  kecamatan: "Kecamatan Bantaeng",
-  kabupaten: "Kabupaten Bantaeng",
-  provinsi: "Sulawesi Selatan",
-  kodePos: "92411",
-  alamat: "Jl. Sungai Calendu, Kel. Mallilingi, Kec. Bantaeng, Kab. Bantaeng, Sulawesi Selatan 92411",
-  telepon: "(0413) 21001",
-  whatsapp: "6285255551234",
-  email: "kelurahanmallilingi@gmail.com",
-  jamKerja: "Senin - Jumat: 08.00 - 16.00 WITA",
-  luasWilayah: "0.84 km²",
-  jumlahPenduduk: "3.420 Jiwa",
-  jumlahKK: "890 KK",
-  jumlahRT: "25 RT",
-  jumlahRW: "8 RW",
-  sambutanLurah: "Selamat datang di portal resmi Kelurahan Mallilingi. Kami berkomitmen memberikan pelayanan publik yang ramah, transparan, cepat, dan mengayomi bagi seluruh masyarakat Kelurahan Mallilingi.",
-  namaLurah: "ILHAM",
-  nipLurah: "Kepala Kelurahan Mallilingi",
-  fotoLurah: "/assets/images/default_profile.jpg",
-  fotoKantor: "/assets/images/kantor_kelurahan.jpg",
-  visi: "Mengutamakan pelayanan kemandirian dan keamanan untuk kemajuan atas iman dan taqwa.",
-  misi: [
-    "Meningkatkan mutu pelayanan serta kualitas hidup masyarakat.",
-    "Memperkuat lembaga-lembaga kemasyarakatan sebagai wadah untuk memotivasi masyarakat dalam meningkatkan partisipasinya.",
-    "Mengendalikan sistem keamanan lingkungan ketertiban masyarakat.",
-    "Menggalang potensi pemuda yang berhubungan dengan kemandirian dan kreatifitas, dalam rangka membangun ketegaran pemuda memasuki era globalisasi.",
-    "Melibatkan sektor swasta dalam meningkatkan kemitraan."
-  ],
+  nama: "",
+  kecamatan: "",
+  kabupaten: "",
+  provinsi: "",
+  kodePos: "",
+  alamat: "",
+  telepon: "",
+  whatsapp: "",
+  email: "",
+  jamKerja: "",
+  luasWilayah: "",
+  jumlahPenduduk: "",
+  jumlahKK: "",
+  jumlahRT: "",
+  jumlahRW: "",
+  sambutanLurah: "",
+  namaLurah: "",
+  nipLurah: "",
+  fotoLurah: "",
+  fotoKantor: "",
+  visi: "",
+  misi: [],
   batasWilayah: {
-    utara: "Desa Ulugalung",
-    timur: "Kelurahan Lembang",
-    selatan: "Kelurahan Letta",
-    barat: "Kelurahan Pallantikang"
+    utara: "",
+    timur: "",
+    selatan: "",
+    barat: ""
   }
 };
 
@@ -66,7 +60,7 @@ export function getSupabaseClient() {
   return createClient(url, key);
 }
 
-// 1. PURE DATABASE FETCH - NO LOCAL FALLBACK ARRAYS
+// 1. PURE DATABASE FETCH - 100% FROM SUPABASE DATABASE ONLY
 export async function getMallilingiDataAsync(): Promise<MallilingiData> {
   const supabase = getSupabaseClient();
   
@@ -92,24 +86,24 @@ export async function getMallilingiDataAsync(): Promise<MallilingiData> {
     let infoObj = {
       ...EMPTY_INFO,
       ...rawInfo,
-      kodePos: rawInfo.kodePos || rawInfo.kodepos || rawInfo.kode_pos || EMPTY_INFO.kodePos,
-      namaLurah: rawInfo.namaLurah || rawInfo.namalurah || rawInfo.nama_lurah || EMPTY_INFO.namaLurah,
-      nipLurah: rawInfo.nipLurah || rawInfo.niplurah || rawInfo.nip_lurah || EMPTY_INFO.nipLurah,
-      fotoLurah: rawInfo.fotoLurah || rawInfo.fotolurah || rawInfo.foto_lurah || EMPTY_INFO.fotoLurah,
-      sambutanLurah: rawInfo.sambutanLurah || rawInfo.sambutanlurah || rawInfo.sambutan_lurah || EMPTY_INFO.sambutanLurah,
-      luasWilayah: rawInfo.luasWilayah || rawInfo.luaswilayah || rawInfo.luas_wilayah || EMPTY_INFO.luasWilayah,
-      jumlahPenduduk: rawInfo.jumlahPenduduk || rawInfo.jumlahpenduduk || rawInfo.jumlah_penduduk || EMPTY_INFO.jumlahPenduduk,
-      jumlahKK: rawInfo.jumlahKK || rawInfo.jumlahkk || rawInfo.jumlah_kk || EMPTY_INFO.jumlahKK,
-      jumlahRT: rawInfo.jumlahRT || rawInfo.jumlahrt || rawInfo.jumlah_rt || EMPTY_INFO.jumlahRT,
-      jumlahRW: rawInfo.jumlahRW || rawInfo.jumlahrw || rawInfo.jumlah_rw || EMPTY_INFO.jumlahRW,
-      jamKerja: rawInfo.jamKerja || rawInfo.jamkerja || rawInfo.jam_kerja || EMPTY_INFO.jamKerja,
+      kodePos: rawInfo.kodePos || rawInfo.kodepos || rawInfo.kode_pos || "",
+      namaLurah: rawInfo.namaLurah || rawInfo.namalurah || rawInfo.nama_lurah || "",
+      nipLurah: rawInfo.nipLurah || rawInfo.niplurah || rawInfo.nip_lurah || "",
+      fotoLurah: rawInfo.fotoLurah || rawInfo.fotolurah || rawInfo.foto_lurah || "",
+      sambutanLurah: rawInfo.sambutanLurah || rawInfo.sambutanlurah || rawInfo.sambutan_lurah || "",
+      luasWilayah: rawInfo.luasWilayah || rawInfo.luaswilayah || rawInfo.luas_wilayah || "",
+      jumlahPenduduk: rawInfo.jumlahPenduduk || rawInfo.jumlahpenduduk || rawInfo.jumlah_penduduk || "",
+      jumlahKK: rawInfo.jumlahKK || rawInfo.jumlahkk || rawInfo.jumlah_kk || "",
+      jumlahRT: rawInfo.jumlahRT || rawInfo.jumlahrt || rawInfo.jumlah_rt || "",
+      jumlahRW: rawInfo.jumlahRW || rawInfo.jumlahrw || rawInfo.jumlah_rw || "",
+      jamKerja: rawInfo.jamKerja || rawInfo.jamkerja || rawInfo.jam_kerja || "",
     };
 
     if (typeof infoObj.misi === "string") {
-      try { infoObj.misi = JSON.parse(infoObj.misi); } catch (e) { infoObj.misi = EMPTY_INFO.misi; }
+      try { infoObj.misi = JSON.parse(infoObj.misi); } catch (e) { infoObj.misi = []; }
     }
     if (typeof infoObj.batasWilayah === "string") {
-      try { infoObj.batasWilayah = JSON.parse(infoObj.batasWilayah); } catch (e) { infoObj.batasWilayah = EMPTY_INFO.batasWilayah; }
+      try { infoObj.batasWilayah = JSON.parse(infoObj.batasWilayah); } catch (e) { infoObj.batasWilayah = { utara: "", timur: "", selatan: "", barat: "" }; }
     }
 
     let layananList = (layananRes.data || []).map((item: any) => {
