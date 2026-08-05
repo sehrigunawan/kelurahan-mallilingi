@@ -97,6 +97,7 @@ export async function getMallilingiDataAsync(): Promise<MallilingiData> {
       jumlahRT: rawInfo.jumlahRT || rawInfo.jumlahrt || rawInfo.jumlah_rt || "",
       jumlahRW: rawInfo.jumlahRW || rawInfo.jumlahrw || rawInfo.jumlah_rw || "",
       jamKerja: rawInfo.jamKerja || rawInfo.jamkerja || rawInfo.jam_kerja || "",
+      batasWilayah: rawInfo.batasWilayah || rawInfo.bataswilayah || rawInfo.batas_wilayah || { utara: "", timur: "", selatan: "", barat: "" }
     };
 
     if (typeof infoObj.misi === "string") {
@@ -146,11 +147,31 @@ export async function saveMallilingiDataAsync(data: MallilingiData): Promise<{ s
   try {
     // 1. Info Table
     if (data.info) {
-      const infoPayload = {
+      const infoPayload: any = {
         id: 1,
-        ...data.info,
+        nama: data.info.nama,
+        kecamatan: data.info.kecamatan,
+        kabupaten: data.info.kabupaten,
+        provinsi: data.info.provinsi,
+        kodepos: data.info.kodePos,
+        alamat: data.info.alamat,
+        telepon: data.info.telepon,
+        whatsapp: data.info.whatsapp,
+        email: data.info.email,
+        jamkerja: data.info.jamKerja,
+        luaswilayah: data.info.luasWilayah,
+        jumlahpenduduk: data.info.jumlahPenduduk,
+        jumlahkk: data.info.jumlahKK,
+        jumlahrt: data.info.jumlahRT,
+        jumlahrw: data.info.jumlahRW,
+        sambutanlurah: data.info.sambutanLurah,
+        namalurah: data.info.namaLurah,
+        niplurah: data.info.nipLurah,
+        fotolurah: data.info.fotoLurah,
+        fotokantor: data.info.fotoKantor,
+        visi: data.info.visi,
         misi: Array.isArray(data.info.misi) ? JSON.stringify(data.info.misi) : data.info.misi,
-        batasWilayah: typeof data.info.batasWilayah === "object" ? JSON.stringify(data.info.batasWilayah) : data.info.batasWilayah
+        bataswilayah: typeof data.info.batasWilayah === "object" ? JSON.stringify(data.info.batasWilayah) : data.info.batasWilayah
       };
       const { error } = await supabase.from("info").upsert(infoPayload);
       if (error) {
