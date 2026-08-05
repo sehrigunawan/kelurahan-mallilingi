@@ -20,9 +20,24 @@ export default async function StrukturPage() {
     p.jabatan.includes("Babinsa") || p.jabatan.includes("Binmas") || p.jabatan.includes("LPM")
   );
 
+  const getRankWeight = (jabatan: string): number => {
+    const j = (jabatan || "").toLowerCase();
+    if (j.includes("kepala kelurahan") || j.includes("lurah")) return 1;
+    if (j.includes("sekretaris kelurahan") || j.includes("seklur")) return 2;
+    if (j.includes("kasi") || j.includes("head")) return 3;
+    if (j.includes("babinsa") || j.includes("binmas") || j.includes("bhabinkamtibmas")) return 4;
+    if (j.includes("ketua lpm")) return 5;
+    if (j.includes("pns")) return 6;
+    if (j.includes("staf") || j.includes("staff") || j.includes("anggota")) return 7;
+    return 8;
+  };
+
+  const sortByRank = (list: typeof aparaturList) =>
+    [...list].sort((a, b) => getRankWeight(a.jabatan) - getRankWeight(b.jabatan));
+
   const renderCardGrid = (list: typeof aparaturList, accentColor: string) => (
     <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "1.25rem" }}>
-      {list.map((person, idx) => (
+      {sortByRank(list).map((person, idx) => (
         <div key={idx} className="sotk-hover-card" style={{ padding: "1.5rem 1.25rem" }}>
           <div style={{ position: "relative", marginBottom: "0.85rem" }}>
             <div style={{ width: "80px", height: "80px", borderRadius: "9999px", overflow: "hidden", border: `3px solid ${accentColor}`, boxShadow: "0 2px 8px rgba(0,0,0,0.06)" }}>
