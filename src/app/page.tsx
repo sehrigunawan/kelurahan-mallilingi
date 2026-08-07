@@ -69,9 +69,19 @@ export default async function HomePage() {
                 <h3 style={{ fontSize: "1.25rem", color: "#0f172a", fontWeight: 700, lineHeight: 1.35, marginBottom: "0.75rem" }}>
                   &ldquo;{info.sambutanLurah}&rdquo;
                 </h3>
-                <p style={{ fontSize: "0.925rem", color: "#475569", lineHeight: 1.7, margin: 0 }}>
-                  Pemerintah Kelurahan Mallilingi berkomitmen memberikan pelayanan publik terbaik berbasis digital, terbuka, dan cepat bagi seluruh warga masyarakat di Kabupaten Bantaeng.
+              <div>
+                <p style={{ fontSize: "0.925rem", color: "#475569", lineHeight: 1.7, marginBottom: "1rem" }}>
+                  Di era transformasi digital saat ini, kecepatan dan keterbukaan informasi adalah kunci utama dalam pelayanan publik yang prima. Kehadiran website ini dirancang bukan sekadar sebagai media informasi, melainkan sebagai jembatan digital yang mendekatkan kantor kelurahan dengan setiap warga.
                 </p>
+                
+                <p style={{ fontSize: "0.925rem", color: "#475569", lineHeight: 1.7, marginBottom: "1rem" }}>
+                  Kini, berbagai keperluan seperti informasi alur administrasi, transparansi program kerja, hingga ruang penyampaian aspirasi dapat diakses secara real-time dari genggaman Anda. Kami ingin memastikan bahwa pelayanan kelurahan menjadi lebih transparan, efisien, dan inklusif.
+                </p>
+                
+                <p style={{ fontSize: "0.925rem", color: "#475569", lineHeight: 1.7, margin: 0 }}>
+                  Mari kita manfaatkan platform digital ini bersama-sama untuk membangun lingkungan yang lebih maju, tanggap, dan harmonis. Kritik dan saran yang membangun selalu kami nantikan demi perbaikan pelayanan ke depan.
+                </p>
+              </div>
               </div>
 
             </div>
@@ -100,11 +110,11 @@ export default async function HomePage() {
 
           {/* === C. PALING BAWAH: GAMBAR PETA KELURAHAN === */}
           <div>
-            <div style={{ borderRadius: "14px", overflow: "hidden", border: "1px solid #e2e8f0", boxShadow: "0 2px 10px rgba(0,0,0,0.04)", background: "#f8fafc" }}>
+            <div style={{ borderRadius: "14px", overflow: "hidden", border: "1px solid #e2e8f0", boxShadow: "0 2px 10px rgba(0,0,0,0.04)", background: "#ffffff" }}>
               <img
-                src="/assets/images/peta_kelurahan.jpg"
+                src="/assets/images/peta_kelurahan.png"
                 alt="Peta Geografis Kelurahan Mallilingi"
-                style={{ width: "100%", maxHeight: "420px", objectFit: "cover", display: "block" }}
+                style={{ width: "100%", height: "auto", display: "block" }}
               />
             </div>
           </div>

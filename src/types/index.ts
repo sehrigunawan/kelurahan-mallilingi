@@ -52,6 +52,7 @@ export interface BeritaPengumuman {
 }
 
 export interface Aparatur {
+  id?: number | string;
   nama: string;
   jabatan: string;
   nip: string;

@@ -157,11 +157,11 @@ export default async function ProfilPage() {
             <span style={{ fontSize: "0.78rem", fontWeight: 700, color: "#475569", marginBottom: "0.5rem", display: "block", textTransform: "uppercase" }}>
               Peta Administrasi & Geografis Kelurahan Mallilingi
             </span>
-            <div style={{ borderRadius: "12px", overflow: "hidden", border: "1px solid #cbd5e1", boxShadow: "0 2px 10px rgba(0,0,0,0.04)" }}>
+            <div style={{ borderRadius: "12px", overflow: "hidden", border: "1px solid #cbd5e1", boxShadow: "0 2px 10px rgba(0,0,0,0.04)", background: "#ffffff" }}>
               <img
-                src="/assets/images/peta_kelurahan.jpg"
+                src="/assets/images/peta_kelurahan.png"
                 alt="Peta Wilayah Kelurahan Mallilingi"
-                style={{ width: "100%", maxHeight: "450px", objectFit: "cover", display: "block" }}
+                style={{ width: "100%", height: "auto", display: "block" }}
               />
             </div>
           </div>
@@ -169,19 +169,43 @@ export default async function ProfilPage() {
 
         {/* 5. CARD 5: Gambaran Umum & Karakteristik Kelurahan Mallilingi */}
         <div className="profile-card">
-          <h3 style={{ fontSize: "1.2rem", color: "#0f172a", fontWeight: 700, marginBottom: "1rem" }}>Gambaran Umum & Karakteristik Kelurahan Mallilingi</h3>
+          <h3 style={{ fontSize: "1.25rem", color: "#0f172a", fontWeight: 700, marginBottom: "1.25rem" }}>
+            Gambaran Umum & Karakteristik Kelurahan Mallilingi
+          </h3>
           
-          <div style={{ fontSize: "0.975rem", lineHeight: 1.8, color: "#334155" }}>
-            <p style={{ marginBottom: "1.25rem" }}>
-              Kelurahan Mallilingi merupakan salah satu wilayah kelurahan di Kecamatan Bantaeng, Kabupaten Bantaeng, Provinsi Sulawesi Selatan. 
-              Sebagai kawasan kelurahan yang berkembang pesat di pusat aktivitas perkotaan Bantaeng, Mallilingi memiliki potensi ekonomi lokal yang kuat, 
-              kehidupan bermasyarakat yang rukun, serta komitmen tinggi terhadap inovasi pelayanan publik.
-            </p>
+          <div style={{ fontSize: "0.95rem", lineHeight: 1.8, color: "#334155" }}>
+            <div style={{ marginBottom: "1.5rem" }}>
+              <h4 style={{ fontSize: "1.05rem", color: "#059669", fontWeight: 700, marginBottom: "0.5rem" }}>
+                Gambaran Umum Wilayah
+              </h4>
+              <p>
+                Kelurahan Mallilingi merupakan salah satu wilayah administratif tingkat kelurahan yang berada di bawah naungan Kecamatan Bantaeng, Kabupaten Bantaeng, Provinsi Sulawesi Selatan. Memiliki bentang wilayah seluas 72,81 km², Kelurahan Mallilingi secara administratif terbagi ke dalam 8 Rukun Warga (RW) dan 25 Rukun Tetangga (RT). Saat ini, kawasan ini dihuni oleh 5.574 jiwa penduduk yang hidup berdampingan secara harmonis, menjadikan Mallilingi sebagai salah satu pusat pemukiman yang tertata, padat, dan dinamis di Kecamatan Bantaeng.
+              </p>
+            </div>
 
-            <p>
-              Pemerintah Kelurahan Mallilingi di bawah kepemimpinan <strong>{info.namaLurah}</strong> terus mendorong digitalisasi pelayanan, 
-              pemberdayaan potensi lokal, dan keterbukaan informasi publik secara berkelanjutan untuk mendukung kemajuan Kabupaten Bantaeng.
-            </p>
+            <div style={{ marginBottom: "1.5rem" }}>
+              <h4 style={{ fontSize: "1.05rem", color: "#059669", fontWeight: 700, marginBottom: "0.5rem" }}>
+                Karakteristik & Geografis Wilayah
+              </h4>
+              <p style={{ marginBottom: "0.85rem" }}>
+                Secara topografi dan fungsi kewilayahan, Kelurahan Mallilingi memiliki posisi strategis sebagai &ldquo;Gerbang Transisi Suburban&rdquo;. Pada sisi selatan, wilayah ini terintegrasi langsung dengan denyut perekonomian serta pusat pelayanan publik perkotaan Ibu Kota Kabupaten Bantaeng. Sementara pada sisi utara, Mallilingi berbatasan langsung dengan kawasan agraris pedesaan di Desa Mamampang, Kecamatan Eremerasa.
+              </p>
+              <p>
+                Keunikan letak geografis ini melahirkan konsep tata ruang yang seimbang antara kawasan hunian perkotaan (urban) dengan kelestarian alam (nature). Di tengah pesatnya pembangunan pemukiman dan sarana pelayanan, Kelurahan Mallilingi tetap berkomitmen memelihara sisa-sisa lahan pertanian perkotaan (urban agriculture) sebagai benteng ketahanan pangan dan penghijauan wilayah.
+              </p>
+            </div>
+
+            <div>
+              <h4 style={{ fontSize: "1.05rem", color: "#059669", fontWeight: 700, marginBottom: "0.5rem" }}>
+                Profil Sosial & Perekonomian Masyarakat
+              </h4>
+              <p style={{ marginBottom: "0.85rem" }}>
+                Karakteristik masyarakat Kelurahan Mallilingi tergolong heterogen dengan tingkat mobilitas yang tinggi. Mata pencaharian utama warga bergerak di berbagai sektor produktif, seperti penyedia jasa, perdagangan, pegawai pemerintahan, wirausaha, hingga sektor pertanian urban di perbatasan wilayah.
+              </p>
+              <p>
+                Kehidupan bermasyarakat di Kelurahan Mallilingi didasari oleh nilai-nilai kemandirian, sifat adaptif terhadap perkembangan teknologi dan modernisasi, serta keteguhan dalam memelihara tradisi gotong royong. Sinergi antara pemerintah kelurahan dan partisipasi aktif warga menjadi fondasi utama dalam mewujudkan tata kelola wilayah yang transparan, aman, dan berkelanjutan.
+              </p>
+            </div>
           </div>
         </div>
 

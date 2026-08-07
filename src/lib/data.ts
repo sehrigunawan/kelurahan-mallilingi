@@ -129,11 +129,21 @@ export async function getMallilingiDataAsync(): Promise<MallilingiData> {
       };
     });
 
+    // Deduplicate array elements if database contains duplicated records
+    const rawStruktur = strukturRes.data || [];
+    const uniqueStrukturMap = new Map();
+    rawStruktur.forEach((item: any) => {
+      const key = `${item.nama || ""}-${item.jabatan || ""}-${item.nip || ""}`;
+      if (!uniqueStrukturMap.has(key)) {
+        uniqueStrukturMap.set(key, item);
+      }
+    });
+
     return {
       info: infoObj,
       berita: beritaRes.data || [],
       layanan: layananList || [],
-      struktur: strukturRes.data || [],
+      struktur: Array.from(uniqueStrukturMap.values()),
       pengaduan: pengaduanRes.data || [],
       rwRtList: rwRtListProcessed || []
     };

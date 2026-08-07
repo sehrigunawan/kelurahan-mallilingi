@@ -38,7 +38,7 @@ export default async function StrukturPage() {
   const renderCardGrid = (list: typeof aparaturList, accentColor: string) => (
     <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "1.25rem" }}>
       {sortByRank(list).map((person, idx) => (
-        <div key={idx} className="sotk-hover-card" style={{ padding: "1.5rem 1.25rem" }}>
+        <div key={person.id || idx} className="sotk-hover-card" style={{ padding: "1.5rem 1.25rem" }}>
           <div style={{ position: "relative", marginBottom: "0.85rem" }}>
             <div style={{ width: "80px", height: "80px", borderRadius: "9999px", overflow: "hidden", border: `3px solid ${accentColor}`, boxShadow: "0 2px 8px rgba(0,0,0,0.06)" }}>
               <img src={person.foto} alt={person.nama} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
